@@ -19,23 +19,16 @@ struct FAgentStats
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY()
-		FName AgentName;
-
-	UPROPERTY()
 		float Cur_Life;
 
 	UPROPERTY()
 		float Max_Life;
 
-	UPROPERTY()
-		EAgentType Agent_Type;
-
 	FAgentStats() 
-		:AgentName(""),
-		Max_Life(100.0f),
-		Cur_Life(Max_Life),
-		Agent_Type(EAgentType::GRUNT)
+		:Max_Life(100.0f),
+		Cur_Life(Max_Life)
 	{}
+
 
 };
 
@@ -48,12 +41,22 @@ class PROJETOJAM_API AAgent : public APaperCharacter
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Agent")
+		FName Agent_Name;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Animation)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Agent")
+		EAgentType Agent_Type;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats")
+		FAgentStats Stats;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
 	class UPaperFlipbook* Idle_Animation;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = Animation)
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
 	UPaperFlipbook* Move_Right_Animation;
+
+	
 
 	/*UPROPERTY()
 		UFaction Faction;*/

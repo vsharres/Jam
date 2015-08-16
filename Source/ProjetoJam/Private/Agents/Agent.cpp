@@ -8,6 +8,8 @@
 AAgent::AAgent(const class FObjectInitializer& Initializer)
 	: Super(Initializer)
 {
+	Stats = FAgentStats();
+	Agent_Type = EAgentType::PLAYER;
 	
 }
 
