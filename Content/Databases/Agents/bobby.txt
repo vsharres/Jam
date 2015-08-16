@@ -1,0 +1,17 @@
+agent.bobby.race!black
+agent.bobby.age!17
+agent.bobby.gender!male
+agent.bobby.location!bar_kitchen_entry
+agent.bobby.is_alive!true
+agent.bobby.knows.walter
+agent.bobby.knows.brown
+agent.bobby.knows.player
+agent.bobby.knows.lydia
+agent.bobby.knows.pannonica
+agent.bobby.relationship_to.walter!employee
+agent.bobby.relationship_to.player!waiter
+agent.bobby.relationship_to.brown!waiter
+agent.bobby.relationshp_to.lydia!waiter
+agent.bobby.relationshp_to.pannonica!waiter
+
+agent.bobby.current_action!waitering

@@ -1,0 +1,1377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup Label="ProjectConfigurations">
+		<ProjectConfiguration Include="Debug_Game|Win32">
+			<Configuration>Debug_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug_Game|x64">
+			<Configuration>Debug_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug_Editor|Win32">
+			<Configuration>Debug_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Debug_Editor|x64">
+			<Configuration>Debug_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Debug_Game|Win32">
+			<Configuration>Mac_Debug_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Debug_Game|x64">
+			<Configuration>Mac_Debug_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Debug_Editor|Win32">
+			<Configuration>Mac_Debug_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Debug_Editor|x64">
+			<Configuration>Mac_Debug_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Debug_Game|Win32">
+			<Configuration>IOS_Debug_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Debug_Game|x64">
+			<Configuration>IOS_Debug_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Debug_Editor|Win32">
+			<Configuration>IOS_Debug_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Debug_Editor|x64">
+			<Configuration>IOS_Debug_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Debug_Game|Win32">
+			<Configuration>WinRT_Debug_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Debug_Game|x64">
+			<Configuration>WinRT_Debug_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Debug_Editor|Win32">
+			<Configuration>WinRT_Debug_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Debug_Editor|x64">
+			<Configuration>WinRT_Debug_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Debug_Game|Win32">
+			<Configuration>WinRT_ARM_Debug_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Debug_Game|x64">
+			<Configuration>WinRT_ARM_Debug_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Debug_Editor|Win32">
+			<Configuration>WinRT_ARM_Debug_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Debug_Editor|x64">
+			<Configuration>WinRT_ARM_Debug_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="DebugGame_Game|Win32">
+			<Configuration>DebugGame_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="DebugGame_Game|x64">
+			<Configuration>DebugGame_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="DebugGame_Editor|Win32">
+			<Configuration>DebugGame_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="DebugGame_Editor|x64">
+			<Configuration>DebugGame_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_DebugGame_Game|Win32">
+			<Configuration>Mac_DebugGame_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_DebugGame_Game|x64">
+			<Configuration>Mac_DebugGame_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_DebugGame_Editor|Win32">
+			<Configuration>Mac_DebugGame_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_DebugGame_Editor|x64">
+			<Configuration>Mac_DebugGame_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_DebugGame_Game|Win32">
+			<Configuration>IOS_DebugGame_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_DebugGame_Game|x64">
+			<Configuration>IOS_DebugGame_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_DebugGame_Editor|Win32">
+			<Configuration>IOS_DebugGame_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_DebugGame_Editor|x64">
+			<Configuration>IOS_DebugGame_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_DebugGame_Game|Win32">
+			<Configuration>WinRT_DebugGame_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_DebugGame_Game|x64">
+			<Configuration>WinRT_DebugGame_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_DebugGame_Editor|Win32">
+			<Configuration>WinRT_DebugGame_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_DebugGame_Editor|x64">
+			<Configuration>WinRT_DebugGame_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_DebugGame_Game|Win32">
+			<Configuration>WinRT_ARM_DebugGame_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_DebugGame_Game|x64">
+			<Configuration>WinRT_ARM_DebugGame_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_DebugGame_Editor|Win32">
+			<Configuration>WinRT_ARM_DebugGame_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_DebugGame_Editor|x64">
+			<Configuration>WinRT_ARM_DebugGame_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Development_Game|Win32">
+			<Configuration>Development_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Development_Game|x64">
+			<Configuration>Development_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Development_Editor|Win32">
+			<Configuration>Development_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Development_Editor|x64">
+			<Configuration>Development_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Development_Game|Win32">
+			<Configuration>Mac_Development_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Development_Game|x64">
+			<Configuration>Mac_Development_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Development_Editor|Win32">
+			<Configuration>Mac_Development_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Development_Editor|x64">
+			<Configuration>Mac_Development_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Development_Game|Win32">
+			<Configuration>IOS_Development_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Development_Game|x64">
+			<Configuration>IOS_Development_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Development_Editor|Win32">
+			<Configuration>IOS_Development_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Development_Editor|x64">
+			<Configuration>IOS_Development_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Development_Game|Win32">
+			<Configuration>WinRT_Development_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Development_Game|x64">
+			<Configuration>WinRT_Development_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Development_Editor|Win32">
+			<Configuration>WinRT_Development_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Development_Editor|x64">
+			<Configuration>WinRT_Development_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Development_Game|Win32">
+			<Configuration>WinRT_ARM_Development_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Development_Game|x64">
+			<Configuration>WinRT_ARM_Development_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Development_Editor|Win32">
+			<Configuration>WinRT_ARM_Development_Editor</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Development_Editor|x64">
+			<Configuration>WinRT_ARM_Development_Editor</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Shipping_Game|Win32">
+			<Configuration>Shipping_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Shipping_Game|x64">
+			<Configuration>Shipping_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Shipping_Game|Win32">
+			<Configuration>Mac_Shipping_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Shipping_Game|x64">
+			<Configuration>Mac_Shipping_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Shipping_Game|Win32">
+			<Configuration>IOS_Shipping_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Shipping_Game|x64">
+			<Configuration>IOS_Shipping_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Shipping_Game|Win32">
+			<Configuration>WinRT_Shipping_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Shipping_Game|x64">
+			<Configuration>WinRT_Shipping_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Shipping_Game|Win32">
+			<Configuration>WinRT_ARM_Shipping_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Shipping_Game|x64">
+			<Configuration>WinRT_ARM_Shipping_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Test_Game|Win32">
+			<Configuration>Test_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Test_Game|x64">
+			<Configuration>Test_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Test_Game|Win32">
+			<Configuration>Mac_Test_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="Mac_Test_Game|x64">
+			<Configuration>Mac_Test_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Test_Game|Win32">
+			<Configuration>IOS_Test_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="IOS_Test_Game|x64">
+			<Configuration>IOS_Test_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Test_Game|Win32">
+			<Configuration>WinRT_Test_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_Test_Game|x64">
+			<Configuration>WinRT_Test_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Test_Game|Win32">
+			<Configuration>WinRT_ARM_Test_Game</Configuration>
+			<Platform>Win32</Platform>
+		</ProjectConfiguration>
+		<ProjectConfiguration Include="WinRT_ARM_Test_Game|x64">
+			<Configuration>WinRT_ARM_Test_Game</Configuration>
+			<Platform>x64</Platform>
+		</ProjectConfiguration>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\ProjetoJam.uproject" />
+		<None Include="..\..\Source\ProjetoJam.Target.cs" />
+		<None Include="..\..\Source\ProjetoJamEditor.Target.cs" />
+		<None Include="..\..\Config\DefaultEditor.ini" />
+		<None Include="..\..\Config\DefaultEngine.ini" />
+		<None Include="..\..\Config\DefaultInput.ini" />
+		<None Include="..\..\Source\ProjetoJam\ProjetoJam.Build.cs" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\ProjetoJam.cpp" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Agent.cpp" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Player\Jackie.cpp" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Location\Location.cpp" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\Statement.cpp" />
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\StatementDatabase.cpp" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\ProjetoJam.h" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Agent.h" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Player\Jackie.h" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Location\Location.h" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\Statement.h" />
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\StatementDatabase.h" />
+		<ResourceCompile Include="..\..\Source\ProjetoJam\Resources\Windows\ProjetoJam.rc" />
+	</ItemGroup>
+	<PropertyGroup Label="Globals">
+		<ProjectGuid>{767ACB52-B6CA-4922-9592-30B07809F011}</ProjectGuid>
+		<Keyword>MakeFileProj</Keyword>
+		<RootNamespace>ProjetoJam</RootNamespace>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Editor|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Shipping_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Shipping_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Shipping_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Shipping_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|x64'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Test_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Test_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v120</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Test_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Test_Game|Win32'" Label="Configuration">
+		<ConfigurationType>Makefile</ConfigurationType>
+		<PlatformToolset>v110</PlatformToolset>
+	</PropertyGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+	<ImportGroup Label="ExtensionSettings" />
+	<PropertyGroup Label="UserMacros" />
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win32\ProjetoJam-Win32-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win32 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win32\UE4Editor-Win32-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Game|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win64\ProjetoJam-Win64-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Editor|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win64 Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win64\UE4Editor-Win64-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Mac\ProjetoJam-Mac-Debug</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Debug_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Mac Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Mac\UE4Editor-Mac-Debug</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\IOS\ProjetoJam-IOS-Debug</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Debug_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor IOS Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\IOS\ProjetoJamEditor-IOS-Debug</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT\ProjetoJam-WinRT-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Debug_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT\ProjetoJamEditor-WinRT-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT_ARM\ProjetoJam-WinRT_ARM-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Debug_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT_ARM Debug "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT_ARM\ProjetoJamEditor-WinRT_ARM-Debug.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win32\ProjetoJam-Win32-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win32 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win32\UE4Editor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Game|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win64\ProjetoJam-Win64-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugGame_Editor|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win64 DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Mac\ProjetoJam-Mac-DebugGame</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_DebugGame_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Mac DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Mac\UE4Editor</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\IOS\ProjetoJam-IOS-DebugGame</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_DebugGame_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor IOS DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\IOS\ProjetoJamEditor-IOS-DebugGame</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT\ProjetoJam-WinRT-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_DebugGame_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT\ProjetoJamEditor-WinRT-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT_ARM\ProjetoJam-WinRT_ARM-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_DebugGame_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT_ARM DebugGame "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT_ARM\ProjetoJamEditor-WinRT_ARM-DebugGame.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win32\ProjetoJam.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win32 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win32\UE4Editor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Game|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win64\ProjetoJam.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Win64 Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Win64\UE4Editor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Mac\ProjetoJam</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Development_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor Mac Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\Mac\UE4Editor</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\IOS\ProjetoJam</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Development_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor IOS Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\IOS\ProjetoJamEditor</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT\ProjetoJam.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Development_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT\ProjetoJamEditor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT_ARM\ProjetoJam.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Editor|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Development_Editor|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJamEditor WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJamEditor WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJamEditor WinRT_ARM Development "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Binaries\WinRT_ARM\ProjetoJamEditor.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win32 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win32 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win32 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win32\ProjetoJam-Win32-Shipping.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Shipping_Game|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win64 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win64 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win64 Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win64\ProjetoJam-Win64-Shipping.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Shipping_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Shipping_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Mac Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Mac Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Mac Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Mac\ProjetoJam-Mac-Shipping</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Shipping_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Shipping_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam IOS Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam IOS Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam IOS Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\IOS\ProjetoJam-IOS-Shipping</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Shipping_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Shipping_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT\ProjetoJam-WinRT-Shipping.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Shipping_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Shipping_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT_ARM Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT_ARM Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT_ARM Shipping "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT_ARM\ProjetoJam-WinRT_ARM-Shipping.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win32 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win32 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win32 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win32\ProjetoJam-Win32-Test.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|x64'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Test_Game|x64'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Win64 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Win64 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Win64 Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Win64\ProjetoJam-Win64-Test.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Test_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Mac_Test_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam Mac Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam Mac Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam Mac Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\Mac\ProjetoJam-Mac-Test</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Test_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='IOS_Test_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam IOS Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam IOS Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam IOS Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\IOS\ProjetoJam-IOS-Test</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Test_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_Test_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT\ProjetoJam-WinRT-Test.exe</NMakeOutput>
+	</PropertyGroup>
+	<ImportGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Test_Game|Win32'" Label="PropertySheets">
+		<Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+	</ImportGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='WinRT_ARM_Test_Game|Win32'">
+		<IncludePath />
+		<ReferencePath />
+		<LibraryPath />
+		<LibraryWPath />
+		<SourcePath />
+		<ExcludePath />
+		<OutDir>$(ProjectDir)..\Build\Unused\</OutDir>
+		<IntDir>$(ProjectDir)..\Build\Unused\</IntDir>
+		<NMakeBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Build.bat ProjetoJam WinRT_ARM Test "$(SolutionDir)$(ProjectName).uproject"</NMakeBuildCommandLine>
+		<NMakeReBuildCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Rebuild.bat ProjetoJam WinRT_ARM Test "$(SolutionDir)$(ProjectName).uproject"</NMakeReBuildCommandLine>
+		<NMakeCleanCommandLine>C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Build\BatchFiles\Clean.bat ProjetoJam WinRT_ARM Test "$(SolutionDir)$(ProjectName).uproject"</NMakeCleanCommandLine>
+		<NMakeOutput>..\..\Binaries\WinRT_ARM\ProjetoJam-WinRT_ARM-Test.exe</NMakeOutput>
+	</PropertyGroup>
+	<PropertyGroup>
+		<NMakePreprocessorDefinitions>$(NMakePreprocessorDefinitions);UE_EDITOR=1;IS_PROGRAM=0;UNICODE;_UNICODE;__UNREAL__;IS_MONOLITHIC=0;WITH_ENGINE=1;WITH_UNREAL_DEVELOPER_TOOLS=0;WITH_COREUOBJECT=1;USE_STATS_WITHOUT_ENGINE=1;WITH_PLUGIN_SUPPORT=1;USE_LOGGING_IN_SHIPPING=1;UE_BUILD_MINIMAL=0;WITH_EDITOR=1;WITH_SERVER_CODE=1;UBT_COMPILED_PLATFORM=Win64;WIN32=1;_WIN32_WINNT=0x0600;WINVER=0x0600;PLATFORM_WINDOWS=1;NDEBUG=1;UE_BUILD_DEVELOPMENT=1;ORIGINAL_FILE_NAME="UE4Editor-ProjetoJam.dll";DEPRECATED_FORGAME=DEPRECATED;PROJETOJAM_API=;UE_ENABLE_ICU=1;WITH_STEAMWORKS=0;WITH_VS_PERF_PROFILER=1;WITH_DIRECTXMATH=0;CORE_API=;COREUOBJECT_API=;WITH_PHYSX=1;WITH_APEX=1;WITH_RUNTIME_PHYSICS_COOKING;WITH_BOX2D=1;WITH_RECAST=1;ENGINE_API=;JSON_API=;WITH_FREETYPE=1;SLATECORE_API=;INPUTCORE_API=;SLATE_API=;MESSAGING_API=;RENDERCORE_API=;RHI_API=;SHADERCORE_API=;ASSETREGISTRY_API=;ENGINEMESSAGES_API=;ENGINESETTINGS_API=;SYNTHBENCHMARK_API=;RENDERER_API=;AIMODULE_API=;GAMEPLAYTAGS_API=;DATABASESUPPORT_API=;UNREALED_API=;BSPMODE_API=;DIRECTORYWATCHER_API=;DOCUMENTATION_API=;PROJECTS_API=;SANDBOXFILE_API=;EDITORSTYLE_API=;SOURCECONTROL_API=;UNREALEDMESSAGES_API=;BLUEPRINTGRAPH_API=;HTTP_PACKAGE=1;HTTP_API=;UNREALAUDIO_API=;NIAGARA_API=;VECTORVM_API=;XAUDIO2_API=;UNREALAUDIOXAUDIO2_API=;USERFEEDBACK_API=;COLLECTIONMANAGER_API=;NIAGARAEDITOR_API=;GRAPHEDITOR_API=;INTROTUTORIALS_API=;LEVELEDITOR_API=;SETTINGS_API=;KISMET_API=;PAPER2D_API=</NMakePreprocessorDefinitions>
+		<NMakeIncludeSearchPath>$(NMakeIncludeSearchPath);C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source;..\..\Source\ProjetoJam\Public;..\..\Source\ProjetoJam\Private;..\..\Source;..\..\Source\ProjetoJam\Public\Agents;..\..\Source\ProjetoJam\Public\AI;..\..\Source\ProjetoJam\Public\Location;..\..\Source\ProjetoJam\Public\Statement;..\..\Source\ProjetoJam\Public\Agents\Player;..\Build\Win64\UE4Editor\Inc\ProjetoJam;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Internationalization;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Async;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Concurrency;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Containers;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Delegates;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\GenericPlatform;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\HAL;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Logging;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Math;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Misc;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Modules;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Modules\Boilerplate;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\ProfilingDebugging;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Serialization;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Serialization\Csv;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Stats;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Templates;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\UObject;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core\Public\Windows;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Core;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\Blueprint;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\Misc;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\Serialization;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\Templates;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject\Public\UObject;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\CoreUObject;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\CoreUObject;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\AI;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\EdGraph;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\Features;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\Net;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\Slate;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\Tests;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\VisualLogger;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine\Public\AI\Navigation;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Json\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Json\Public\Dom;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Json\Public\Policies;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Json\Public\Serialization;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Json;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Json;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Animation;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Application;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Brushes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Fonts;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Input;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Layout;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Logging;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Rendering;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Sound;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Stats;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Styling;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Textures;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Types;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore\Public\Widgets;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\SlateCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\InputCore\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\InputCore\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\InputCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\InputCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SlateCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Application;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Commands;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Docking;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Layout;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\MultiBox;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Notifications;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Styling;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Text;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Views;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Text\Android;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Framework\Text\IOS;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Colors;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Docking;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Images;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Input;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\LayerManager;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Layout;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Navigation;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Notifications;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Text;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate\Public\Widgets\Views;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Slate;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Slate;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Messaging\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Messaging\Public\Deprecated;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Messaging\Public\Helpers;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Messaging;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Messaging;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\RenderCore\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\RenderCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\RenderCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\RHI\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\RHI;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\RHI;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\ShaderCore\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\ShaderCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\ShaderCore;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\AssetRegistry\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\AssetRegistry;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\AssetRegistry;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineMessages\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineMessages\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\EngineMessages;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineMessages;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineSettings\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineSettings\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\EngineSettings;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\EngineSettings;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\SynthBenchmark\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\SynthBenchmark;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Renderer\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Renderer;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Renderer;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\SynthBenchmark;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\AIModule\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\AIModule\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\AIModule;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\GameplayTags\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\GameplayTags\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\GameplayTags;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\GameplayTags;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\AIModule;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\DatabaseSupport\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\DatabaseSupport;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\DatabaseSupport;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\UnrealLightmass\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\AutoReimport;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Commandlets;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Dialogs;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\DragAndDrop;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\FeaturePack;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Features;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Kismet2;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Layers;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Settings;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Tests;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd\Public\Toolkits;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UnrealEd;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\BspMode\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\BspMode;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\BspMode;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\DirectoryWatcher\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\DirectoryWatcher;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\DirectoryWatcher;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Documentation\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Documentation;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Documentation;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Projects\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Projects\Public\Interfaces;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Projects;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Projects;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SandboxFile\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\SandboxFile;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\SandboxFile;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\EditorStyle\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\EditorStyle\Public\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\EditorStyle\Public\Interfaces;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\EditorStyle;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\EditorStyle;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\SourceControl\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\SourceControl\Public\Tests;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\SourceControl;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\SourceControl;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEdMessages\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEdMessages\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UnrealEdMessages;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEdMessages;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\BlueprintGraph\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\BlueprintGraph\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\BlueprintGraph;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\BlueprintGraph;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Online\HTTP\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Online\HTTP\Public\Interfaces;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\HTTP;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Online\HTTP;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\UnrealAudio\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UnrealAudio;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\UnrealAudio;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Niagara\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Niagara\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Niagara;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Niagara;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\VectorVM\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\VectorVM;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\VectorVM;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Windows\XAudio2\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\XAudio2;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Windows\XAudio2;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UnrealAudioXAudio2;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Windows\UnrealAudioXAudio2;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UserFeedback\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\UserFeedback;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UserFeedback;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\CollectionManager\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\CollectionManager;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\CollectionManager;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\NiagaraEditor\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\NiagaraEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\GraphEditor\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\GraphEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\IntroTutorials\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\IntroTutorials;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\IntroTutorials;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\GraphEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\LevelEditor\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\LevelEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\Settings\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Settings;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Developer\Settings;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\LevelEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\NiagaraEditor;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\UnrealEd;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Kismet\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Kismet\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Kismet\Public\Nodes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Kismet\Public\WorkflowOrientedApp;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Kismet;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Editor\Kismet;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Runtime\Engine;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Plugins\2D\Paper2D\Source\Paper2D\Classes;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Plugins\2D\Paper2D\Source\Paper2D\Public;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Plugins\2D\Paper2D\Intermediate\Build\Win64\UE4Editor\Inc\Paper2D;C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Plugins\2D\Paper2D\Source\Paper2D;..\..\Source\ProjetoJam;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\INCLUDE;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\ATLMFC\INCLUDE;C:\Program Files (x86)\Windows Kits\8.1\include\shared;C:\Program Files (x86)\Windows Kits\8.1\include\um;C:\Program Files (x86)\Windows Kits\8.1\include\winrt;;</NMakeIncludeSearchPath>
+		<NMakeForcedIncludes>$(NMakeForcedIncludes)</NMakeForcedIncludes>
+		<NMakeAssemblySearchPath>$(NMakeAssemblySearchPath)</NMakeAssemblySearchPath>
+		<NMakeForcedUsingAssemblies>$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+	</ItemDefinitionGroup>
+	<Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+	<ImportGroup Label="ExtensionTargets">
+	</ImportGroup>
+</Project>

@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{4F245919-4D20-F907-39DB-7D9B65D7DDE1}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "ProjetoJam",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="..\..\ProjetoJam.uproject" />
+		<Filter Include="Source">
+			<UniqueIdentifier>{FDFFEC9C-A241-43F9-A2D7-9F93953893F9}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\ProjetoJam.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<None Include="..\..\Source\ProjetoJamEditor.Target.cs">
+			<Filter>Source</Filter>
+		</None >
+		<Filter Include="Config">
+			<UniqueIdentifier>{D394BD95-CFAE-447D-B4C8-C114747DCF1D}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Config\DefaultEditor.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="..\..\Config\DefaultInput.ini">
+			<Filter>Config</Filter>
+		</None >
+		<Filter Include="Source\ProjetoJam">
+			<UniqueIdentifier>{5401145A-9076-4E85-995E-96A143EAB185}</UniqueIdentifier>
+		</Filter>
+		<None Include="..\..\Source\ProjetoJam\ProjetoJam.Build.cs">
+			<Filter>Source\ProjetoJam</Filter>
+		</None >
+		<Filter Include="Source\ProjetoJam\Private">
+			<UniqueIdentifier>{4E55AA75-0CCF-453A-B3A5-0C4A58396153}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\ProjetoJam.cpp">
+			<Filter>Source\ProjetoJam\Private</Filter>
+		</ClCompile >
+		<Filter Include="Source\ProjetoJam\Private\Agents">
+			<UniqueIdentifier>{4CA58D46-60A9-488C-8CF6-F78D92902F78}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Agent.cpp">
+			<Filter>Source\ProjetoJam\Private\Agents</Filter>
+		</ClCompile >
+		<Filter Include="Source\ProjetoJam\Private\Agents\Player">
+			<UniqueIdentifier>{87E69FF9-14D6-417D-9D56-7D039DA925D1}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Player\Jackie.cpp">
+			<Filter>Source\ProjetoJam\Private\Agents\Player</Filter>
+		</ClCompile >
+		<Filter Include="Source\ProjetoJam\Private\Location">
+			<UniqueIdentifier>{196D05BA-0071-49C7-8A75-6290C01BBF4C}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Location\Location.cpp">
+			<Filter>Source\ProjetoJam\Private\Location</Filter>
+		</ClCompile >
+		<Filter Include="Source\ProjetoJam\Private\Statement">
+			<UniqueIdentifier>{ED14856F-FD03-4239-86F4-85EABACB2775}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\Statement.cpp">
+			<Filter>Source\ProjetoJam\Private\Statement</Filter>
+		</ClCompile >
+		<ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\StatementDatabase.cpp">
+			<Filter>Source\ProjetoJam\Private\Statement</Filter>
+		</ClCompile >
+		<Filter Include="Source\ProjetoJam\Public">
+			<UniqueIdentifier>{21CC7241-A82E-4929-A2CB-494352ADDCD5}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\ProjetoJam.h">
+			<Filter>Source\ProjetoJam\Public</Filter>
+		</ClInclude >
+		<Filter Include="Source\ProjetoJam\Public\Agents">
+			<UniqueIdentifier>{CABFC34A-FF18-499B-AD20-E06AD8F4512D}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Agent.h">
+			<Filter>Source\ProjetoJam\Public\Agents</Filter>
+		</ClInclude >
+		<Filter Include="Source\ProjetoJam\Public\Agents\Player">
+			<UniqueIdentifier>{98297777-8BF1-44C1-BE28-BCACAD758289}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Player\Jackie.h">
+			<Filter>Source\ProjetoJam\Public\Agents\Player</Filter>
+		</ClInclude >
+		<Filter Include="Source\ProjetoJam\Public\Location">
+			<UniqueIdentifier>{1FDAEEE1-3129-435E-8E6C-5B322A0C9BAB}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Location\Location.h">
+			<Filter>Source\ProjetoJam\Public\Location</Filter>
+		</ClInclude >
+		<Filter Include="Source\ProjetoJam\Public\Statement">
+			<UniqueIdentifier>{DE047682-86F5-4576-93CF-9F91D2DEAB71}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\Statement.h">
+			<Filter>Source\ProjetoJam\Public\Statement</Filter>
+		</ClInclude >
+		<ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\StatementDatabase.h">
+			<Filter>Source\ProjetoJam\Public\Statement</Filter>
+		</ClInclude >
+		<Filter Include="Source\ProjetoJam\Resources">
+			<UniqueIdentifier>{98F9E182-E9A5-4805-BA8A-F5C045686FB7}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Source\ProjetoJam\Resources\Windows">
+			<UniqueIdentifier>{B639B599-7ADE-46C2-8CD9-452E695BD3BF}</UniqueIdentifier>
+		</Filter>
+		<ResourceCompile Include="..\..\Source\ProjetoJam\Resources\Windows\ProjetoJam.rc">
+			<Filter>Source\ProjetoJam\Resources\Windows</Filter>
+		</ResourceCompile >
+	</ItemGroup>
+</Project>

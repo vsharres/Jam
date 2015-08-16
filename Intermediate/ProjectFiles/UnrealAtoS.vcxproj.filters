@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\Mac\UnrealAtoS\UnrealAtoS.Target.cs" />
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\Mac\UnrealAtoS\UnrealAtoS.Build.cs" />
+		<Filter Include="Private">
+			<UniqueIdentifier>{766289DD-8452-4F14-90F6-881A7D91FEC7}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\Mac\UnrealAtoS\Private\UnrealAtoSApp.cpp">
+			<Filter>Private</Filter>
+		</ClCompile >
+		<Filter Include="Private\Mac">
+			<UniqueIdentifier>{52182D2D-ACA6-41B2-8959-5E22D7049895}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\Mac\UnrealAtoS\Private\Mac\UnrealAtoSMainMac.cpp">
+			<Filter>Private\Mac</Filter>
+		</ClCompile >
+		<Filter Include="Public">
+			<UniqueIdentifier>{9527A07F-41FE-47D5-9CAC-A8D26053E5FB}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\Mac\UnrealAtoS\Public\UnrealAtoSApp.h">
+			<Filter>Public</Filter>
+		</ClInclude >
+	</ItemGroup>
+</Project>

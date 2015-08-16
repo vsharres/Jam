@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\SymbolDebugger.Target.cs" />
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\SymbolDebugger.Build.cs" />
+		<Filter Include="Private">
+			<UniqueIdentifier>{6B789D35-42E8-4A57-A3E8-AEFC187D8A0E}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\SSymbolDebugger.cpp">
+			<Filter>Private</Filter>
+		</ClCompile >
+		<ClInclude Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\SSymbolDebugger.h">
+			<Filter>Private</Filter>
+		</ClInclude >
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\SymbolDebugger.cpp">
+			<Filter>Private</Filter>
+		</ClCompile >
+		<ClInclude Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\SymbolDebugger.h">
+			<Filter>Private</Filter>
+		</ClInclude >
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\SymbolDebuggerApp.cpp">
+			<Filter>Private</Filter>
+		</ClCompile >
+		<Filter Include="Private\Mac">
+			<UniqueIdentifier>{58C6FB92-C880-42A3-9033-0BE7F07D0DE9}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\Mac\SymbolDebuggerMainMac.cpp">
+			<Filter>Private\Mac</Filter>
+		</ClCompile >
+		<Filter Include="Private\Windows">
+			<UniqueIdentifier>{8ADEFBE8-B0F5-49E4-81B8-F11090C695AF}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Private\Windows\SymbolDebuggerMainWindows.cpp">
+			<Filter>Private\Windows</Filter>
+		</ClCompile >
+		<Filter Include="Public">
+			<UniqueIdentifier>{4886E30F-46CB-495C-9F4A-D1ADB7125DEB}</UniqueIdentifier>
+		</Filter>
+		<ClInclude Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Public\SymbolDebuggerApp.h">
+			<Filter>Public</Filter>
+		</ClInclude >
+		<Filter Include="Resources">
+			<UniqueIdentifier>{D1E52A08-E4FC-4680-A8FE-6F632FF396BC}</UniqueIdentifier>
+		</Filter>
+		<Filter Include="Resources\Windows">
+			<UniqueIdentifier>{4F81A1D8-F4A8-4947-AA32-7B6AE2AC0853}</UniqueIdentifier>
+		</Filter>
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Resources\Windows\Debug-PCLaunch-Win32.manifest">
+			<Filter>Resources\Windows</Filter>
+		</Manifest >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Resources\Windows\Debug-PCLaunch-Win64.manifest">
+			<Filter>Resources\Windows</Filter>
+		</Manifest >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Resources\Windows\PCLaunch-Win32.manifest">
+			<Filter>Resources\Windows</Filter>
+		</Manifest >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Resources\Windows\PCLaunch-Win64.manifest">
+			<Filter>Resources\Windows</Filter>
+		</Manifest >
+		<ResourceCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\SymbolDebugger\Resources\Windows\PCLaunch.rc">
+			<Filter>Resources\Windows</Filter>
+		</ResourceCompile >
+	</ItemGroup>
+</Project>

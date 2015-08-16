@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<ItemGroup>
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\ShaderCompileWorker.Target.cs" />
+		<Filter Include="Config">
+			<UniqueIdentifier>{36AB2AF1-B39B-4A26-865F-4CA32A4AE208}</UniqueIdentifier>
+		</Filter>
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Programs\ShaderCompileWorker\Config\DefaultEngine.ini">
+			<Filter>Config</Filter>
+		</None >
+		<None Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\ShaderCompileWorker.Build.cs" />
+		<Filter Include="Private">
+			<UniqueIdentifier>{F6117A03-5F85-4655-A9B1-5FAA7FAF985B}</UniqueIdentifier>
+		</Filter>
+		<ClCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Private\ShaderCompileWorker.cpp">
+			<Filter>Private</Filter>
+		</ClCompile >
+		<Filter Include="Resources">
+			<UniqueIdentifier>{310B67CA-EDBB-4C3E-A582-F125F987311C}</UniqueIdentifier>
+		</Filter>
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\Debug-Win32.manifest">
+			<Filter>Resources</Filter>
+		</Manifest >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\Debug-Win64.manifest">
+			<Filter>Resources</Filter>
+		</Manifest >
+		<ClInclude Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\resource.h">
+			<Filter>Resources</Filter>
+		</ClInclude >
+		<ResourceCompile Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\Resource.rc">
+			<Filter>Resources</Filter>
+		</ResourceCompile >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\Win32.manifest">
+			<Filter>Resources</Filter>
+		</Manifest >
+		<Manifest Include="C:\Users\Vinicius\Documents\GitHub\UnrealEngine\Engine\Source\Programs\ShaderCompileWorker\Resources\Win64.manifest">
+			<Filter>Resources</Filter>
+		</Manifest >
+	</ItemGroup>
+</Project>

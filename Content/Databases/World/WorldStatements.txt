@@ -1,0 +1,11 @@
+instantiate.player
+instantiate.brown
+instantiate.lydia
+instantiate.bobby
+instantiate.walter
+instantiate.pannonica
+
+world!initiated
+
+
+
