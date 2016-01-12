@@ -8,3 +8,8 @@ AGrunt::AGrunt(const FObjectInitializer& Initializer)
 {
 	Agent_Type = EAgentType::GRUNT;
 }
+
+void AGrunt::InitializeAgent()
+{
+
+}

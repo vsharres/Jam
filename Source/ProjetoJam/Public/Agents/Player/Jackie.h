@@ -15,15 +15,27 @@ class PROJETOJAM_API AJackie : public AAgent
 	
 private:
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 	UCameraComponent* Camera;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* CameraBoom;
+
 
 public:
 
 	AJackie(const FObjectInitializer& ObjectInitializer);
+
+	UFUNCTION(BlueprintPure, Category = "Camera")
+	UCameraComponent* GetCamera();
+
+	void MoveRight(float input) override;
+
+	void MoveUp(float input) override;
+
+	void InitializeAgent() override;
+
+	void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	
 	
 };

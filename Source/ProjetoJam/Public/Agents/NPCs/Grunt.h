@@ -15,6 +15,8 @@ class PROJETOJAM_API AGrunt : public AAgent
 public:
 
 	AGrunt(const FObjectInitializer& Initializer);
+
+	void InitializeAgent() override;
 	
 	
 };

@@ -40,37 +40,52 @@ class PROJETOJAM_API AAgent : public APaperCharacter
 {
 	GENERATED_BODY()
 
-public:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Agent")
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = "Agent")
 		FName Agent_Name;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Agent")
+	UPROPERTY(EditDefaultsOnly,  Category = "Agent")
 		EAgentType Agent_Type;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Stats")
+	UPROPERTY(EditDefaultsOnly, Category = "Agent")
 		FAgentStats Stats;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
+	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
 	class UPaperFlipbook* Idle_Animation;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Animation")
-	UPaperFlipbook* Move_Right_Animation;
+	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
+		UPaperFlipbook* Move_Right_Animation;
 
-	
-
-	/*UPROPERTY()
-		UFaction Faction;*/
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+		UPaperFlipbook* Move_Up_Animation;
 
 	/*UPROPERTY()
-		TArray<UItem*> Items;*/
+		UFaction* Faction;*/
+
+	UPROPERTY()
+		TArray<class UItem*> Inventory;
+
+public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)
-		class ALocation* Cur_Location;
+		TWeakObjectPtr<class ALocation> Cur_Location;
+
+	UPROPERTY()
+		TWeakObjectPtr<class AStatementDatabase> Database_Ref;
 
 	AAgent(const FObjectInitializer& Initializer);
 
+	UFUNCTION()
+		virtual void InitializeAgent();
+
+	UFUNCTION()
+		virtual void MoveRight(float input);
+
+	UFUNCTION()
+		 virtual void MoveUp(float input);
 
 
+	void BeginPlay() override;
 
 
 

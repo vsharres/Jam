@@ -2,7 +2,6 @@
 
 #include "Public/ProjetoJam.h"
 #include "Public/Location/Location.h"
-#include "Public/Statement/Statement.h"
 
 DEFINE_LOG_CATEGORY(LocationLog);
 
@@ -28,8 +27,7 @@ void ALocation::SetLocationStament()
 
 	text = "World." + text;
 
-	UStatement* stament = NewObject<UStatement>();
-	stament->SetStatement(text);
+	FStatement statement = FStatement(text);
 	
 }
 

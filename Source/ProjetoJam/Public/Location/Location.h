@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Public/Statement/StatementDatabase.h"
 #include "Location.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LocationLog, Log, All);
@@ -18,7 +19,7 @@ protected:
 		ALocation* ParentLocation;
 
 	UPROPERTY(VisibleAnywhere, Category = Location)
-	class UStatement* LocationStatement;
+		FStatement LocationStatement;
 	
 public:	
 
@@ -47,7 +48,7 @@ public:
 		bool IsLocationChild(ALocation* LocationToCompare);
 
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Update Location", Keywords = "Update Location"), Category = Location)
-		virtual void UpdateLocation();
+		void UpdateLocation();
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

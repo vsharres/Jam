@@ -17,6 +17,38 @@ AJackie::AJackie(const FObjectInitializer& ObjectInitializer)
 	Camera->OrthoWidth = 1024;
 
 	Camera->AttachTo(CameraBoom);
+
+	Inventory.Empty();
+
+	Agent_Type = EAgentType::PLAYER;
+	Agent_Name = "Jackie";
 }
 
+UCameraComponent* AJackie::GetCamera()
+{
+	return Camera;
+}
+
+void AJackie::MoveRight(float input)
+{
+	Super::MoveRight(input);
+}
+
+void AJackie::MoveUp(float input)
+{
+	Super::MoveUp(input);
+}
+
+void AJackie::InitializeAgent()
+{
+
+}
+
+void AJackie::SetupPlayerInputComponent(UInputComponent * InputComponent)
+{
+	Super::SetupPlayerInputComponent(InputComponent);
+
+	InputComponent->BindAxis("MoveUp", this, &AJackie::MoveUp);
+	InputComponent->BindAxis("MoveRight", this, &AJackie::MoveRight);
+}
 
