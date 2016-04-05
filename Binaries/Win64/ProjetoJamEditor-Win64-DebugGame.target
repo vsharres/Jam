@@ -1,0 +1,33 @@
+{
+	"TargetName" : "ProjetoJamEditor",
+	"Platform" : "Win64",
+	"Configuration" : "DebugGame",
+	"BuildId" : "c0bf7e6d-5ddf-44ef-9faf-e21c95118e99",
+	"Version" : 
+	{
+		"MajorVersion" : 4,
+		"MinorVersion" : 11,
+		"PatchVersion" : 0,
+		"Changelist" : 2927265,
+		"IsLicenseeVersion" : 0,
+		"BranchName" : "++UE4+Release-4.11"
+	},
+	"BuildProducts" :
+	[
+		{
+			"Path" : "$(ProjectDir)\\Binaries\\Win64\\UE4Editor-ProjetoJam-Win64-DebugGame.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(ProjectDir)\\Binaries\\Win64\\UE4Editor-ProjetoJam-Win64-DebugGame.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(ProjectDir)\\Intermediate\\Build\\Win64\\UE4Editor\\DebugGame\\UE4Editor-ProjetoJam-Win64-DebugGame.lib",
+			"Type" : "ImportLibrary"
+		}
+	],
+	"RuntimeDependencies" :
+	[
+	]
+}

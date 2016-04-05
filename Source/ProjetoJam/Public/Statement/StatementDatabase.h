@@ -8,8 +8,8 @@
 DECLARE_LOG_CATEGORY_EXTERN(StatementLog, Log, All);
 DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
 
-USTRUCT()
-struct FStatement {
+USTRUCT(BlueprintType)
+struct FStatement{
 
 	GENERATED_USTRUCT_BODY()
 
@@ -33,6 +33,14 @@ public:
 		StatementKey = "";
 		Vertices.Empty();
 		Edges.Empty();
+	}
+
+	FStatement(const FStatement& OtherStatement)
+	{
+		Statement = OtherStatement.Statement;
+		StatementKey = OtherStatement.StatementKey;
+		Vertices = OtherStatement.Vertices;
+		Edges = OtherStatement.Edges;
 	}
 
 	FStatement(const FString& newStatement)
@@ -217,6 +225,91 @@ public:
 
 };
 
+USTRUCT(BlueprintType)
+struct FPracticeState
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
+		FStatement State;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
+		TArray<class UAction*> Actions;
+
+
+	FPracticeState()
+	{
+		State = FString();
+		Actions.Empty();
+	}
+
+	~FPracticeState()
+	{
+		State = FString();
+		Actions.Empty();
+	}
+
+};
+
+USTRUCT()
+struct FPractice :public FStatement
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+		TArray<FPracticeState> States;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+		FPracticeState CurrentState;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+		TArray<FStatement> ConstructionStatements;
+
+	FPractice()
+	{
+		CurrentState = FPracticeState();
+		States.Empty();
+		ConstructionStatements.Empty();
+	}
+
+	FPractice(const FPractice& OtherPractice)
+	{
+		Statement = OtherPractice.Statement;
+		StatementKey = OtherPractice.StatementKey;
+		Vertices = OtherPractice.Vertices;
+		Edges = OtherPractice.Edges;
+		CurrentState = OtherPractice.CurrentState;
+		States = OtherPractice.States;
+		ConstructionStatements = OtherPractice.ConstructionStatements;
+	}
+
+	FPractice(const FStatement& OtherStatement)
+	{
+		Statement = OtherStatement.Statement;
+		StatementKey = OtherStatement.StatementKey;
+		Vertices = OtherStatement.Vertices;
+		Edges = OtherStatement.Edges;
+		CurrentState = FPracticeState();
+		States.Empty();
+		ConstructionStatements.Empty();
+	}
+
+	~FPractice()
+	{
+		States.Empty();
+		ConstructionStatements.Empty();
+	}
+
+	//TO DO
+	bool IsValidPractice() {
+		return true;
+	}
+};
+
 UCLASS()
 class PROJETOJAM_API AStatementDatabase : public AActor
 {
@@ -241,6 +334,9 @@ private:
 	/**The full path to the database file. */
 	UPROPERTY(EditDefaultsOnly, Category = Database)
 		FString DatabaseFilePath;
+
+	UPROPERTY(EditDefaultsOnly, Category = Practices)
+		TArray<FPractice> PracticeList;
 
 public:	
 

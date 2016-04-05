@@ -143,6 +143,14 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 		{
 			WriteToFile();
 		}
+
+		FPractice AsPractice = NewStatement;
+
+		if (AsPractice.IsValidPractice())
+		{
+			InsertIntoDatabase(AsPractice.CurrentState.State);
+		}
+
 		return;
 	}
 }

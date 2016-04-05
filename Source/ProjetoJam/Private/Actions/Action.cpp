@@ -3,6 +3,10 @@
 #include "ProjetoJam.h"
 #include "Action.h"
 
-
-
-
+UAction::UAction()
+{
+	Caller = nullptr;
+	ActionBT = nullptr;
+	Preconditions.Empty();
+	Postconditions.Empty();
+}

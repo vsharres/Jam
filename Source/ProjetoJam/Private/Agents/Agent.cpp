@@ -22,7 +22,7 @@ void AAgent::BeginPlay()
 
 void AAgent::InitializeAgent()
 {
-
+	//Get statements from file and add them in the database, initialize behavior if AI and update faction.
 }
 
 void AAgent::MoveRight(float input)
