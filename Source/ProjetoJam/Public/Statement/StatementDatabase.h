@@ -213,9 +213,52 @@ public:
 		return false;
 	}
 
+	bool IsStatementValid()
+	{
+		if (this->Statement == "" || this->StatementKey == "" || this->Vertices.Num() <= 1 || this->Edges.Num() == 0 )
+		{
+			return false;
+		}
+
+		return true;
+	}
+
 	FString& operator[](int32 index)
 	{
 		return Vertices[index];
+	}
+
+	FStatement& operator>>(FStatement& StatementQuery)
+	{
+		FString asString = StatementQuery.GetStatement();
+
+		TArray<int32> indexQuery;
+		TArray<TCHAR> CharArray = asString.GetCharArray();
+
+		for (int32 index = 0; index < CharArray.Num();index++)
+		{
+			if (FChar::IsLower(CharArray[index]))
+			{
+				indexQuery.Add(index);
+			}
+		
+		}
+
+		if (indexQuery.Num() > 0)
+		{
+			for (int32 index = 0; index < indexQuery.Num(); index++)
+			{
+				if (this->Vertices.Num() >= index + 1)
+				{
+					asString.ReplaceInline(&CharArray[indexQuery[index]], *(this->Vertices[index]), ESearchCase::CaseSensitive);
+				}
+			}
+
+		}
+
+		*this = asString;
+		
+		return *this;
 	}
 
 	const FString& operator[](const int32& index) const{

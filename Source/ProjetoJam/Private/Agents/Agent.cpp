@@ -10,7 +10,6 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 {
 	Stats = FAgentStats();
 	Agent_Type = EAgentType::GRUNT;
-	
 }
 
 void AAgent::BeginPlay()

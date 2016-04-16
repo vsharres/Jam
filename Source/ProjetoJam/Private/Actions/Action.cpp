@@ -7,6 +7,15 @@ UAction::UAction()
 {
 	Caller = nullptr;
 	ActionBT = nullptr;
-	Preconditions.Empty();
-	Postconditions.Empty();
+	ActionStatementPreset = FStatement();
+}
+
+void UAction::ExecutePostConditions_Implementation()
+{
+
+}
+
+bool UAction::CheckPreConditions_Implementation()
+{
+	return true;
 }
