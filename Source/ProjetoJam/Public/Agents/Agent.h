@@ -32,6 +32,8 @@ struct FAgentStats
 
 };
 
+class UFaction;
+
 /**
  *
  */
@@ -59,8 +61,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 		UPaperFlipbook* Move_Up_Animation;
 
-	/*UPROPERTY()
-		UFaction* Faction;*/
+	UPROPERTY()
+		UFaction* Faction;
 
 	UPROPERTY()
 		TArray<class UItem*> Inventory;

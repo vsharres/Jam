@@ -19,6 +19,12 @@ private:
 
 	UPROPERTY()
 		AAgent* Agent;
+
+
+	UAgentArchetypeManager();
+
+	UFUNCTION()
+		virtual void PopulateStatements();
 	
 	
 	

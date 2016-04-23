@@ -80,9 +80,6 @@
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.cpp">
       <Filter>Source\ProjetoJam\Private\Archetype</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.h">
-      <Filter>Source\ProjetoJam\Private\Archetype</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Archetype\ArchetypeManager.cpp">
       <Filter>Source\ProjetoJam\Private\Archetype</Filter>
     </ClCompile>
@@ -198,6 +195,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Faction\Faction.h">
       <Filter>Source\ProjetoJam\Public\Faction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.h">
+      <Filter>Source\ProjetoJam\Public\Archetype</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

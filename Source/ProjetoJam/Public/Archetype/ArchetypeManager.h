@@ -27,14 +27,15 @@ UENUM(BlueprintType)
 enum class ERegentType : uint8 {
 
 	SUN,
-	MOON,
 	MERCURY,
 	VENUS,
+	MOON,
 	MARS,
 	JUPITER,
 	SATURN,
 	URANUS,
-	NEPTUNE
+	NEPTUNE,
+	PLUTO
 
 };
 
@@ -66,8 +67,6 @@ enum class EAspectType :uint8
 };
 
 
-
-
 USTRUCT(BlueprintType)
 struct FArchetype
 {
@@ -93,6 +92,8 @@ public:
 		PositionType = position;
 		Type = type;
 	}
+
+	
 
 	void AddAchetypeClassStatements(TArray<FStatement>& StatementArray)
 	{
@@ -127,6 +128,26 @@ public:
 		}
 	}
 
+	bool operator==(const FArchetype& C1)
+	{
+		if (this->Type == C1.Type && this->PositionType == C1.PositionType)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool operator==(const FArchetype& C1) const
+	{
+		if (this->Type == C1.Type && this->PositionType == C1.PositionType)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
 };
 
 
@@ -138,7 +159,7 @@ struct FArchetypeRegent
 public:
 
 	UPROPERTY()
-		ERegentType Type;
+		ERegentType RegentType;
 
 	UPROPERTY()
 		FArchetype Archetype;
@@ -146,10 +167,125 @@ public:
 
 	FArchetypeRegent()
 	{
-		Type = ERegentType::SUN;
+		RegentType = ERegentType::SUN;
 		Archetype = FArchetype();
 		
 	}
+
+	static FArchetypeRegent* GenerateRegent(ERegentType TypeToGenerate, FArchetype BaseArchetype)
+	{
+		FArchetypeRegent* generated = new FArchetypeRegent();
+		FRandomStream stream;
+
+		if (TypeToGenerate == ERegentType::SUN || TypeToGenerate >= ERegentType::MOON)
+		{			
+
+			generated->RegentType = (ERegentType)stream.RandRange(0, 11);
+		}
+		else
+		{
+			generated->RegentType = (ERegentType)stream.RandRange(((int32)generated->RegentType) - 1, ((int32)generated->RegentType) + 1);
+		}
+
+		generated->Archetype.Type = (EArchetype)((int32)BaseArchetype.Type % (11 + (int32)generated->RegentType));
+
+		return generated;
+		
+	}
+
+	bool operator==(const FArchetypeRegent& c2)
+	{
+		if (this->RegentType == c2.RegentType && this->Archetype == c2.Archetype)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool operator==(const FArchetypeRegent& c2) const
+	{
+		if (this->RegentType == c2.RegentType && this->Archetype == c2.Archetype)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool InConjunction(const FArchetypeRegent& Other) const
+	{
+		if (*this == Other)
+		{
+			return false;
+		}
+
+		if (this->Archetype.PositionType == Other.Archetype.PositionType)
+		{
+			return true;
+		}
+		
+		return false;
+
+	}
+
+	bool InTrine(const FArchetypeRegent& Other) const
+	{
+		if (*this == Other)
+		{
+			return false;
+		}
+
+		const uint8 pos1 = ((uint8)this->Archetype.PositionType + 4) % 11;
+		const uint8 pos2 = ((uint8)this->Archetype.PositionType - 4) % 11;
+
+		if (pos1 == (uint8)Other.Archetype.PositionType || pos2 == (uint8)Other.Archetype.PositionType)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool InSquare(const FArchetypeRegent& Other) const 
+	{
+
+		if (*this == Other)
+		{
+			return false;
+		}
+
+		const uint8 pos1 = ((uint8)this->Archetype.PositionType + 3) % 11;
+		const uint8 pos2 = ((uint8)this->Archetype.PositionType - 3) % 11;
+
+		if (pos1 == (uint8)Other.Archetype.PositionType || pos2 == (uint8)Other.Archetype.PositionType)
+		{
+			return true;
+		}
+
+		return false;
+
+	}
+
+	bool InOpposition(const FArchetypeRegent& Other) const
+	{
+
+		if (*this == Other)
+		{
+			return false;
+		}
+
+		const uint8 pos = ((uint8)this->Archetype.PositionType + 6) % 11;
+
+		if (pos == (uint8)Other.Archetype.PositionType)
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+
 
 };
 
@@ -172,7 +308,93 @@ public:
 		AspectTo = FArchetypeRegent();
 	}
 
+	FAspect(EAspectType type, FArchetypeRegent aspectTo)
+	{
+		Type = type;
+		AspectTo = aspectTo;
+	}
+
 };
+
+USTRUCT(BlueprintType)
+struct FArchetypeStatements : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	FArchetypeStatements()
+		: Type(EArchetype::ARIES),
+		Statements("")
+	{}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
+		EArchetype Type;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
+		FString Statements;
+
+
+};
+
+
+USTRUCT(BlueprintType)
+struct FArchetypeRegentStatements : public  FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	FArchetypeRegentStatements()
+		: Type(ERegentType::SUN),
+		Statements("")
+	{}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = ArchetypeRegent)
+		ERegentType Type;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = ArchetypeRegent)
+		FString Statements;
+
+};
+
+USTRUCT(BlueprintType)
+struct FAspectStatements : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	FAspectStatements()
+		: Type(EAspectType::CONJUCTION),
+		Statements("")
+	{}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AsoectStatements)
+		EAspectType Type;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AsoectStatements)
+		FString Statements;
+
+
+};
+
+USTRUCT(BlueprintType)
+struct FAspectTable : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	FAspectTable()
+	{}
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AspectTable)
+		TAssetPtr<UDataTable> Table;
+
+};
+
+
 
 /**
  *
@@ -181,24 +403,43 @@ UCLASS(BlueprintType)
 class PROJETOJAM_API UArchetypeManager : public UObject
 {
 	GENERATED_BODY()
-
+private:
+	UPROPERTY()
+		FRandomStream Stream;
 
 public:
 
 	UPROPERTY()
-		FArchetype Archetype;
+		FArchetype Ascendent;
 
 	UPROPERTY()
 		TArray<FArchetypeRegent> Regents;
 
-	TMultiMap<FArchetypeRegent, FAspect> Aspects;
+	UPROPERTY()
+		int32 Seed;
+
+	UPROPERTY()
+		TArray<FStatement> ResultingStatements;
+
+	TMultiMap<uint8, FAspect> Aspects;
+
 
 	UArchetypeManager();
 
 
-	FORCEINLINE static bool ConstPredicate(const FArchetypeRegent& key1, const FArchetypeRegent& key2)
+	UFUNCTION()
+		void GenerateArchetype();
+
+	UFUNCTION()
+		void GenerateAspects();
+
+	UFUNCTION()
+		virtual void PopulateStatements();
+
+
+	FORCEINLINE static bool ConstPredicate(const uint8& key1, const uint8& key2)
 	{
-		return (key1.Type < key2.Type);
+		return (key1 < key2);
 	}
 
 };

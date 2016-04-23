@@ -3,6 +3,12 @@
 #include "ProjetoJam.h"
 #include "FactionArchetypeManager.h"
 
+UFactionArchetypeManager::UFactionArchetypeManager()
+{
 
+}
 
+void UFactionArchetypeManager::PopulateStatements()
+{
 
+}

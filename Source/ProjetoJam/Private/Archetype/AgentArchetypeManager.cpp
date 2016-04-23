@@ -3,6 +3,12 @@
 #include "ProjetoJam.h"
 #include "AgentArchetypeManager.h"
 
+UAgentArchetypeManager::UAgentArchetypeManager()
+{
 
+}
 
+void UAgentArchetypeManager::PopulateStatements()
+{
 
+}
