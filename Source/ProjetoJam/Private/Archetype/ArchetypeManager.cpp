@@ -6,7 +6,6 @@
 
 UArchetypeManager::UArchetypeManager()
 {
-	Ascendent = FArchetype();
 	Regents.Empty();
 	ResultingStatements.Empty();
 	Aspects.Empty();
@@ -15,16 +14,16 @@ UArchetypeManager::UArchetypeManager()
 }
 
 
-void UArchetypeManager::GenerateArchetype()
+void UArchetypeManager::GenerateArchetypes()
 {
 	Stream.Initialize(Seed);
 
-	Ascendent = FArchetype(EArchetypePositionType::FIRST, (EArchetype)Stream.RandRange(0, 11));
+	Ascendent = FArchetypeRegent(ERegentType::ASCENDENT,(EArchetype)Stream.RandRange(0, 11));
 
 	for (uint8 i = (uint8)ERegentType::SUN; i < (uint8)ERegentType::PLUTO; i++)
 	{
 		FArchetypeRegent* newRegent;
-		newRegent = FArchetypeRegent::GenerateRegent((ERegentType)i,Ascendent);
+		newRegent = FArchetypeRegent::GenerateRegent((ERegentType)i,Ascendent.Archetype);
 		Regents.Add(*newRegent);
 	}
 
@@ -82,6 +81,16 @@ void UArchetypeManager::GenerateAspects()
 		}
 
 	}
+
+}
+
+void UArchetypeManager::CalculateValueOfArchetypes()
+{
+	TArray<uint8> values;
+
+
+
+
 
 }
 
