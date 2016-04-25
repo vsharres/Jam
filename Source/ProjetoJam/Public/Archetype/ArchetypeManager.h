@@ -244,6 +244,48 @@ public:
 		return false;
 	}
 
+	uint8 GetValue()
+	{
+		switch (RegentType)
+		{
+		case ERegentType::ASCENDENT:
+			switch (Archetype.Type)
+			{
+			case EArchetype::ARIES:
+				Archetype.Intensity = 1;
+				break;
+			default:
+				break;
+			}
+
+
+
+			break;
+		case ERegentType::SUN:
+			break;
+		case ERegentType::MERCURY:
+			break;
+		case ERegentType::VENUS:
+			break;
+		case ERegentType::MOON:
+			break;
+		case ERegentType::MARS:
+			break;
+		case ERegentType::JUPITER:
+			break;
+		case ERegentType::SATURN:
+			break;
+		case ERegentType::URANUS:
+			break;
+		case ERegentType::NEPTUNE:
+			break;
+		case ERegentType::PLUTO:
+			break;
+		default:
+			break;
+		}
+	}
+
 };
 
 USTRUCT(BlueprintType)

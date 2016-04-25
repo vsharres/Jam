@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/ProjetoJam.h"
+#include "Inventory.h"
 #include "Public/Agents/Player/Jackie.h"
 
 AJackie::AJackie(const FObjectInitializer& ObjectInitializer)
@@ -18,8 +19,6 @@ AJackie::AJackie(const FObjectInitializer& ObjectInitializer)
 
 	Camera->AttachTo(CameraBoom);
 
-	Inventory.Empty();
-
 	Agent_Type = EAgentType::PLAYER;
 	Agent_Name = "Jackie";
 }
@@ -27,6 +26,11 @@ AJackie::AJackie(const FObjectInitializer& ObjectInitializer)
 UCameraComponent* AJackie::GetCamera()
 {
 	return Camera;
+}
+
+UInventory* AJackie::GetInventory()
+{
+	return Inventory;
 }
 
 void AJackie::MoveRight(float input)
@@ -41,7 +45,7 @@ void AJackie::MoveUp(float input)
 
 void AJackie::InitializeAgent()
 {
-
+	Inventory = NewObject<UInventory>(this);
 }
 
 void AJackie::SetupPlayerInputComponent(UInputComponent * InputComponent)

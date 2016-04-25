@@ -64,9 +64,6 @@ protected:
 	UPROPERTY()
 		UFaction* Faction;
 
-	UPROPERTY()
-		TArray<class UItem*> Inventory;
-
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)

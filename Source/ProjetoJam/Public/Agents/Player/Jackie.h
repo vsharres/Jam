@@ -21,6 +21,9 @@ private:
 	UPROPERTY(VisibleAnywhere, Category = Camera)
 	USpringArmComponent* CameraBoom;
 
+	UPROPERTY(VisibleAnywhere, Category = Inventory)
+		UInventory* Inventory;
+
 
 public:
 
@@ -28,6 +31,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Camera")
 	UCameraComponent* GetCamera();
+
+	UFUNCTION(BlueprintPure, Category = Inventory)
+		UInventory* GetInventory();
 
 	void MoveRight(float input) override;
 
