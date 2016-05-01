@@ -3,6 +3,3 @@
 #include "ProjetoJam.h"
 #include "JackieController.h"
 
-
-
-

@@ -59,5 +59,6 @@ void AJackie::SetupPlayerInputComponent(UInputComponent * InputComponent)
 
 	InputComponent->BindAxis("MoveUp", this, &AJackie::MoveUp);
 	InputComponent->BindAxis("MoveRight", this, &AJackie::MoveRight);
+
 }
 

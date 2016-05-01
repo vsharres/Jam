@@ -5,6 +5,14 @@
 #include "PaperCharacter.h"
 #include "Agent.generated.h"
 
+#define MIN_DELTA_VEL 0.01f
+#define MAX_DELTA_VEL 1.0f
+#define NORMAL_ROTATION FRotator(0.0f,0.0f,-90.0f) 
+#define INVERTED_ROTATION FRotator(180.0f,0.0f,-90.0f)
+
+#define AGENT_DEFAULT_SPEED 10.0f
+#define AGENT_DEFAULT_MAX_HEALTH 100.0f
+
 UENUM(BlueprintType)
 enum class EAgentType : uint8
 {
@@ -33,20 +41,25 @@ enum class EAgentFacingState :uint8 {
 	LEFT
 };
 
-USTRUCT()
+USTRUCT(BlueprintType)
 struct FAgentStats
 {
 	GENERATED_USTRUCT_BODY()
+public:
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
 		float Cur_Life;
 
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
 		float Max_Life;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
+		float Speed;
+
 	FAgentStats() 
-		:Max_Life(100.0f),
-		Cur_Life(Max_Life)
+		:Max_Life(AGENT_DEFAULT_MAX_HEALTH),
+		Cur_Life(AGENT_DEFAULT_MAX_HEALTH),
+		Speed(AGENT_DEFAULT_SPEED)
 	{}
 
 
@@ -63,13 +76,6 @@ class PROJETOJAM_API AAgent : public APaperCharacter
 	GENERATED_BODY()
 
 protected:
-
-	UPROPERTY(VisibleAnywhere, Category = Agent)
-		EAgentAnimState AgentAnimState;
-
-	UPROPERTY(VisibleAnywhere, Category = Agent)
-		EAgentFacingState AgentFacingState;
-
 	UPROPERTY(EditDefaultsOnly, Category = "Agent")
 		FName Agent_Name;
 
@@ -79,22 +85,28 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Agent")
 		FAgentStats Stats;
 
-	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
+	UPROPERTY(VisibleAnywhere, Category = "Animation")
+		EAgentAnimState AgentAnimState;
+
+	UPROPERTY(VisibleAnywhere, Category = "Animation")
+		EAgentFacingState AgentFacingState;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 	class UPaperFlipbook* IdleDownAnimation;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 		UPaperFlipbook* IdleUpAnimation;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 		UPaperFlipbook* IdleRightAnimation;
 
-	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 		UPaperFlipbook* Move_Right_Animation;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 		UPaperFlipbook* Move_Up_Animation;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
 		UPaperFlipbook* Move_Down_Animation;
 
 public:
@@ -130,6 +142,8 @@ public:
 
 
 	void BeginPlay() override;
+
+	void Tick(float DeltaSeconds) override;
 
 
 

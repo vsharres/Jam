@@ -12,8 +12,5 @@ UCLASS()
 class PROJETOJAM_API AJackieController : public APlayerController
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
 };
