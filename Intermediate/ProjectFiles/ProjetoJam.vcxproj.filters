@@ -47,9 +47,6 @@
     <Filter Include="Source\ProjetoJam\Private\Agents">
       <UniqueIdentifier>{56650282-66A8-4466-96F7-223519D2722F}</UniqueIdentifier>
     </Filter>
-    <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Agent.cpp">
-      <Filter>Source\ProjetoJam\Private\Agents</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\AgentController.cpp">
       <Filter>Source\ProjetoJam\Private\Agents</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.cpp">
       <Filter>Source\ProjetoJam\Private\Archetype</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.h">
-      <Filter>Source\ProjetoJam\Private\Archetype</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Archetype\ArchetypeManager.cpp">
       <Filter>Source\ProjetoJam\Private\Archetype</Filter>
     </ClCompile>
@@ -250,10 +244,36 @@
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Player\Inventory.h">
       <Filter>Source\ProjetoJam\Public\Agents\Player</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Private\Archetype\AgentArchetypeManager.h">
+      <Filter>Source\ProjetoJam\Public\Archetype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGameMode.h">
+      <Filter>Source\ProjetoJam\Public\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGamePlayerState.h">
+      <Filter>Source\ProjetoJam\Public\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Player\Inventory.cpp">
       <Filter>Source\ProjetoJam\Private\Agents\Player</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGameMode.cpp">
+      <Filter>Source\ProjetoJam\Private\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGamePlayerState.cpp">
+      <Filter>Source\ProjetoJam\Private\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>Source\ProjetoJam\Private\Agents</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source\ProjetoJam\Public\Game">
+      <UniqueIdentifier>{75b8e3a1-cbc2-4ca8-853a-c4e833ac6d80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\ProjetoJam\Private\Game">
+      <UniqueIdentifier>{5a0e59ce-1a73-4f9d-9e07-ab824072e5f7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

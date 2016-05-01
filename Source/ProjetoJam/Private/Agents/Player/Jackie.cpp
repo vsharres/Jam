@@ -48,6 +48,11 @@ void AJackie::InitializeAgent()
 	Inventory = NewObject<UInventory>(this);
 }
 
+void AJackie::UpdateFlipbook()
+{
+	Super::UpdateFlipbook();
+}
+
 void AJackie::SetupPlayerInputComponent(UInputComponent * InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);

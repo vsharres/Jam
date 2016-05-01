@@ -20,10 +20,10 @@ void UArchetypeManager::GenerateArchetypes()
 
 	Ascendent = FArchetypeRegent(ERegentType::ASCENDENT,(EArchetype)Stream.RandRange(0, 11));
 
-	for (uint8 i = (uint8)ERegentType::SUN; i < (uint8)ERegentType::PLUTO; i++)
+	for (uint8 i = 0; i < 3; i++)
 	{
 		FArchetypeRegent* newRegent;
-		newRegent = FArchetypeRegent::GenerateRegent((ERegentType)i,Ascendent.Archetype);
+		newRegent = FArchetypeRegent::GenerateRegent((ERegentType)i);
 		Regents.Add(*newRegent);
 	}
 

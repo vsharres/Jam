@@ -41,6 +41,8 @@ public:
 
 	void InitializeAgent() override;
 
+	void UpdateFlipbook() override;
+
 	void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	
 	

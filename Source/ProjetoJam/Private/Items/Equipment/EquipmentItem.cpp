@@ -13,3 +13,8 @@ EEquipmentSlot UEquipmentItem::GetSlot()
 {
 	return Slot;
 }
+
+void UEquipmentItem::ApplyStats()
+{
+
+}

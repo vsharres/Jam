@@ -51,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = Equipment)
 		EEquipmentSlot GetSlot();
+
+	UFUNCTION()
+		virtual void ApplyStats();
 	
 	
 };

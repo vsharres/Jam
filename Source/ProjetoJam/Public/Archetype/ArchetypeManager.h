@@ -25,20 +25,11 @@ enum class EArchetype : uint8
 
 UENUM(BlueprintType)
 enum class ERegentType : uint8 {
-	
 
 	ASCENDENT,
 	SUN,
-	MERCURY,
-	VENUS,
-	MOON,
-	MARS,
-	JUPITER,
-	SATURN,
-	URANUS,
-	NEPTUNE,
-	PLUTO
-
+	MOON
+	
 };
 
 UENUM(BlueprintType)
@@ -59,28 +50,22 @@ struct FArchetype
 public:
 
 	UPROPERTY()
-		uint8 Intensity;
-
-	UPROPERTY()
 		EArchetype Type;
 
 	FArchetype()
 	{
-		Intensity=0;
 		Type = EArchetype::ARIES;
-
 	}
 
 	FArchetype(EArchetype type)
 	{
-		Intensity = 0;
 		Type = type;
 	}
-	
+
 
 	bool operator==(const FArchetype& C1)
 	{
-		if (this->Type == C1.Type && this->Intensity == C1.Intensity)
+		if (this->Type == C1.Type)
 		{
 			return true;
 		}
@@ -90,7 +75,7 @@ public:
 
 	bool operator==(const FArchetype& C1) const
 	{
-		if (this->Type == C1.Type && this->Intensity == C1.Intensity)
+		if (this->Type == C1.Type)
 		{
 			return true;
 		}
@@ -115,13 +100,13 @@ public:
 
 	UPROPERTY()
 		FArchetype Archetype;
-		
+
 
 	FArchetypeRegent()
 	{
 		RegentType = ERegentType::SUN;
 		Archetype = FArchetype();
-		
+
 	}
 
 	FArchetypeRegent(ERegentType regent, FArchetype type)
@@ -130,26 +115,17 @@ public:
 		Archetype = type;
 	}
 
-	static FArchetypeRegent* GenerateRegent(ERegentType TypeToGenerate, FArchetype BaseArchetype)
+	static FArchetypeRegent* GenerateRegent(ERegentType TypeToGenerate)
 	{
 		FArchetypeRegent* generated = new FArchetypeRegent();
 		FRandomStream stream;
 
-		if (TypeToGenerate == ERegentType::SUN || TypeToGenerate >= ERegentType::MOON)	
-		{			
-			generated->Archetype.Type = (EArchetype)((int32)BaseArchetype.Type % (11 + stream.RandRange(0, 11)));
-			
-		}
-		else
-		{
-			generated->Archetype.Type = (EArchetype)((int32)BaseArchetype.Type % (11 + stream.RandRange(((int32)TypeToGenerate) - 1, ((int32)TypeToGenerate) + 1)));
-		}
-
+		generated->Archetype.Type = (EArchetype)stream.RandRange(0, 11);
 		generated->RegentType = TypeToGenerate;
-		
+
 
 		return generated;
-		
+
 	}
 
 	bool operator==(const FArchetypeRegent& c2)
@@ -183,7 +159,7 @@ public:
 		{
 			return true;
 		}
-		
+
 		return false;
 
 	}
@@ -206,7 +182,7 @@ public:
 		return false;
 	}
 
-	bool InSquare(const FArchetypeRegent& Other) const 
+	bool InSquare(const FArchetypeRegent& Other) const
 	{
 
 		if (*this == Other)
@@ -244,47 +220,6 @@ public:
 		return false;
 	}
 
-	uint8 GetValue()
-	{
-		switch (RegentType)
-		{
-		case ERegentType::ASCENDENT:
-			switch (Archetype.Type)
-			{
-			case EArchetype::ARIES:
-				Archetype.Intensity = 1;
-				break;
-			default:
-				break;
-			}
-
-
-
-			break;
-		case ERegentType::SUN:
-			break;
-		case ERegentType::MERCURY:
-			break;
-		case ERegentType::VENUS:
-			break;
-		case ERegentType::MOON:
-			break;
-		case ERegentType::MARS:
-			break;
-		case ERegentType::JUPITER:
-			break;
-		case ERegentType::SATURN:
-			break;
-		case ERegentType::URANUS:
-			break;
-		case ERegentType::NEPTUNE:
-			break;
-		case ERegentType::PLUTO:
-			break;
-		default:
-			break;
-		}
-	}
 
 };
 
@@ -325,16 +260,7 @@ public:
 	FArchetypeStatements()
 		: Ascendent(""),
 		Sun(""),
-		Mercury(""),
-		Venus(""),
-		Moon(""),
-		Mars(""),
-		Jupiter(""),
-		Saturn(""),
-		Uranus(""),
-		Neptune(""),
-		Pluto("")
-
+		Moon("")
 	{}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
@@ -344,31 +270,7 @@ public:
 		FString Sun;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Mercury;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Venus;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
 		FString Moon;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Mars;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Jupiter;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Saturn;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Uranus;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Neptune;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Archetype)
-		FString Pluto;
 
 };
 
@@ -384,10 +286,10 @@ public:
 		Statements("")
 	{}
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AsoectStatements)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AspectStatements)
 		EAspectType Type;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AsoectStatements)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AspectStatements)
 		FString Statements;
 
 

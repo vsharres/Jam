@@ -406,6 +406,7 @@
     <NMakeOutput>..\..\Binaries\HTML5\ProjetoJam-HTML5-Shipping.exe</NMakeOutput>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="Agent.cpp" />
     <None Include="..\..\ProjetoJam.uproject" />
     <None Include="..\..\Source\ProjetoJam.Target.cs" />
     <None Include="..\..\Source\ProjetoJamEditor.Target.cs" />
@@ -415,9 +416,10 @@
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\ProjetoJam\ProjetoJam.Build.cs" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Player\Inventory.cpp" />
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGameMode.cpp" />
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGamePlayerState.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\ProjetoJam.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Actions\Action.cpp" />
-    <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Agent.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\AgentController.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\AgentSpawner.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\NPCs\Grunt.cpp" />
@@ -437,6 +439,8 @@
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Location\Location.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\StatementDatabase.cpp" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Player\Inventory.h" />
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGameMode.h" />
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGamePlayerState.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\ProjetoJam.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Actions\Action.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Agent.h" />

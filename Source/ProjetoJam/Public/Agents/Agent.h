@@ -13,6 +13,26 @@ enum class EAgentType : uint8
 	GRUNT,
 };
 
+UENUM(BlueprintType)
+enum class EAgentAnimState :uint8 {
+
+	IDLE,
+	MOVING_RIGHT,
+	MOVING_LEFT,
+	MOVING_DOWN,
+	MOVING_UP,
+
+};
+
+UENUM(BlueprintType)
+enum class EAgentFacingState :uint8 {
+
+	UP,
+	DOWN,
+	RIGHT,
+	LEFT
+};
+
 USTRUCT()
 struct FAgentStats
 {
@@ -43,6 +63,13 @@ class PROJETOJAM_API AAgent : public APaperCharacter
 	GENERATED_BODY()
 
 protected:
+
+	UPROPERTY(VisibleAnywhere, Category = Agent)
+		EAgentAnimState AgentAnimState;
+
+	UPROPERTY(VisibleAnywhere, Category = Agent)
+		EAgentFacingState AgentFacingState;
+
 	UPROPERTY(EditDefaultsOnly, Category = "Agent")
 		FName Agent_Name;
 
@@ -53,7 +80,13 @@ protected:
 		FAgentStats Stats;
 
 	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
-	class UPaperFlipbook* Idle_Animation;
+	class UPaperFlipbook* IdleDownAnimation;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+		UPaperFlipbook* IdleUpAnimation;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+		UPaperFlipbook* IdleRightAnimation;
 
 	UPROPERTY(EditDefaultsOnly,  Category = "Animation")
 		UPaperFlipbook* Move_Right_Animation;
@@ -61,8 +94,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 		UPaperFlipbook* Move_Up_Animation;
 
-	UPROPERTY()
-		UFaction* Faction;
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+		UPaperFlipbook* Move_Down_Animation;
 
 public:
 
@@ -74,13 +107,25 @@ public:
 
 	AAgent(const FObjectInitializer& Initializer);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintPure, Category = Agent)
+		EAgentAnimState GetAnimState();
+
+	UFUNCTION(BlueprintPure, Category = Agent)
+		EAgentFacingState GetFacingState();
+
+	UFUNCTION(BlueprintCallable, Category = Agent)
+		void SetAnimState(EAgentAnimState newState);
+
+	UFUNCTION(BlueprintCallable, Category=  Agent)
 		virtual void InitializeAgent();
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category = Agent)
+		virtual void UpdateFlipbook();
+
+	UFUNCTION(BlueprintCallable, Category = Agent)
 		virtual void MoveRight(float input);
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category = Agent)
 		 virtual void MoveUp(float input);
 
 
