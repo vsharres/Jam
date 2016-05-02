@@ -3,12 +3,10 @@
 #pragma once
 
 #include "PaperCharacter.h"
+#include "Interfaces/Damage.h"
 #include "Agent.generated.h"
 
-#define MIN_DELTA_VEL 0.01f
-#define MAX_DELTA_VEL 1.0f
-#define NORMAL_ROTATION FRotator(0.0f,0.0f,-90.0f) 
-#define INVERTED_ROTATION FRotator(180.0f,0.0f,-90.0f)
+#define MIN_DELTA_VEL 0.005f
 
 #define AGENT_DEFAULT_SPEED 10.0f
 #define AGENT_DEFAULT_MAX_HEALTH 100.0f
@@ -25,20 +23,28 @@ UENUM(BlueprintType)
 enum class EAgentAnimState :uint8 {
 
 	IDLE,
-	MOVING_RIGHT,
-	MOVING_LEFT,
-	MOVING_DOWN,
-	MOVING_UP,
+	MOVING_N,
+	MOVING_NW,
+	MOVING_W,
+	MOVING_SW,
+	MOVING_S,
+	MOVING_SE,
+	MOVING_E,
+	MOVING_NE
 
 };
 
 UENUM(BlueprintType)
 enum class EAgentFacingState :uint8 {
 
-	UP,
-	DOWN,
-	RIGHT,
-	LEFT
+	N,
+	NW,
+	W,
+	SW,
+	S,
+	SE,
+	E,
+	NE
 };
 
 USTRUCT(BlueprintType)
@@ -71,7 +77,7 @@ class UFaction;
  *
  */
 UCLASS()
-class PROJETOJAM_API AAgent : public APaperCharacter
+class PROJETOJAM_API AAgent : public APaperCharacter, public IDamage
 {
 	GENERATED_BODY()
 
@@ -92,32 +98,65 @@ protected:
 		EAgentFacingState AgentFacingState;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-	class UPaperFlipbook* IdleDownAnimation;
+	class UPaperFlipbook* IdleNAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleUpAnimation;
+		UPaperFlipbook* IdleNWAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleRightAnimation;
+		UPaperFlipbook* IdleWAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* Move_Right_Animation;
+		UPaperFlipbook* IdleSWAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* Move_Up_Animation;
+		UPaperFlipbook* IdleSAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* Move_Down_Animation;
+		UPaperFlipbook* IdleSEAnimation;
 
-public:
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* IdleEAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* IdleNEAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveNAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveNWAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveWAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveSWAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveSAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveSEAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveEAnimation;
+
+	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
+		UPaperFlipbook* MoveNEAnimation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)
 		TWeakObjectPtr<class ALocation> Cur_Location;
+
+public:
 
 	UPROPERTY()
 		TWeakObjectPtr<class AStatementDatabase> Database_Ref;
 
 	AAgent(const FObjectInitializer& Initializer);
+
+	UFUNCTION(BlueprintPure, Category = Location)
+		ALocation* GetLocation();
 
 	UFUNCTION(BlueprintPure, Category = Agent)
 		EAgentAnimState GetAnimState();
@@ -144,6 +183,8 @@ public:
 	void BeginPlay() override;
 
 	void Tick(float DeltaSeconds) override;
+
+	void OnDamaged(float Damage) override;
 
 
 

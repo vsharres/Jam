@@ -15,11 +15,14 @@ class PROJETOJAM_API ALocation : public AActor
 
 protected:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)
-		ALocation* ParentLocation;
+	UPROPERTY(VisibleAnywhere, Category = Location)
+		TArray<ALocation*> ChildLocations;
 
 	UPROPERTY(VisibleAnywhere, Category = Location)
 		FStatement LocationStatement;
+
+	UPROPERTY(VisibleAnywhere, Category = Trigger)
+		USphereComponent* Trigger;
 	
 public:	
 
@@ -28,7 +31,7 @@ public:
 		FString LocationName;
 
 	// Sets default values for this actor's properties
-	ALocation();
+	ALocation(const FObjectInitializer& Initializer);
 
 	UFUNCTION()
 		void SetLocationStament();
@@ -38,7 +41,7 @@ public:
 	* @return The parent location pointer.
 	*/
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Parent Location", Keywords = "Location Spawn"), Category = Location)
-		ALocation* GetParentLocation();
+		TArray<ALocation*> GetChildLocations();
 
 	/**
 	* Called to check if a location is child to another.
@@ -47,14 +50,17 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Is Location Child", Keywords = "Is Location Child"), Category = Location)
 		bool IsLocationChild(ALocation* LocationToCompare);
 
-	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Update Location", Keywords = "Update Location"), Category = Location)
-		void UpdateLocation();
-
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	UFUNCTION()
+		void OnTriggerBeginOverlap(AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+
+	UFUNCTION()
+		void OnTriggerEndOverlap(AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	
 	

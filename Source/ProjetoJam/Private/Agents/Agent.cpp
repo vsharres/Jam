@@ -11,9 +11,14 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 	Stats = FAgentStats();
 	Agent_Type = EAgentType::GRUNT;
 	AgentAnimState = EAgentAnimState::IDLE;
-	AgentFacingState = EAgentFacingState::DOWN;
+	AgentFacingState = EAgentFacingState::S;
 
-	this->GetSprite()->SetFlipbook(IdleDownAnimation);
+	this->GetSprite()->SetFlipbook(IdleSAnimation);
+}
+
+ALocation* AAgent::GetLocation()
+{
+	return Cur_Location.Get();
 }
 
 EAgentAnimState AAgent::GetAnimState()
@@ -29,49 +34,65 @@ EAgentFacingState AAgent::GetFacingState()
 void AAgent::SetAnimState(EAgentAnimState newState)
 {
 	switch (newState)
-	{	
+	{
 	case EAgentAnimState::IDLE:
 		switch (AgentFacingState)
-		{	
-		case EAgentFacingState::UP:
-			this->GetSprite()->SetFlipbook(IdleUpAnimation);
-			this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+		{
+		case EAgentFacingState::N:
+			this->GetSprite()->SetFlipbook(IdleNAnimation);
 			break;
-		case EAgentFacingState::DOWN:
-			this->GetSprite()->SetFlipbook(IdleDownAnimation);
-			this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+		case EAgentFacingState::NW:
+			this->GetSprite()->SetFlipbook(IdleNWAnimation);
 			break;
-		case EAgentFacingState::RIGHT:
-			this->GetSprite()->SetFlipbook(IdleRightAnimation);
-			this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+		case EAgentFacingState::W:
+			this->GetSprite()->SetFlipbook(IdleWAnimation);
 			break;
-		case EAgentFacingState::LEFT:
-			this->GetSprite()->SetFlipbook(IdleRightAnimation);
-			this->GetSprite()->SetRelativeRotation(INVERTED_ROTATION);
+		case EAgentFacingState::SW:
+			this->GetSprite()->SetFlipbook(IdleSWAnimation);
+			break;
+		case EAgentFacingState::S:
+			this->GetSprite()->SetFlipbook(IdleSAnimation);
+			break;
+		case EAgentFacingState::SE:
+			this->GetSprite()->SetFlipbook(IdleSEAnimation);
+			break;
+		case EAgentFacingState::E:
+			this->GetSprite()->SetFlipbook(IdleEAnimation);
+			break;
+		case EAgentFacingState::NE:
+			this->GetSprite()->SetFlipbook(IdleNEAnimation);
 			break;
 		default:
+			this->GetSprite()->SetFlipbook(IdleSAnimation);
 			break;
 		}
 		break;
-	case EAgentAnimState::MOVING_RIGHT:
-		this->GetSprite()->SetFlipbook(Move_Right_Animation);
-		this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+	case EAgentAnimState::MOVING_N:
+		this->GetSprite()->SetFlipbook(MoveNAnimation);
 		break;
-	case EAgentAnimState::MOVING_LEFT:
-		this->GetSprite()->SetFlipbook(Move_Right_Animation);
-		this->GetSprite()->SetRelativeRotation(INVERTED_ROTATION);
+	case EAgentAnimState::MOVING_NW:
+		this->GetSprite()->SetFlipbook(MoveNWAnimation);
 		break;
-	case EAgentAnimState::MOVING_DOWN:
-		this->GetSprite()->SetFlipbook(Move_Down_Animation);
-		this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+	case EAgentAnimState::MOVING_W:
+		this->GetSprite()->SetFlipbook(MoveWAnimation);
 		break;
-	case EAgentAnimState::MOVING_UP:
-		this->GetSprite()->SetFlipbook(Move_Up_Animation);
-		this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+	case EAgentAnimState::MOVING_SW:
+		this->GetSprite()->SetFlipbook(MoveSWAnimation);
+		break;
+	case EAgentAnimState::MOVING_S:
+		this->GetSprite()->SetFlipbook(MoveSAnimation);
+		break;
+	case EAgentAnimState::MOVING_SE:
+		this->GetSprite()->SetFlipbook(MoveSEAnimation);
+		break;
+	case EAgentAnimState::MOVING_E:
+		this->GetSprite()->SetFlipbook(MoveEAnimation);
+		break;
+	case EAgentAnimState::MOVING_NE:
+		this->GetSprite()->SetFlipbook(MoveNEAnimation);
 		break;
 	default:
-		this->GetSprite()->SetFlipbook(IdleDownAnimation);
-		this->GetSprite()->SetRelativeRotation(NORMAL_ROTATION);
+		this->GetSprite()->SetFlipbook(IdleSAnimation);
 		break;
 	}
 
@@ -92,6 +113,12 @@ void AAgent::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
+
+void AAgent::OnDamaged(float Damage)
+{
+
+}
+
 void AAgent::InitializeAgent()
 {
 	//Get statements from file and add them in the database, initialize behavior if AI and update faction.
@@ -99,25 +126,56 @@ void AAgent::InitializeAgent()
 
 void AAgent::UpdateFlipbook()
 {
-	if (this->GetVelocity().X > MAX_DELTA_VEL && this->GetVelocity().Y < MIN_DELTA_VEL)
+	if (this->GetVelocity().Size() > MIN_DELTA_VEL)
 	{
-		this->AgentFacingState = EAgentFacingState::RIGHT;
-		SetAnimState(EAgentAnimState::MOVING_RIGHT);
-	}
-	else if (this->GetVelocity().X < MIN_DELTA_VEL && this->GetVelocity().Y > MAX_DELTA_VEL)
-	{
-		this->AgentFacingState = EAgentFacingState::UP;
-		SetAnimState(EAgentAnimState::MOVING_UP);
-	}
-	else if (this->GetVelocity().X < MIN_DELTA_VEL && this->GetVelocity().Y < -MAX_DELTA_VEL)
-	{
-		SetAnimState(EAgentAnimState::MOVING_DOWN);
-		this->AgentFacingState = EAgentFacingState::DOWN;
-	}
-	else if (this->GetVelocity().X < -MAX_DELTA_VEL && this->GetVelocity().Y < MIN_DELTA_VEL)
-	{
-		SetAnimState(EAgentAnimState::MOVING_LEFT);
-		this->AgentFacingState = EAgentFacingState::LEFT;
+		if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 10.0f ||
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 350.0f)
+		{
+			this->AgentFacingState = EAgentFacingState::SE;
+			SetAnimState(EAgentAnimState::MOVING_SE);
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 260.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 280.0f)
+		{
+			this->AgentFacingState = EAgentFacingState::NE;
+			SetAnimState(EAgentAnimState::MOVING_NE);
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 80.0f &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 100.0f)
+		{
+			SetAnimState(EAgentAnimState::MOVING_SW);
+			this->AgentFacingState = EAgentFacingState::SW;
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 170.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 190.0f)
+		{
+			SetAnimState(EAgentAnimState::MOVING_NW);
+			this->AgentFacingState = EAgentFacingState::NW;
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 215.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 235.0f)
+		{
+			SetAnimState(EAgentAnimState::MOVING_N);
+			this->AgentFacingState = EAgentFacingState::N;
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 125.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 145.0f)
+		{
+			SetAnimState(EAgentAnimState::MOVING_W);
+			this->AgentFacingState = EAgentFacingState::W;
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 35.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 55.0f)
+		{
+			SetAnimState(EAgentAnimState::MOVING_S);
+			this->AgentFacingState = EAgentFacingState::S;
+		}
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 305.0f  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 325.0f)
+		{
+			this->AgentFacingState = EAgentFacingState::E;
+			SetAnimState(EAgentAnimState::MOVING_E);
+		}
 	}
 	else
 	{
@@ -130,10 +188,12 @@ void AAgent::UpdateFlipbook()
 
 void AAgent::MoveRight(float input)
 {
-	GetCharacterMovement()->AddInputVector(FVector(input * Stats.Speed, 0, 0));
+	FVector amount = FVector(FMath::Cos(FMath::DegreesToRadians(45.0f)), -FMath::Sin(FMath::DegreesToRadians(45.0f)), 0.0f) * Stats.Speed * input;
+	GetCharacterMovement()->AddInputVector(amount);
 }
 
 void AAgent::MoveUp(float input)
 {
-	GetCharacterMovement()->AddInputVector(FVector(0, input * Stats.Speed, 0));
+	FVector amount = FVector(FMath::Sin(FMath::DegreesToRadians(45.0f)), FMath::Cos(FMath::DegreesToRadians(45.0f)), 0.0f) * -Stats.Speed * input;
+	GetCharacterMovement()->AddInputVector(amount);
 }

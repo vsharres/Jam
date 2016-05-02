@@ -3,6 +3,18 @@
 #include "ProjetoJam.h"
 #include "NPCAgent.h"
 
+ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
+	:Super(Initializer)
+{
 
+}
 
+void ANPCAgent::InitializeAgent()
+{
+	Super::InitializeAgent();
+}
 
+void ANPCAgent::Interact()
+{
+
+}

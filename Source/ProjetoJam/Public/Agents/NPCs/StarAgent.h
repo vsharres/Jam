@@ -5,6 +5,7 @@
 #include "Agents/Agent.h"
 #include "StarAgent.generated.h"
 
+
 /**
  * 
  */
@@ -14,7 +15,5 @@ class PROJETOJAM_API AStarAgent : public AAgent
 	GENERATED_BODY()
 
 	AStarAgent(const FObjectInitializer& Initializer);
-
-	void InitializeAgent() override;
 	
 };

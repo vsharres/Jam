@@ -22,5 +22,4 @@ class IInteract
 		UFUNCTION()
 		virtual void Interact();
 
-
 };

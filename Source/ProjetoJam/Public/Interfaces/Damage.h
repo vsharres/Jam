@@ -2,18 +2,23 @@
 
 #pragma once
 
-#include "Object.h"
 #include "Damage.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class PROJETOJAM_API UDamage : public UObject
+UINTERFACE(MinimalAPI, Blueprintable, meta = (CannotImplementInterfaceInBlueprint))
+class UDamage : public UInterface
 {
-	GENERATED_BODY()
+	GENERATED_UINTERFACE_BODY()
 	
 	
-	
-	
+};
+
+class IDamage
+{
+	GENERATED_IINTERFACE_BODY()
+
+		UFUNCTION()
+		virtual void OnDamaged(float Damage);
 };

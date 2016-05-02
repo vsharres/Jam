@@ -12,8 +12,16 @@ UCLASS()
 class PROJETOJAM_API UInteractTriggerComponent : public USphereComponent
 {
 	GENERATED_BODY()
-	
-	
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InteractComponent)
+		bool bCanInteract;
+
+	UInteractTriggerComponent();
+
+	UFUNCTION(BlueprintCallable, Category =  InteractComponent)
+	void OnTriggerBeginOverlap(class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 	
 	
 };
