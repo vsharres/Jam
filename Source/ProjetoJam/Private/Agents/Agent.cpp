@@ -13,7 +13,19 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 	AgentAnimState = EAgentAnimState::IDLE;
 	AgentFacingState = EAgentFacingState::S;
 
-	this->GetSprite()->SetFlipbook(IdleSAnimation);
+	ShadowFlipbook = Initializer.CreateDefaultSubobject<UPaperFlipbookComponent>(this, "ShadowSprite");
+	ShadowFlipbook->AttachTo(RootComponent);
+
+	ShadowFlipbook->SetHiddenInGame(true);
+	ShadowFlipbook->SetVisibility(false);
+	ShadowFlipbook->SetCastShadow(true);
+	ShadowFlipbook->bCastHiddenShadow = true;
+	
+	GetSprite()->SetRelativeRotation(ISOMETRIC_ROTATION);
+	ShadowFlipbook->SetRelativeRotation(SHADOW_ROTATION);
+
+	GetSprite()->SetFlipbook(IdleSAnimation);
+	ShadowFlipbook->SetFlipbook(IdleSAnimation);
 }
 
 ALocation* AAgent::GetLocation()
@@ -40,59 +52,77 @@ void AAgent::SetAnimState(EAgentAnimState newState)
 		{
 		case EAgentFacingState::N:
 			this->GetSprite()->SetFlipbook(IdleNAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleNAnimation);
 			break;
 		case EAgentFacingState::NW:
 			this->GetSprite()->SetFlipbook(IdleNWAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleNWAnimation);
 			break;
 		case EAgentFacingState::W:
 			this->GetSprite()->SetFlipbook(IdleWAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleWAnimation);
 			break;
 		case EAgentFacingState::SW:
 			this->GetSprite()->SetFlipbook(IdleSWAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleSWAnimation);
 			break;
 		case EAgentFacingState::S:
 			this->GetSprite()->SetFlipbook(IdleSAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleSAnimation);
 			break;
 		case EAgentFacingState::SE:
 			this->GetSprite()->SetFlipbook(IdleSEAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleSEAnimation);
 			break;
 		case EAgentFacingState::E:
 			this->GetSprite()->SetFlipbook(IdleEAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleEAnimation);
 			break;
 		case EAgentFacingState::NE:
 			this->GetSprite()->SetFlipbook(IdleNEAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleNEAnimation);
 			break;
 		default:
 			this->GetSprite()->SetFlipbook(IdleSAnimation);
+			this->ShadowFlipbook->SetFlipbook(IdleSAnimation);
 			break;
 		}
 		break;
 	case EAgentAnimState::MOVING_N:
 		this->GetSprite()->SetFlipbook(MoveNAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveNAnimation);
 		break;
 	case EAgentAnimState::MOVING_NW:
 		this->GetSprite()->SetFlipbook(MoveNWAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveNWAnimation);
 		break;
 	case EAgentAnimState::MOVING_W:
 		this->GetSprite()->SetFlipbook(MoveWAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveWAnimation);
 		break;
 	case EAgentAnimState::MOVING_SW:
 		this->GetSprite()->SetFlipbook(MoveSWAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveSWAnimation);
 		break;
 	case EAgentAnimState::MOVING_S:
 		this->GetSprite()->SetFlipbook(MoveSAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveSAnimation);
 		break;
 	case EAgentAnimState::MOVING_SE:
 		this->GetSprite()->SetFlipbook(MoveSEAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveSEAnimation);
 		break;
 	case EAgentAnimState::MOVING_E:
 		this->GetSprite()->SetFlipbook(MoveEAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveEAnimation);
 		break;
 	case EAgentAnimState::MOVING_NE:
 		this->GetSprite()->SetFlipbook(MoveNEAnimation);
+		this->ShadowFlipbook->SetFlipbook(MoveNEAnimation);
 		break;
 	default:
 		this->GetSprite()->SetFlipbook(IdleSAnimation);
+		this->ShadowFlipbook->SetFlipbook(IdleSAnimation);
 		break;
 	}
 
@@ -128,50 +158,50 @@ void AAgent::UpdateFlipbook()
 {
 	if (this->GetVelocity().Size() > MIN_DELTA_VEL)
 	{
-		if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 10.0f ||
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 350.0f)
+		if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MIN_SE_ANGLE ||
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MAX_SE_ANGLE)
 		{
 			this->AgentFacingState = EAgentFacingState::SE;
 			SetAnimState(EAgentAnimState::MOVING_SE);
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 260.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 280.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_NE_ANGLE &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_NE_ANGLE)
 		{
 			this->AgentFacingState = EAgentFacingState::NE;
 			SetAnimState(EAgentAnimState::MOVING_NE);
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 80.0f &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 100.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >=MIN_SW_ANGLE&&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_SW_ANGLE)
 		{
 			SetAnimState(EAgentAnimState::MOVING_SW);
 			this->AgentFacingState = EAgentFacingState::SW;
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 170.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 190.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_NW_ANGLE  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_NW_ANGLE)
 		{
 			SetAnimState(EAgentAnimState::MOVING_NW);
 			this->AgentFacingState = EAgentFacingState::NW;
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 215.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 235.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_N_ANGLE  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_N_ANGLE)
 		{
 			SetAnimState(EAgentAnimState::MOVING_N);
 			this->AgentFacingState = EAgentFacingState::N;
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 125.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 145.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_W_ANGLE  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_W_ANGLE)
 		{
 			SetAnimState(EAgentAnimState::MOVING_W);
 			this->AgentFacingState = EAgentFacingState::W;
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 35.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 55.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_S_ANGLE  &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_S_ANGLE)
 		{
 			SetAnimState(EAgentAnimState::MOVING_S);
 			this->AgentFacingState = EAgentFacingState::S;
 		}
-		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw >= 305.0f  &&
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw <= 325.0f)
+		else if (this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw >= MIN_E_ANGLE &&
+			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_E_ANGLE)
 		{
 			this->AgentFacingState = EAgentFacingState::E;
 			SetAnimState(EAgentAnimState::MOVING_E);

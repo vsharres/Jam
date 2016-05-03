@@ -1,8 +1,8 @@
 {
 	"Changelist" : 2946394,
-	"BuildId" : "d8e836e7-2e46-4a60-813b-53ba1026c41f",
+	"BuildId" : "926e3974-9d6b-4898-9b2c-9c504c5fca2c",
 	"Modules" : 
 	{
-		"ProjetoJam" : "UE4Editor-ProjetoJam-6382-Win64-DebugGame.dll"
+		"ProjetoJam" : "UE4Editor-ProjetoJam-Win64-DebugGame.dll"
 	}
 }
