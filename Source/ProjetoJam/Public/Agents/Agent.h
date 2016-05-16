@@ -202,14 +202,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Agent)
 		 virtual void MoveUp(float input);
 
-
 	void BeginPlay() override;
 
 	void Tick(float DeltaSeconds) override;
 
 	void OnDamaged(float Damage) override;
-
-
-
 
 };
