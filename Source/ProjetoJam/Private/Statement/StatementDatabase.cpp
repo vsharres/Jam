@@ -10,16 +10,11 @@ DEFINE_LOG_CATEGORY(StatementLog);
 DEFINE_LOG_CATEGORY(DatabaseLog);
 
 
-
 // Sets default values
 AStatementDatabase::AStatementDatabase()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
-
-	WorldSatatementFilePath = FPaths::GameContentDir() + "Databases/World/WorldStatements.txt";
-	AgentStatementFilePath = FPaths::GameContentDir() + "Databases/Agents";
-	DatabaseFilePath = FPaths::GameContentDir() + "Databases/Database.txt";
 
 }
 
@@ -45,18 +40,8 @@ AStatementDatabase* AStatementDatabase::GetStatementDatabase(UObject* WorldConte
 
 void AStatementDatabase::InitializeDataBase()
 {
-
-	if (!ParseWorldFile())
-	{
-		UE_LOG(DatabaseLog, Error, TEXT("Could not parse world file."));
-		return;
-	}
-
-	if (!ParseAgentsFile())
-	{
-		UE_LOG(DatabaseLog, Error, TEXT("Could not parse character file."));
-		return;
-	}
+	check(ParseWorldFile());
+	check(ParseAgentsFile());
 
 }
 
@@ -324,7 +309,7 @@ FStatement AStatementDatabase::FindStatement(const FString& Key)
 
 bool AStatementDatabase::ParseWorldFile()
 {
-	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*WorldSatatementFilePath))
+	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*WORLD_DATABASE_PATH))
 	{
 		UE_LOG(DatabaseLog, Error, TEXT("World Statements File does not exist."));
 		return false;
@@ -332,7 +317,7 @@ bool AStatementDatabase::ParseWorldFile()
 
 	TArray<FString> Lines;
 
-	if (!FFileHelper::LoadANSITextFileToStrings(*WorldSatatementFilePath, NULL, Lines))
+	if (!FFileHelper::LoadANSITextFileToStrings(*WORLD_DATABASE_PATH, NULL, Lines))
 	{
 		UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
 		return false;
@@ -340,7 +325,8 @@ bool AStatementDatabase::ParseWorldFile()
 
 	for (int32 index = 0; index < Lines.Num(); index++)
 	{
-		if (Lines[index] != "")
+		int32 indx;
+		if (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx))
 		{
 			FStatement NewStatement = FStatement(Lines[index]);
 			
@@ -351,20 +337,72 @@ bool AStatementDatabase::ParseWorldFile()
 	return true;
 }
 
+bool AStatementDatabase::ParseFactionsFile()
+{
+	if (!Statements.Contains("instantiate.faction."))
+	{
+		UE_LOG(DatabaseLog, Warning, TEXT("There is no agent in the database to be initialized. Check WorldStatements file."));
+		return false;
+	}
+
+	TArray<FStatement> Factions;
+	Statements.MultiFind("instantiate.faction.", Factions, true);
+
+	for (int32 index = 0; index < Factions.Num(); index++)
+	{
+		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index]).GetVertices()[1] + ".txt");
+		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
+		{
+			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Factions[index]).GetVertices()[1]);
+			return false;
+		}
+		else
+		{
+			TArray<FString> Lines;
+
+			if (!FFileHelper::LoadANSITextFileToStrings(*path, NULL, Lines))
+			{
+				UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
+				return false;
+			}
+
+			for (int32 LineIndex = 0; LineIndex < Lines.Num(); LineIndex++)
+			{
+				if (Lines[LineIndex] != "")
+				{
+					FStatement NewStatement = FStatement(Lines[LineIndex]);
+					InsertIntoDatabase(NewStatement);
+
+					/*	if (LineIndex == 0)
+						{
+							UFaction* newFaction = NewObject<UFaction>(this,(*NewStatement.LastVertex()));
+						}*/
+				}	
+
+			}
+
+		}
+	}
+
+	Statements.Remove("instantiate.factions.");
+
+	return true;
+}
+
 bool AStatementDatabase::ParseAgentsFile()
 {
-	if (!Statements.Contains("instantiate."))
+	if (!Statements.Contains("instantiate.agent."))
 	{
 		UE_LOG(DatabaseLog, Warning, TEXT("There is no agent in the database to be initialized. Check WorldStatements file."));
 		return false;
 	}
 
 	TArray<FStatement> Agents;
-	Statements.MultiFind("instantiate.", Agents, true);
+	Statements.MultiFind("instantiate.agents", Agents, true);
 
 	for (int32 index = 0; index < Agents.Num(); index++)
 	{
-		FString path = (AgentStatementFilePath + "/" + (Agents[index]).GetVertices()[1] + ".txt");
+		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index]).GetVertices()[1] + ".txt");
 		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
 		{
 			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Agents[index]).GetVertices()[1]);
@@ -392,7 +430,7 @@ bool AStatementDatabase::ParseAgentsFile()
 		}
 	}
 
-	Statements.Remove("instantiate.");
+	Statements.Remove("instantiate.agents.");
 
 	return true;
 }
@@ -441,9 +479,9 @@ void AStatementDatabase::WriteToFile()
 		return;
 	}
 
-	if (FPlatformFileManager::Get().GetPlatformFile().FileExists(*DatabaseFilePath))
+	if (FPlatformFileManager::Get().GetPlatformFile().FileExists(*DATABASE_PATH))
 	{
-		FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*DatabaseFilePath);
+		FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*DATABASE_PATH);
 	}
 
 	FString ToSave;
@@ -456,6 +494,6 @@ void AStatementDatabase::WriteToFile()
 
 	ToSave += "END";
 
-	FFileHelper::SaveStringToFile(ToSave, *DatabaseFilePath);
+	FFileHelper::SaveStringToFile(ToSave, *DATABASE_PATH);
 
 }

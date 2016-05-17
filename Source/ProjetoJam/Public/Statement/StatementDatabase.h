@@ -5,6 +5,12 @@
 #include "GameFramework/Actor.h"
 #include "StatementDatabase.generated.h"
 
+#define DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Database.txt")
+#define WORLD_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/World/WorldStatements.txt")
+#define FACTIONS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Factions")
+#define AGENTS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents")
+
+
 DECLARE_LOG_CATEGORY_EXTERN(StatementLog, Log, All);
 DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
 
@@ -366,18 +372,6 @@ private:
 	*/
 	TMultiMap<FString, FStatement> Statements;
 
-	/**The full path to the World Statements file. */
-	UPROPERTY(EditDefaultsOnly, Category = Database)
-		FString WorldSatatementFilePath;
-
-	/**The full path to the Characters Statements file. */
-	UPROPERTY(EditDefaultsOnly,Category = Database)
-		FString AgentStatementFilePath;
-
-	/**The full path to the database file. */
-	UPROPERTY(EditDefaultsOnly, Category = Database)
-		FString DatabaseFilePath;
-
 	UPROPERTY(EditDefaultsOnly, Category = Practices)
 		TArray<FPractice> PracticeList;
 
@@ -473,6 +467,9 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
 		bool ParseWorldFile();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
+		bool ParseFactionsFile();
 
 	/**
 	* Called to parse the agents file.

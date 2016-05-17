@@ -33,7 +33,6 @@ private:
 
 public:
 
-
 	APlayerAgent(const FObjectInitializer& ObjectInitializer);
 
 	UFUNCTION(BlueprintPure, Category = Interact)

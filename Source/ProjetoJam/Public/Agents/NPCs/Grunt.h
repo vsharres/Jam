@@ -16,5 +16,8 @@ public:
 
 	AGrunt(const FObjectInitializer& Initializer);
 	
+	void InitializeAgent() override;
+
+	void Interact() override;
 	
 };

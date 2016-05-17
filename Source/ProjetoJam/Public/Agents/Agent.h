@@ -13,22 +13,22 @@
 #define AGENT_DEFAULT_SPEED 10.0f
 #define AGENT_DEFAULT_MAX_HEALTH 100.0f
 
-#define MIN_N_ANGLE 215.0f
-#define MAX_N_ANGLE 235.0f
-#define MIN_NW_ANGLE 170.0f
-#define MAX_NW_ANGLE 190.0f
-#define MIN_W_ANGLE 125.0f
-#define MAX_W_ANGLE 145.0f
-#define MIN_SW_ANGLE 80.0f
-#define MAX_SW_ANGLE 100.0f
-#define MIN_S_ANGLE 35.0f
-#define MAX_S_ANGLE 55.0f
-#define MIN_SE_ANGLE 10.0f
-#define MAX_SE_ANGLE 350.0F
-#define MIN_E_ANGLE 305.0f
-#define MAX_E_ANGLE 325.0f
-#define MIN_NE_ANGLE 260.0f
-#define MAX_NE_ANGLE 280.0f
+#define MIN_E_ANGLE 292.5f
+#define MAX_E_ANGLE 327.5f
+#define MIN_NE_ANGLE 247.5f
+#define MAX_NE_ANGLE 292.5f
+#define MIN_N_ANGLE 202.5f
+#define MAX_N_ANGLE 247.5f
+#define MIN_NW_ANGLE 157.5f
+#define MAX_NW_ANGLE 202.5f
+#define MIN_W_ANGLE 112.5f
+#define MAX_W_ANGLE 157.5f
+#define MIN_SW_ANGLE 67.5f
+#define MAX_SW_ANGLE 112.5f
+#define MIN_S_ANGLE 22.5f
+#define MAX_S_ANGLE 67.5f
+#define MIN_SE_ANGLE 22.5f
+#define MAX_SE_ANGLE 337.5F
 
 
 UENUM(BlueprintType)

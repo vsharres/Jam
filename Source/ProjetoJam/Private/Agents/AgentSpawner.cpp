@@ -10,7 +10,7 @@ DEFINE_LOG_CATEGORY(AgentSpawnerLog);
 AAgentSpawner::AAgentSpawner()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 }
 
@@ -39,6 +39,7 @@ void AAgentSpawner::SpawnAgent()
 		UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()) );
 	}
 
+	AgentSpawned->SpawnDefaultController();
 	AgentSpawned->InitializeAgent();
 
 }
