@@ -370,13 +370,8 @@ bool AStatementDatabase::ParseFactionsFile()
 			{
 				if (Lines[LineIndex] != "")
 				{
-					FStatement NewStatement = FStatement(Lines[LineIndex]);
+					FStatement NewStatement = FStatement(Factions[index].BranchFrom(1, false) + "." + Lines[LineIndex]);
 					InsertIntoDatabase(NewStatement);
-
-					/*	if (LineIndex == 0)
-						{
-							UFaction* newFaction = NewObject<UFaction>(this,(*NewStatement.LastVertex()));
-						}*/
 				}	
 
 			}
@@ -384,7 +379,7 @@ bool AStatementDatabase::ParseFactionsFile()
 		}
 	}
 
-	Statements.Remove("instantiate.factions.");
+	Statements.Remove("instantiate.faction.");
 
 	return true;
 }
@@ -398,7 +393,7 @@ bool AStatementDatabase::ParseAgentsFile()
 	}
 
 	TArray<FStatement> Agents;
-	Statements.MultiFind("instantiate.agents", Agents, true);
+	Statements.MultiFind("instantiate.agent.", Agents, true);
 
 	for (int32 index = 0; index < Agents.Num(); index++)
 	{
@@ -422,7 +417,7 @@ bool AStatementDatabase::ParseAgentsFile()
 			{
 				if (Lines[LineIndex] != "")
 				{
-					FStatement NewStatement = FStatement(Lines[LineIndex]);			
+					FStatement NewStatement = FStatement(Agents[index].BranchFrom(1,false) + "." + Lines[LineIndex]);			
 					InsertIntoDatabase(NewStatement);
 				}
 			}
@@ -430,7 +425,7 @@ bool AStatementDatabase::ParseAgentsFile()
 		}
 	}
 
-	Statements.Remove("instantiate.agents.");
+	Statements.Remove("instantiate.agent.");
 
 	return true;
 }

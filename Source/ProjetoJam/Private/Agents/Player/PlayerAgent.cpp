@@ -73,6 +73,11 @@ void APlayerAgent::UpdateFlipbook()
 	Super::UpdateFlipbook();
 }
 
+void APlayerAgent::Kill()
+{
+
+}
+
 void APlayerAgent::SetupPlayerInputComponent(UInputComponent * InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);

@@ -208,4 +208,7 @@ public:
 
 	void OnDamaged(float Damage) override;
 
+	UFUNCTION(BlueprintCallable, Category = Agent)
+		virtual void Kill();
+
 };

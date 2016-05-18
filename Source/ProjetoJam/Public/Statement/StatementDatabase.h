@@ -15,7 +15,7 @@ DECLARE_LOG_CATEGORY_EXTERN(StatementLog, Log, All);
 DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
 
 USTRUCT(BlueprintType)
-struct FStatement{
+struct FStatement {
 
 	GENERATED_USTRUCT_BODY()
 
@@ -118,7 +118,7 @@ public:
 
 	FString LastVertex() const { return Vertices.Last(); }
 
-	FString BranchFrom(const int32& index){
+	FString BranchFrom(const int32& index, bool direct = true) {
 
 		if (index >= Vertices.Num())
 		{
@@ -132,10 +132,21 @@ public:
 
 		FString ToReturn;
 
-		for (int32 i = index; i < Vertices.Num() - 1; i++)
+		if (direct)
 		{
-			ToReturn += Vertices[i];
-			ToReturn += Edges[i];
+			for (int32 i = index; i < Vertices.Num() - 1; i++)
+			{
+				ToReturn += Vertices[i];
+				ToReturn += Edges[i];
+			}
+		}
+		else
+		{
+			for (int32 i = 0; i <= index; i++)
+			{
+				ToReturn += Vertices[i];
+				ToReturn += Edges[i];
+			}
 		}
 
 		ToReturn += LastVertex();
@@ -143,7 +154,7 @@ public:
 		return ToReturn;
 	}
 
-	void GenerateKey(){
+	void GenerateKey() {
 		//First check if the statement already has all of its vertices.
 		if (this->Vertices.Num() > 0)
 		{
@@ -164,7 +175,7 @@ public:
 		}
 	}
 
-	bool HasSameSignature(const FString& Vertex, const FStatement& OtherStatement){
+	bool HasSameSignature(const FString& Vertex, const FStatement& OtherStatement) {
 		//warning message if the vertex to check is an empty string, or the pointer to the statement to compare is an null pointer.
 		if (Vertex == "")
 		{
@@ -186,7 +197,7 @@ public:
 		return true;
 	}
 
-	bool IsEdgeEqual(int32 EdgeIndex, const FStatement& OtherStatement){
+	bool IsEdgeEqual(int32 EdgeIndex, const FStatement& OtherStatement) {
 
 		//for correcting the index to be found in the other statement, so that the signatures can be compared.
 		if (EdgeIndex < this->Edges.Num())
@@ -206,7 +217,7 @@ public:
 		}
 	}
 
-	bool IsIncompatibleWith(const FStatement& OtherStatement){
+	bool IsIncompatibleWith(const FStatement& OtherStatement) {
 		/*if the last vertex of the statement is different from the vertex of the last statement,
 		also has the same signature and if either of then has the last edge the exclusion identifier, then they are incompatible with each other.*/
 		if (this->Vertices.Last() != OtherStatement.Vertices.Last() &&
@@ -221,7 +232,7 @@ public:
 
 	bool IsStatementValid()
 	{
-		if (this->Statement == "" || this->StatementKey == "" || this->Vertices.Num() <= 1 || this->Edges.Num() == 0 )
+		if (this->Statement == "" || this->StatementKey == "" || this->Vertices.Num() <= 1 || this->Edges.Num() == 0)
 		{
 			return false;
 		}
@@ -241,13 +252,13 @@ public:
 		TArray<int32> indexQuery;
 		TArray<TCHAR> CharArray = asString.GetCharArray();
 
-		for (int32 index = 0; index < CharArray.Num();index++)
+		for (int32 index = 0; index < CharArray.Num(); index++)
 		{
 			if (FChar::IsLower(CharArray[index]))
 			{
 				indexQuery.Add(index);
 			}
-		
+
 		}
 
 		if (indexQuery.Num() > 0)
@@ -263,11 +274,11 @@ public:
 		}
 
 		*this = asString;
-		
+
 		return *this;
 	}
 
-	const FString& operator[](const int32& index) const{
+	const FString& operator[](const int32& index) const {
 		return Vertices[index];
 	}
 
@@ -375,7 +386,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = Practices)
 		TArray<FPractice> PracticeList;
 
-public:	
+public:
 
 	// Sets default values for this actor's properties
 	AStatementDatabase();
@@ -509,7 +520,7 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Write To File", Keywords = "Write File"), Category = Database)
 		void WriteToFile();
 
-	
+
 
 	/**
 	* The predicate function to sort the database.
@@ -518,5 +529,5 @@ public:
 	{
 		return (key1 < key2);
 	}
-	
+
 };

@@ -58,6 +58,8 @@ public:
 
 	void UpdateFlipbook() override;
 
+	virtual void Kill() override;
+
 	void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	
 	

@@ -1,9 +1,0 @@
-agent.pannonica.race!white
-agent.pannonica.age!45
-agent.pannonica.gender!female
-agent.pannonica.location!bar_table2_left
-agent.pannonica.is_alive!true
-agent.pannonica.knows!bobby
-agent.pannonica.relationship_to!bobby!client
-
-agent.pannonica.current_action!idle

@@ -148,8 +148,17 @@ void AAgent::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 }
 
-
 void AAgent::OnDamaged(float Damage)
+{
+	Stats.Cur_Life -= Damage;
+	if (Stats.Cur_Life <= 0.0f)
+	{
+		Stats.Cur_Life = 0.0f;
+		Kill();
+	}
+}
+
+void AAgent::Kill()
 {
 
 }

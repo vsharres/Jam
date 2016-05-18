@@ -9,3 +9,5 @@ AStarAgent::AStarAgent(const FObjectInitializer& Initializer)
 	Agent_Type = EAgentType::SPECIAL;
 }
 
+
+
