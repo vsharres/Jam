@@ -11,7 +11,8 @@
 			"AdditionalDependencies": [
 				"CoreUObject",
 				"AIModule",
-				"Engine"
+				"Engine",
+				"Paper2D"
 			]
 		}
 	]

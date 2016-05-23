@@ -3,6 +3,7 @@
 #include "Public/ProjetoJam.h"
 #include "Inventory.h"
 #include "Interact.h"
+#include "ObjectFade.h"
 #include "Public/Agents/Player/PlayerAgent.h"
 
 APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
@@ -20,8 +21,13 @@ APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 
 	Camera->AttachTo(CameraBoom);
 
+	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("CameraTraceTimeline"));
+	CameraTraceTimeline->SetTickableWhenPaused(false);
+
+	EventFunction.BindUFunction(this, FName{ TEXT("CameraTraceTimelineCallback") });
+
 	Agent_Type = EAgentType::PLAYER;
-	Agent_Name = "Jackie";
+	Agent_Name = "Lied";
 	bCanInteract = false;
 }
 
@@ -53,6 +59,24 @@ void APlayerAgent::InteractWith()
 	}
 }
 
+void APlayerAgent::CameraTraceTimelineCallback()
+{
+	const FVector Start = Camera->GetComponentLocation();
+	const FVector End = GetActorLocation();
+
+	FHitResult HitData(ForceInit);
+
+	if (UJamLibrary::Trace(GetWorld(), this, Start, End, HitData))
+	{
+		if (HitData.GetActor()->Implements<UObjectFade>())
+		{
+			Cast<IObjectFade>(HitData.GetActor())->FadeOut();
+		}
+	}
+	
+}
+
+
 void APlayerAgent::MoveRight(float input)
 {
 	Super::MoveRight(input);
@@ -66,6 +90,9 @@ void APlayerAgent::MoveUp(float input)
 void APlayerAgent::InitializeAgent()
 {
 	Inventory = NewObject<UInventory>(this);
+
+	CameraTraceTimeline->AddEvent(0.5f, EventFunction);
+	CameraTraceTimeline->Play();
 }
 
 void APlayerAgent::UpdateFlipbook()

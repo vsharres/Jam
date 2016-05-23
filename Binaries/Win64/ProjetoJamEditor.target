@@ -2,13 +2,13 @@
 	"TargetName" : "ProjetoJamEditor",
 	"Platform" : "Win64",
 	"Configuration" : "Development",
-	"BuildId" : "",
+	"BuildId" : "a596574e-7113-4825-bba8-8a2c796d055b",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
 		"MinorVersion" : 11,
-		"PatchVersion" : 0,
-		"Changelist" : 2927265,
+		"PatchVersion" : 2,
+		"Changelist" : 2946394,
 		"IsLicenseeVersion" : 0,
 		"BranchName" : "++UE4+Release-4.11"
 	},

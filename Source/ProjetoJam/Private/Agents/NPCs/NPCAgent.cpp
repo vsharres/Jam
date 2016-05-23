@@ -6,12 +6,15 @@
 ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	:Super(Initializer)
 {
-
+	bIsScripted = false;
 }
 
 void ANPCAgent::InitializeAgent()
 {
 	Super::InitializeAgent();
+
+
+
 }
 
 void ANPCAgent::Interact()

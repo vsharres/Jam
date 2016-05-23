@@ -138,7 +138,7 @@ void AAgent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Database_Ref = AStatementDatabase::GetStatementDatabase(this);
+	Database_Ref = UJamLibrary::GetStatementDatabase(this);
 }
 
 void AAgent::Tick(float DeltaSeconds)

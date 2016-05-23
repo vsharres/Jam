@@ -16,6 +16,9 @@ class PROJETOJAM_API ANPCAgent : public AAgent, public IInteract
 
 public:
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = NPC)
+		bool bIsScripted;
+
 	ANPCAgent(const FObjectInitializer& Initializer);
 
 	void InitializeAgent() override;

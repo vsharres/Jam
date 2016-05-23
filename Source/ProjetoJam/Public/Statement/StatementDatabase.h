@@ -391,9 +391,6 @@ public:
 	// Sets default values for this actor's properties
 	AStatementDatabase();
 
-	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Database", Keywords = "Get Database", WorldContext = "WorldContextObject", UnsafeDuringActorConstruction = "true"), Category = Database)
-		static AStatementDatabase* GetStatementDatabase(UObject* WorldContextObject);
-
 	/**
 	* Called to Initialize the database, reading all of the necessary files to initialize.
 	*/

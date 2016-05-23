@@ -18,31 +18,10 @@ AStatementDatabase::AStatementDatabase()
 
 }
 
-AStatementDatabase* AStatementDatabase::GetStatementDatabase(UObject* WorldContextObject)
-{
-	if (WorldContextObject)
-	{
-		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
-		if (World != nullptr)
-		{
-			for (TActorIterator<AStatementDatabase> ActorItr(World); ActorItr; ++ActorItr)
-			{
-				if ((*ActorItr)->IsValidLowLevel())
-				{
-					return *ActorItr;
-				}
-			}
-		}
-	}
-
-	return nullptr;
-}
-
 void AStatementDatabase::InitializeDataBase()
 {
 	check(ParseWorldFile());
 	check(ParseAgentsFile());
-
 }
 
 TArray<FString> AStatementDatabase::InspectDatabase()

@@ -9,7 +9,6 @@
 #define MIN_DELTA_VEL 0.005f
 
 
-
 #define AGENT_DEFAULT_SPEED 10.0f
 #define AGENT_DEFAULT_MAX_HEALTH 100.0f
 

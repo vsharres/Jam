@@ -30,6 +30,11 @@ private:
 	UPROPERTY()
 		bool bCanInteract;
 
+	UPROPERTY()
+		UTimelineComponent* CameraTraceTimeline;
+
+	FOnTimelineEvent EventFunction{};
+
 
 public:
 
@@ -49,6 +54,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Interact)
 		void InteractWith();
+	
+	UFUNCTION()
+		void CameraTraceTimelineCallback();
 
 	void MoveRight(float input) override;
 
