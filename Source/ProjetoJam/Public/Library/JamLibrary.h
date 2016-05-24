@@ -21,7 +21,7 @@ public:
 		static bool Trace(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, FHitResult& HitOut, ECollisionChannel CollisionChannel = ECC_Pawn, bool ReturnPhysMat = false);
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "TraceSphere", Keywords = "TraceSphere", WorldContext = "WorldContextObject", UnsafeDuringActorConstruction = "true"), Category = Trace)
-		static bool TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, const FRotator& Rot, TArray<FHitResult>& HitsOut, ECollisionChannel CollisionChannel = ECC_Pawn, bool ReturnPhysMat = false);
+		static bool TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, const FRotator& Rot, float Radius, TArray<FHitResult>& HitsOut, ECollisionChannel CollisionChannel = ECC_Pawn, bool ReturnPhysMat = false);
 
 
 };

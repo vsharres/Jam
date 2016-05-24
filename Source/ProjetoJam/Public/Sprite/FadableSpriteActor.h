@@ -2,7 +2,8 @@
 
 #pragma once
 
-#include "PaperSpriteActor.h"
+#include "GameFramework/Actor.h"
+#include "PaperSpriteComponent.h"
 #include "ObjectFade.h"
 #include "FadableSpriteActor.generated.h"
 
@@ -12,21 +13,25 @@ class APlayerAgent;
  * 
  */
 UCLASS()
-class PROJETOJAM_API AFadableSpriteActor : public APaperSpriteActor, public IObjectFade
+class PROJETOJAM_API AFadableSpriteActor : public AActor, public IObjectFade
 {
 	GENERATED_BODY()
-private:
+protected:
 
 	UPROPERTY()
 		APlayerAgent* Player;
 
-	UPROPERTY()
-	UTimelineComponent* FadeOutTimeline;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Root)
+		USceneComponent* Root;
 
 	UPROPERTY()
 	UTimelineComponent* CameraTraceTimeline;
 
-	FOnTimelineEvent FadeOutFunction{};
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Sprite)
+		UPaperSpriteComponent* Sprite;
+
+	UPROPERTY()
+		bool bFaded;
 
 	FOnTimelineEvent CameraTraceFunction{};
 
@@ -35,15 +40,15 @@ public:
 	AFadableSpriteActor(const FObjectInitializer& ObjectInitializer);
 
 	UFUNCTION()
-		void FadeOutTimelineCallback();
-
-	UFUNCTION()
 		void CameraTimelineCallback();
+
+	UFUNCTION(BlueprintPure, Category = Sprite)
+		UPaperSpriteComponent* GetSprite();
 
 	void BeginPlay() override;
 
-	 void FadeIn() override;
+	 void FadeIn(const FVector2D& UVPos = FVector2D::ZeroVector) override;
 
-	 void FadeOut() override;
+	 void FadeOut(const FVector2D& UVPos = FVector2D::ZeroVector) override;
 	
 };

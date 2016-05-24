@@ -8,15 +8,25 @@
 AFadableSpriteActor::AFadableSpriteActor(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	FadeOutTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("FadeInTimeline"));
-	FadeOutTimeline->SetTickableWhenPaused(false);
-	
-	FadeOutFunction.BindUFunction(this, FName(TEXT("FadeInTimelineCallback")));
-}
+	PrimaryActorTick.bCanEverTick = false;
 
-void AFadableSpriteActor::FadeOutTimelineCallback()
-{
-	
+	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "SpriteActor");
+	RootComponent = Root;
+
+	Sprite = ObjectInitializer.CreateDefaultSubobject<UPaperSpriteComponent>(this, "Sprite");
+	Sprite->SetCollisionResponseToChannel(COLLISION_FADEOBJECT, ECollisionResponse::ECR_Overlap);
+	Sprite->AttachTo(Root);
+
+	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, "CameraTimeline");
+	CameraTraceTimeline->SetTickableWhenPaused(false);
+	CameraTraceTimeline->SetTimelineLengthMode(TL_TimelineLength);
+	CameraTraceTimeline->SetTimelineLength(1.0f);
+	CameraTraceTimeline->SetLooping(true);
+
+	CameraTraceFunction.BindUFunction(this,"CameraTimelineCallback");
+
+	bFaded = false;
+
 }
 
 void AFadableSpriteActor::CameraTimelineCallback()
@@ -24,15 +34,29 @@ void AFadableSpriteActor::CameraTimelineCallback()
 	const FVector Start = Player->GetCamera()->GetComponentLocation();
 	const FVector End = Player->GetActorLocation();
 
-	FHitResult HitData(ForceInit);
+	TArray<FHitResult> Hits;
+	FVector HitPos;
 
-	if (UJamLibrary::Trace(GetWorld(), this, Start, End, HitData))
+	if (UJamLibrary::TraceSphere(GetWorld(), Player, Start, End, Player->GetActorRotation(), TRACE_SPHERERADIUS_DEFAULT, Hits,COLLISION_FADEOBJECT))
 	{
-		if (HitData.GetActor()->Implements<UObjectFade>())
+		for (const auto& Hit : Hits)
 		{
-			Cast<IObjectFade>(HitData.GetActor())->FadeOut();
+			if (Hit.GetActor() == this)
+			{
+				return;
+			}
 		}
+
 	}
+	
+	CameraTraceTimeline->Stop();
+	FadeIn();
+	
+}
+
+UPaperSpriteComponent* AFadableSpriteActor::GetSprite()
+{
+	return Sprite;
 }
 
 void AFadableSpriteActor::BeginPlay()
@@ -41,16 +65,40 @@ void AFadableSpriteActor::BeginPlay()
 
 	Player = Cast<APlayerAgent>(UGameplayStatics::GetPlayerCharacter(this, 0));
 
-	FadeOutTimeline->AddEvent(1.0f, FadeOutFunction);
+	CameraTraceTimeline->AddEvent(0.0f, CameraTraceFunction);
 
 }
 
-void AFadableSpriteActor::FadeIn()
+void AFadableSpriteActor::FadeIn(const FVector2D& UVPos)
 {
-	
+	if (bFaded)
+	{
+		bFaded = false;
+		UMaterialInstanceDynamic* MID;
+		MID = GetSprite()->CreateDynamicMaterialInstance(0);
+
+		if (MID && GetWorld())
+		{
+			MID->SetScalarParameterValue("Start_Time_FadeIn", GetWorld()->GetTimeSeconds());
+		}
+			
+	}
 }
 
-void AFadableSpriteActor::FadeOut()
+void AFadableSpriteActor::FadeOut(const FVector2D& UVPos)
 {
-	FadeOutTimeline->Play();
+	if (!bFaded)
+	{
+		bFaded = true;
+		UMaterialInstanceDynamic* MID;
+		MID = GetSprite()->CreateDynamicMaterialInstance(0);
+
+		if (MID && GetWorld())
+		{
+			MID->SetScalarParameterValue("Start_Time_FadeOut", GetWorld()->GetTimeSeconds());
+		}
+
+		CameraTraceTimeline->PlayFromStart();
+		
+	}
 }

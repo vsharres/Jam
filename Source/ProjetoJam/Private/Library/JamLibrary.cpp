@@ -55,7 +55,7 @@ bool UJamLibrary::Trace(UWorld* World, AActor* ActorToIgnore, const FVector& Sta
 	return (HitOut.GetActor() != NULL);
 }
 
-bool UJamLibrary::TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, const FRotator& Rot, TArray<FHitResult>& HitsOut, ECollisionChannel CollisionChannel /*= ECC_Pawn*/, bool ReturnPhysMat /*= false*/)
+bool UJamLibrary::TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, const FRotator& Rot, float Radius, TArray<FHitResult>& HitsOut, ECollisionChannel CollisionChannel /*= ECC_Pawn*/, bool ReturnPhysMat /*= false*/)
 {
 	if (!World)
 	{
@@ -69,7 +69,7 @@ bool UJamLibrary::TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVecto
 
 	FCollisionShape TraceShape;
 	TraceShape.ShapeType = ECollisionShape::Sphere;
-	TraceShape.SetSphere(10.0f);
+	TraceShape.SetSphere(Radius);
 
 	//Ignore Actors
 	TraceParams.AddIgnoredActor(ActorToIgnore);

@@ -9,6 +9,7 @@
 APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
+	Stats.Speed = 0.35f;
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
 	CameraBoom->bEnableCameraLag = true;
 	CameraBoom->SetWorldRotation(FRotator(0, 330, 270));
@@ -23,6 +24,8 @@ APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 
 	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("CameraTraceTimeline"));
 	CameraTraceTimeline->SetTickableWhenPaused(false);
+	CameraTraceTimeline->SetTimelineLength(1.0f);
+	CameraTraceTimeline->SetLooping(true);
 
 	EventFunction.BindUFunction(this, FName{ TEXT("CameraTraceTimelineCallback") });
 
@@ -64,18 +67,30 @@ void APlayerAgent::CameraTraceTimelineCallback()
 	const FVector Start = Camera->GetComponentLocation();
 	const FVector End = GetActorLocation();
 
-	FHitResult HitData(ForceInit);
+	TArray<FHitResult> Hits;
 
-	if (UJamLibrary::Trace(GetWorld(), this, Start, End, HitData))
+	if (UJamLibrary::TraceSphere(GetWorld(), this, Start, End, GetActorRotation(), TRACE_SPHERERADIUS_DEFAULT, Hits, COLLISION_FADEOBJECT))
 	{
-		if (HitData.GetActor()->Implements<UObjectFade>())
+		for (const auto& hit : Hits)
 		{
-			Cast<IObjectFade>(HitData.GetActor())->FadeOut();
+			if (hit.GetActor()->Implements<UObjectFade>())
+			{
+				Cast<IObjectFade>(hit.GetActor())->FadeOut();
+			}
 		}
+	
 	}
 	
 }
 
+
+void APlayerAgent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	CameraTraceTimeline->AddEvent(1.0f, EventFunction);
+	CameraTraceTimeline->Play();
+}
 
 void APlayerAgent::MoveRight(float input)
 {
@@ -91,8 +106,7 @@ void APlayerAgent::InitializeAgent()
 {
 	Inventory = NewObject<UInventory>(this);
 
-	CameraTraceTimeline->AddEvent(0.5f, EventFunction);
-	CameraTraceTimeline->Play();
+	
 }
 
 void APlayerAgent::UpdateFlipbook()

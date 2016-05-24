@@ -87,6 +87,20 @@ public:
 		Speed(AGENT_DEFAULT_SPEED)
 	{}
 
+	FAgentStats(float maxLife, float speed)
+	{
+		Max_Life = maxLife;
+		Cur_Life = Max_Life;
+		Speed = speed;
+	}
+
+	FAgentStats(const FAgentStats& otherStats)
+	{
+		this->Max_Life = otherStats.Max_Life;
+		this->Cur_Life = otherStats.Cur_Life;
+		this->Speed = otherStats.Speed;
+	}
+
 
 };
 

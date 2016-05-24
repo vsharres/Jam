@@ -58,6 +58,8 @@ public:
 	UFUNCTION()
 		void CameraTraceTimelineCallback();
 
+	void BeginPlay() override;
+
 	void MoveRight(float input) override;
 
 	void MoveUp(float input) override;

@@ -21,10 +21,10 @@ class IObjectFade
 	GENERATED_IINTERFACE_BODY()
 
 		UFUNCTION()
-		virtual void FadeIn();
+		virtual void FadeIn(const FVector2D& UVPos= FVector2D::ZeroVector);
 
 	UFUNCTION()
-		virtual void FadeOut();
+		virtual void FadeOut(const FVector2D& UVPos = FVector2D::ZeroVector);
 
 
 };

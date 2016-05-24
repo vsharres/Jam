@@ -10,12 +10,12 @@ UObjectFade::UObjectFade(const class FObjectInitializer& PCIP)
 
 }
 
-void IObjectFade::FadeIn()
+void IObjectFade::FadeIn(const FVector2D& UVPos)
 {
 
 }
 
-void IObjectFade::FadeOut()
+void IObjectFade::FadeOut(const FVector2D& UVPos)
 {
 
 }
