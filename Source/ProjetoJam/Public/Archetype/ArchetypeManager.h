@@ -334,7 +334,7 @@ public:
 		int32 Seed;
 
 	UPROPERTY()
-		TArray<FStatement> ResultingStatements;
+		TArray<FString> ResultingStatements;
 
 	TMultiMap<uint8, FAspect> Aspects;
 

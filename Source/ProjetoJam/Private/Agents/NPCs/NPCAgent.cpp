@@ -9,10 +9,20 @@ ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	bIsScripted = false;
 }
 
+void ANPCAgent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
+	check(gameState);
+
+	gameState->OnAgentInit.AddDynamic(this, &ANPCAgent::InitializeAgent);
+
+}
+
 void ANPCAgent::InitializeAgent()
 {
 	Super::InitializeAgent();
-
 
 
 }

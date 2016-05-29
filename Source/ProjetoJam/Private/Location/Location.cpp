@@ -25,16 +25,6 @@ ALocation::ALocation(const FObjectInitializer& Initializer)
 
 }
 
-void ALocation::SetLocationStament()
-{
-	FString text = LocationName;
-
-	text = "World." + text;
-
-	FStatement statement = FStatement(text);
-	
-}
-
 TArray<ALocation*> ALocation::GetChildLocations()
 {
 	return ChildLocations;
@@ -78,7 +68,7 @@ void ALocation::OnTriggerBeginOverlap(AActor* OtherActor, class UPrimitiveCompon
 
 	if (agent->IsValidLowLevelFast())
 	{
-		//agent->SetLocation(this);
+
 	}
 }
 

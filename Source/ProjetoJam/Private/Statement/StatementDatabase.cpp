@@ -5,8 +5,6 @@
 #include "Public/Agents/Agent.h"
 #include "Public/Location/Location.h"
 
-DEFINE_LOG_CATEGORY(StatementLog);
-
 DEFINE_LOG_CATEGORY(DatabaseLog);
 
 
@@ -16,6 +14,22 @@ AStatementDatabase::AStatementDatabase()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
+
+
+}
+
+AStatementDatabase::~AStatementDatabase()
+{
+	Statements.Empty();
+}
+
+void AStatementDatabase::BeginPlay()
+{
+	Super::BeginPlay();
+
+	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
+	check(gameState);
+	gameState->OnDatabaseInit.AddDynamic(this, &AStatementDatabase::InitializeDataBase);
 }
 
 void AStatementDatabase::InitializeDataBase()
@@ -26,7 +40,7 @@ void AStatementDatabase::InitializeDataBase()
 
 TArray<FString> AStatementDatabase::InspectDatabase()
 {
-	TArray<FStatement> Temp;
+	TArray<UStatement*> Temp;
 
 	Statements.GenerateValueArray(Temp);
 
@@ -34,17 +48,17 @@ TArray<FString> AStatementDatabase::InspectDatabase()
 
 	for (int32 index = 0; index < Temp.Num(); index++)
 	{
-		ToReturn.Add((Temp[index]).GetStatement());
+		ToReturn.Add((Temp[index])->GetStatement());
 	}
 
 	return ToReturn;
 }
 
-void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
+void AStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 {
 	if (Statements.Num() == 0)
 	{
-		Statements.Add(NewStatement.GetStatementKey(), NewStatement);
+		Statements.Add(NewStatement->GetStatementKey(), NewStatement);
 		return;
 	}
 
@@ -53,7 +67,7 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 
 	if (HasStatement(NewStatement))
 	{
-		UE_LOG(DatabaseLog, Log, TEXT("The statement was not added, because the statement %s is already in the database."), *NewStatement.GetStatement());
+		UE_LOG(DatabaseLog, Log, TEXT("The statement was not added, because the statement %s is already in the database."), *NewStatement->GetStatement());
 		return;
 	}
 	else if (IsIncompatibleWithDatabase(NewStatement, IncompatibleKey))
@@ -62,8 +76,8 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 		Statements.Remove(IncompatibleKey);
 		UE_LOG(DatabaseLog, Log, TEXT("Deleting statements with key %s, for they are incompatible."), *IncompatibleKey);
 
-		Statements.Add(NewStatement.GetStatementKey(), NewStatement);
-		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement.GetStatement());
+		Statements.Add(NewStatement->GetStatementKey(), NewStatement);
+		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement->GetStatement());
 		Statements.KeySort(ConstPredicate);
 
 		DatabaseWasUpdated();
@@ -79,10 +93,10 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 		for (int32 index = 0; index < LessSpecificKeys.Num(); index++)
 		{
 			Statements.Remove(LessSpecificKeys[index]);
-			UE_LOG(DatabaseLog, Log, TEXT("Deleting statements with key %s , for they are less specific then the new statement %s."), *LessSpecificKeys[index], *NewStatement.GetStatement());
+			UE_LOG(DatabaseLog, Log, TEXT("Deleting statements with key %s , for they are less specific then the new statement %s."), *LessSpecificKeys[index], *NewStatement->GetStatement());
 		}
-		Statements.Add(NewStatement.GetStatementKey(), NewStatement);
-		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement.GetStatement());
+		Statements.Add(NewStatement->GetStatementKey(), NewStatement);
+		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement->GetStatement());
 		Statements.KeySort(ConstPredicate);
 
 		DatabaseWasUpdated();
@@ -94,13 +108,13 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 	}
 	else if (IsLessSpecifiThanDatabase(NewStatement))
 	{
-		UE_LOG(DatabaseLog, Log, TEXT("The statement was not added, because the statement %s is less specific than the database."), *NewStatement.GetStatement());
+		UE_LOG(DatabaseLog, Log, TEXT("The statement was not added, because the statement %s is less specific than the database."), *NewStatement->GetStatement());
 		return;
 	}
 	else
 	{
-		Statements.Add(NewStatement.GetStatementKey(), NewStatement);
-		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement.GetStatement());
+		Statements.Add(NewStatement->GetStatementKey(), NewStatement);
+		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement->GetStatement());
 		Statements.KeySort(ConstPredicate);
 		DatabaseWasUpdated();
 		if (GEngine)
@@ -108,12 +122,12 @@ void AStatementDatabase::InsertIntoDatabase(const FStatement& NewStatement)
 			WriteToFile();
 		}
 
-		FPractice AsPractice = NewStatement;
+		/*FPractice AsPractice = NewStatement;
 
 		if (AsPractice.IsValidPractice())
 		{
 			InsertIntoDatabase(AsPractice.CurrentState.State);
-		}
+		}*/
 
 		return;
 	}
@@ -127,23 +141,23 @@ void AStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatemen
 		return;
 	}
 
-	FStatement StatementToInsert = FStatement(NewStatement);
+	UStatement* StatementToInsert = UStatement::NewStatement(NewStatement);
 	InsertIntoDatabase(StatementToInsert);
 }
 
-void AStatementDatabase::DeleteStatementFromDatabase(const FStatement& StamentToDelete)
+void AStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete)
 {	
 
-	if (Statements.FindRef(StamentToDelete.GetStatementKey()).GetStatement() == "")
+	if (Statements.FindRef(StamentToDelete->GetStatementKey())->GetStatement() == "")
 	{
 		UE_LOG(DatabaseLog, Warning, TEXT("Cannot find the statement in the database."));
 		return;
 	}
 	else
 	{
-		for (auto Itr = Statements.CreateKeyIterator(StamentToDelete.GetStatementKey()); Itr; ++Itr)
+		for (auto Itr = Statements.CreateKeyIterator(StamentToDelete->GetStatementKey()); Itr; ++Itr)
 		{
-			if (Itr.Value().GetStatement() == StamentToDelete.GetStatement())
+			if (Itr.Value()->GetStatement() == StamentToDelete->GetStatement())
 			{
 				Itr.RemoveCurrent();
 			}
@@ -159,14 +173,14 @@ void AStatementDatabase::DeleteStatementFromDatabase(const FStatement& StamentTo
 
 }
 
-bool AStatementDatabase::IsIncompatibleWithDatabase(const FStatement& Statement, FString& IncompatibleKey)
+bool AStatementDatabase::IsIncompatibleWithDatabase(UStatement* Statement, FString& IncompatibleKey)
 {
 	FString TempDotKey = "";
 
-	TempDotKey = Statement.GetStatementKey().LeftChop(1);
+	TempDotKey = Statement->GetStatementKey().LeftChop(1);
 	TempDotKey.AppendChar('.');
 
-	if (Statements.Contains(TempDotKey) && Statement.GetStatementKey().Right(1) == "!")
+	if (Statements.Contains(TempDotKey) && Statement->GetStatementKey().Right(1) == "!")
 	{
 		IncompatibleKey = TempDotKey;
 		return true;
@@ -174,7 +188,7 @@ bool AStatementDatabase::IsIncompatibleWithDatabase(const FStatement& Statement,
 
 	FString TempExcKey = "";
 
-	TempExcKey = Statement.GetStatementKey().LeftChop(1);
+	TempExcKey = Statement->GetStatementKey().LeftChop(1);
 	TempExcKey.AppendChar('!');
 
 	if (Statements.Contains(TempExcKey))
@@ -186,16 +200,16 @@ bool AStatementDatabase::IsIncompatibleWithDatabase(const FStatement& Statement,
 	return false;
 }
 
-bool AStatementDatabase::IsMoreSpecificThanDatabase(const FStatement& Statement, TArray<FString>& LessSpecificKeys)
+bool AStatementDatabase::IsMoreSpecificThanDatabase(UStatement* Statement, TArray<FString>& LessSpecificKeys)
 {
 	FString TempKey = "";
 
-	for (int32 index = 0; index < Statement.GetEdges().Num(); index++)
+	for (int32 index = 0; index < Statement->GetEdges().Num(); index++)
 	{
-		TempKey += Statement.GetVertices()[index];
-		TempKey += Statement.GetEdges()[index];
+		TempKey += Statement->GetVertices()[index];
+		TempKey += Statement->GetEdges()[index];
 
-		if (Statements.Contains(TempKey) && Statement.GetStatementKey().Contains(TempKey) && Statements.FindRef(TempKey).GetEdges().Num() < Statement.GetEdges().Num())
+		if (Statements.Contains(TempKey) && Statement->GetStatementKey().Contains(TempKey) && Statements.FindRef(TempKey)->GetEdges().Num() < Statement->GetEdges().Num())
 		{
 			LessSpecificKeys.Add(TempKey);
 		}
@@ -211,14 +225,14 @@ bool AStatementDatabase::IsMoreSpecificThanDatabase(const FStatement& Statement,
 	}
 }
 
-bool AStatementDatabase::IsLessSpecifiThanDatabase(const FStatement& Statement)
+bool AStatementDatabase::IsLessSpecifiThanDatabase(UStatement* Statement)
 {
 	TArray<FString> DatabaseKeys;
 	Statements.GenerateKeyArray(DatabaseKeys);
 
 	for (auto& Itr : DatabaseKeys)
 	{
-		if (Itr.Contains(Statement.GetStatementKey()) && Itr.Len() > Statement.GetStatementKey().Len())
+		if (Itr.Contains(Statement->GetStatementKey()) && Itr.Len() > Statement->GetStatementKey().Len())
 		{
 			return true;
 		}
@@ -268,12 +282,12 @@ TArray<FString> AStatementDatabase::FindKeysWith(const FString& vertex)
 
 }
 
-FStatement AStatementDatabase::FindStatement(const FString& Key)
+UStatement* AStatementDatabase::FindStatement(const FString& Key)
 {
 	if (Key == "")
 	{
 		UE_LOG(DatabaseLog, Error, TEXT("Cannot find statement with a null key."));
-		return FStatement();
+		return NULL;
 	}
 
 	if (Statements.Contains(Key))
@@ -282,7 +296,7 @@ FStatement AStatementDatabase::FindStatement(const FString& Key)
 	}
 	else
 	{
-		return FStatement();
+		return NULL;
 	}
 }
 
@@ -307,7 +321,7 @@ bool AStatementDatabase::ParseWorldFile()
 		int32 indx;
 		if (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx))
 		{
-			FStatement NewStatement = FStatement(Lines[index]);
+			UStatement* NewStatement = UStatement::NewStatement(Lines[index]);
 			
 			InsertIntoDatabase(NewStatement);
 		}
@@ -324,15 +338,15 @@ bool AStatementDatabase::ParseFactionsFile()
 		return false;
 	}
 
-	TArray<FStatement> Factions;
+	TArray<UStatement*> Factions;
 	Statements.MultiFind("instantiate.faction.", Factions, true);
 
 	for (int32 index = 0; index < Factions.Num(); index++)
 	{
-		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index]).GetVertices()[1] + ".txt");
+		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index])->GetVertices()[1] + ".txt");
 		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
 		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Factions[index]).GetVertices()[1]);
+			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Factions[index])->GetVertices()[1]);
 			return false;
 		}
 		else
@@ -349,7 +363,7 @@ bool AStatementDatabase::ParseFactionsFile()
 			{
 				if (Lines[LineIndex] != "")
 				{
-					FStatement NewStatement = FStatement(Factions[index].BranchFrom(1, false) + "." + Lines[LineIndex]);
+					UStatement* NewStatement = UStatement::NewStatement(Factions[index]->BranchFrom(1, false) + "." + Lines[LineIndex]);
 					InsertIntoDatabase(NewStatement);
 				}	
 
@@ -371,15 +385,15 @@ bool AStatementDatabase::ParseAgentsFile()
 		return false;
 	}
 
-	TArray<FStatement> Agents;
+	TArray<UStatement*> Agents;
 	Statements.MultiFind("instantiate.agent.", Agents, true);
 
 	for (int32 index = 0; index < Agents.Num(); index++)
 	{
-		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index]).GetVertices()[1] + ".txt");
+		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index])->GetVertices()[1] + ".txt");
 		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
 		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Agents[index]).GetVertices()[1]);
+			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Agents[index])->GetVertices()[1]);
 			return false;
 		}
 		else
@@ -396,7 +410,8 @@ bool AStatementDatabase::ParseAgentsFile()
 			{
 				if (Lines[LineIndex] != "")
 				{
-					FStatement NewStatement = FStatement(Agents[index].BranchFrom(1,false) + "." + Lines[LineIndex]);			
+					UStatement* NewStatement =UStatement::NewStatement(Agents[index]->BranchFrom(1, false) + "." + Lines[LineIndex]);
+	
 					InsertIntoDatabase(NewStatement);
 				}
 			}
@@ -409,12 +424,12 @@ bool AStatementDatabase::ParseAgentsFile()
 	return true;
 }
 
-bool AStatementDatabase::HasStatement(const FStatement& Statement)
+bool AStatementDatabase::HasStatement(UStatement* Statement)
 {
 
-	if (Statements.Contains(Statement.GetStatementKey()))
+	if (Statements.Contains(Statement->GetStatementKey()))
 	{
-		if (Statements.FindChecked(Statement.GetStatementKey()).GetStatement() == Statement.GetStatement())
+		if (Statements.FindChecked(Statement->GetStatementKey())->GetStatement() == Statement->GetStatement())
 		{
 			return true;
 		}
@@ -426,9 +441,8 @@ bool AStatementDatabase::HasStatement(const FStatement& Statement)
 
 bool AStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
 {
-	FStatement temp =FStatement(StatementText);
 
-	if (Statements.Find(temp.GetStatementKey()))
+	if (Statements.Find(UStatement::GetKeyFromString(StatementText)))
 	{
 		return true;
 	}
@@ -445,7 +459,7 @@ void AStatementDatabase::WriteToFile()
 
 	for (auto StatesItr = Statements.CreateConstIterator(); StatesItr; ++StatesItr)
 	{
-		Lines.Add(*StatesItr->Value.GetStatement());
+		Lines.Add(*StatesItr->Value->GetStatement());
 	}
 
 	if (Lines.Num() == 0)

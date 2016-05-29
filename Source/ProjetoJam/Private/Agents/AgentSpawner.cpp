@@ -7,10 +7,16 @@
 DEFINE_LOG_CATEGORY(AgentSpawnerLog);
 
 // Sets default values
-AAgentSpawner::AAgentSpawner()
+AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+
+	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
+	AgentTypeToSpawn = NULL;
+	
+
 
 }
 
@@ -18,6 +24,11 @@ AAgentSpawner::AAgentSpawner()
 void AAgentSpawner::BeginPlay()
 {
 	Super::BeginPlay();
+
+	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
+	check(gameState);
+
+	gameState->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
 	
 }
 

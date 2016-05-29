@@ -414,6 +414,7 @@
     <None Include="..\..\Config\DefaultGame.ini" />
     <None Include="..\..\Config\DefaultInput.ini" />
     <None Include="..\..\Source\ProjetoJam\ProjetoJam.Build.cs" />
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGameState.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\ProjetoJam.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Actions\Action.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Agents\Agent.cpp" />
@@ -443,7 +444,9 @@
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Location\Location.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Sprite\FadableSprite.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Sprite\ObjectSprite.cpp" />
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\Statement.cpp" />
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\StatementDatabase.cpp" />
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGameState.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\ProjetoJam.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Actions\Action.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Agents\Agent.h" />
@@ -471,6 +474,7 @@
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Location\Location.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Sprite\FadableSprite.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Sprite\ObjectSprite.h" />
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\Statement.h" />
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\StatementDatabase.h" />
     <ResourceCompile Include="..\..\Source\ProjetoJam\Resources\Windows\ProjetoJam.rc" />
   </ItemGroup>

@@ -18,9 +18,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = Location)
 		TArray<ALocation*> ChildLocations;
 
-	UPROPERTY(VisibleAnywhere, Category = Location)
-		FStatement LocationStatement;
-
 	UPROPERTY(VisibleAnywhere, Category = Trigger)
 		USphereComponent* Trigger;
 	
@@ -33,8 +30,6 @@ public:
 	// Sets default values for this actor's properties
 	ALocation(const FObjectInitializer& Initializer);
 
-	UFUNCTION()
-		void SetLocationStament();
 
 	/**
 	* Called to get the parent location.

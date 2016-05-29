@@ -322,10 +322,22 @@
     <ClInclude Include="..\..\Source\ProjetoJam\Public\Sprite\FadableSprite.h">
       <Filter>Source\ProjetoJam\Public\Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Statement\Statement.h">
+      <Filter>Source\ProjetoJam\Public\Statement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ProjetoJam\Public\Game\JAMGameState.h">
+      <Filter>Source\ProjetoJam\Public\Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Source\ProjetoJam\Private\Sprite\FadableSprite.cpp">
       <Filter>Source\ProjetoJam\Private\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Statement\Statement.cpp">
+      <Filter>Source\ProjetoJam\Private\Statement</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\ProjetoJam\Private\Game\JAMGameState.cpp">
+      <Filter>Source\ProjetoJam\Private\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

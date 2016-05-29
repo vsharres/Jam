@@ -22,7 +22,7 @@ public:
 	AAgent* Caller;
 
 	UPROPERTY(EditDefaultsOnly,Category = "Action")
-		FStatement ActionStatementPreset;
+		FString ActionStatementPreset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action")
 		UBehaviorTree* ActionBT;
