@@ -14,8 +14,6 @@ AStatementDatabase::AStatementDatabase()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 
-
-
 }
 
 AStatementDatabase::~AStatementDatabase()
@@ -23,19 +21,20 @@ AStatementDatabase::~AStatementDatabase()
 	Statements.Empty();
 }
 
-void AStatementDatabase::BeginPlay()
-{
-	Super::BeginPlay();
 
-	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
-	check(gameState);
-	gameState->OnDatabaseInit.AddDynamic(this, &AStatementDatabase::InitializeDataBase);
+void AStatementDatabase::OnConstruction(const FTransform& Transform)
+{
+	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+	check(level);
+	level->OnDatabaseInit.AddDynamic(this, &AStatementDatabase::InitializeDataBase);
+
+	Super::OnConstruction(Transform);
 }
 
 void AStatementDatabase::InitializeDataBase()
 {
-	check(ParseWorldFile());
-	check(ParseAgentsFile());
+	ParseWorldFile();
+	ParseAgentsFile();
 }
 
 TArray<FString> AStatementDatabase::InspectDatabase()
@@ -121,13 +120,6 @@ void AStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 		{
 			WriteToFile();
 		}
-
-		/*FPractice AsPractice = NewStatement;
-
-		if (AsPractice.IsValidPractice())
-		{
-			InsertIntoDatabase(AsPractice.CurrentState.State);
-		}*/
 
 		return;
 	}
@@ -343,10 +335,10 @@ bool AStatementDatabase::ParseFactionsFile()
 
 	for (int32 index = 0; index < Factions.Num(); index++)
 	{
-		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index])->GetVertices()[1] + ".txt");
+		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index])->LastVertex() + ".txt");
 		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
 		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Factions[index])->GetVertices()[1]);
+			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *path);
 			return false;
 		}
 		else
@@ -390,10 +382,10 @@ bool AStatementDatabase::ParseAgentsFile()
 
 	for (int32 index = 0; index < Agents.Num(); index++)
 	{
-		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index])->GetVertices()[1] + ".txt");
+		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index])->LastVertex() + ".txt");
 		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
 		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *(Agents[index])->GetVertices()[1]);
+			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *path);
 			return false;
 		}
 		else

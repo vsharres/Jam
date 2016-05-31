@@ -21,7 +21,7 @@ public:
 
 	ANPCAgent(const FObjectInitializer& Initializer);
 
-	void BeginPlay() override;
+	void OnConstruction(const FTransform& Transform) override;
 
 	void InitializeAgent() override;
 

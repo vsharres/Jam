@@ -12,6 +12,7 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
+	PrimaryActorTick.bStartWithTickEnabled = false;
 
 	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
 	AgentTypeToSpawn = NULL;
@@ -20,16 +21,13 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 
 }
 
-// Called when the game starts or when spawned
-void AAgentSpawner::BeginPlay()
+void AAgentSpawner::OnConstruction(const FTransform& Transform)
 {
-	Super::BeginPlay();
+	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+	check(level);
+	level->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
 
-	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
-	check(gameState);
-
-	gameState->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
-	
+	Super::OnConstruction(Transform);
 }
 
 // Called every frame

@@ -9,5 +9,13 @@ AStarAgent::AStarAgent(const FObjectInitializer& Initializer)
 	Agent_Type = EAgentType::SPECIAL;
 }
 
+void AStarAgent::InitializeAgent()
+{
+	Super::InitializeAgent();
+}
 
+void AStarAgent::Interact()
+{
+	Super::Interact();
+}
 

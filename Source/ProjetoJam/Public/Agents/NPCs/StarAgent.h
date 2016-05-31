@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "Agents/Agent.h"
+#include "Agents/NPCs/NPCAgent.h"
 #include "StarAgent.generated.h"
 
 
@@ -10,10 +10,14 @@
  * 
  */
 UCLASS()
-class PROJETOJAM_API AStarAgent : public AAgent
+class PROJETOJAM_API AStarAgent : public ANPCAgent
 {
 	GENERATED_BODY()
 
 	AStarAgent(const FObjectInitializer& Initializer);
+
+	void InitializeAgent() override;
+
+	void Interact() override;
 	
 };

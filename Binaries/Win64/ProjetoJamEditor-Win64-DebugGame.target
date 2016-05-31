@@ -2,7 +2,7 @@
 	"TargetName" : "ProjetoJamEditor",
 	"Platform" : "Win64",
 	"Configuration" : "DebugGame",
-	"BuildId" : "439bd097-7c94-474b-83ac-0586a74cc3ca",
+	"BuildId" : "",
 	"Version" : 
 	{
 		"MajorVersion" : 4,
@@ -14,6 +14,18 @@
 	},
 	"BuildProducts" :
 	[
+		{
+			"Path" : "$(ProjectDir)\\Plugins\\DatabaseViewer\\Binaries\\Win64\\UE4Editor-DatabaseViewer-Win64-DebugGame.dll",
+			"Type" : "DynamicLibrary"
+		},
+		{
+			"Path" : "$(ProjectDir)\\Plugins\\DatabaseViewer\\Binaries\\Win64\\UE4Editor-DatabaseViewer-Win64-DebugGame.pdb",
+			"Type" : "SymbolFile"
+		},
+		{
+			"Path" : "$(ProjectDir)\\Plugins\\DatabaseViewer\\Intermediate\\Build\\Win64\\UE4Editor\\DebugGame\\UE4Editor-DatabaseViewer-Win64-DebugGame.lib",
+			"Type" : "ImportLibrary"
+		},
 		{
 			"Path" : "$(ProjectDir)\\Binaries\\Win64\\UE4Editor-ProjetoJam-Win64-DebugGame.dll",
 			"Type" : "DynamicLibrary"

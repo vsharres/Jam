@@ -15,7 +15,7 @@ class PROJETOJAM_API AAgentSpawner : public AActor
 
 private:
 
-	UPROPERTY()
+	UPROPERTY(EditDefaultsOnly, Category = Agent)
 	TSubclassOf<class AAgent> AgentTypeToSpawn;
 
 	UPROPERTY(VisibleAnywhere,Category = Billboard)
@@ -24,13 +24,13 @@ private:
 	
 public:	
 
+	UFUNCTION()
 	virtual void SpawnAgent();
 
 	// Sets default values for this actor's properties
 	AAgentSpawner(const FObjectInitializer& ObjectInitializer);
 
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	void OnConstruction(const FTransform& Transform) override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;

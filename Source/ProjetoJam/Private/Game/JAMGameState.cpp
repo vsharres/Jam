@@ -5,15 +5,6 @@
 
 void AJAMGameState::BeginPlay()
 {
-	OnDatabaseInit.Broadcast();
-	OnAgentSpawned.Broadcast();
-	OnAgentInit.Broadcast();
-
 	Super::BeginPlay();
-
 }
 
-void AJAMGameState::SaveGameState()
-{
-	OnSaveGame.Broadcast();
-}

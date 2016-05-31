@@ -6,7 +6,7 @@
 #include "JamLibrary.h"
 #include "Statement.h"
 #include "Public/Statement/StatementDatabase.h"
-#include "JAMGameState.h"
+#include "JAMLevelScript.h"
 
 #define COLLISION_FADEOBJECT ECollisionChannel::ECC_GameTraceChannel1
 

@@ -9,21 +9,18 @@ ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	bIsScripted = false;
 }
 
-void ANPCAgent::BeginPlay()
+void ANPCAgent::OnConstruction(const FTransform& Transform)
 {
-	Super::BeginPlay();
+	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+	check(level);
+	level->OnAgentInit.AddDynamic(this, &ANPCAgent::InitializeAgent);
 
-	AJAMGameState* gameState = Cast<AJAMGameState>(UGameplayStatics::GetGameState(this));
-	check(gameState);
-
-	gameState->OnAgentInit.AddDynamic(this, &ANPCAgent::InitializeAgent);
-
+	Super::OnConstruction(Transform);
 }
 
 void ANPCAgent::InitializeAgent()
 {
 	Super::InitializeAgent();
-
 
 }
 

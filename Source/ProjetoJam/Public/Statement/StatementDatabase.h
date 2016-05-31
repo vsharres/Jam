@@ -124,7 +124,7 @@ public:
 
 	~AStatementDatabase();
 
-	void BeginPlay() override;
+	void OnConstruction(const FTransform& Transform) override;
 
 	/**
 	* Called to Initialize the database, reading all of the necessary files to initialize.
