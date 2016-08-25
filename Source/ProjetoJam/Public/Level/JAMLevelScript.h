@@ -33,10 +33,10 @@ public:
 		FOnSaveGameSignature OnSaveGame;
 
 
-	UFUNCTION(BlueprintCallable, Category = Level)
+	UFUNCTION(BlueprintCallable, Category = "Level")
 		void InitializeGame();
 
-	UFUNCTION(BlueprintCallable, Category = Level)
+	UFUNCTION(BlueprintCallable, Category = "Level")
 		void SaveGameState();
 
 

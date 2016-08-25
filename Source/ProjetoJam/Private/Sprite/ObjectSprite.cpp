@@ -16,7 +16,8 @@ AObjectSprite::AObjectSprite(const FObjectInitializer& ObjectInitializer)
 	Collider->SetBoxExtent(TILE_L1W1_EXTENT);
 	//Collider->SetRelativeRotation(ISOMETRIC_ROTATION);
 
-	Collider->AttachTo(RootComponent);
+	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, false);
+	Collider->AttachToComponent(RootComponent,Rules);
 
 	GetSprite()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetSprite()->bGenerateOverlapEvents = false;

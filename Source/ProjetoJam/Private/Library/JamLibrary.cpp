@@ -2,26 +2,40 @@
 
 #include "ProjetoJam.h"
 #include "JamLibrary.h"
+#include "JAMGameMode.h"
 
 
-AStatementDatabase* UJamLibrary::GetStatementDatabase(UObject* WorldContextObject)
+UStatementDatabase* UJamLibrary::GetStatementDatabase(UObject* WorldContextObject)
 {
 	if (WorldContextObject)
 	{
 		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
 		if (World != nullptr)
 		{
-			for (TActorIterator<AStatementDatabase> ActorItr(World); ActorItr; ++ActorItr)
+			AJAMGameMode* Game = Cast<AJAMGameMode>(World->GetAuthGameMode());
+			if (Game)
 			{
-				if ((*ActorItr)->IsValidLowLevel())
-				{
-					return *ActorItr;
-				}
+				return Game->StatementDatabase;
 			}
+
 		}
 	}
 
 	return nullptr;
+}
+
+UObject* UJamLibrary::InstantiateItem_Blueprint(UObject* WorldContextObject, TSubclassOf<UObject> Classe)
+{
+	if (GEngine) //checar o ponteiro da instancia do jogo
+	{
+		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
+		//spawn do item
+		UObject* temp = NewObject<UObject>(World, Classe);
+
+		return temp;
+	}
+
+	return NULL;
 }
 
 bool UJamLibrary::Trace(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, FHitResult& HitOut, ECollisionChannel CollisionChannel /*= ECC_Pawn*/, bool ReturnPhysMat /*= false*/)

@@ -14,7 +14,9 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 	AgentFacingState = EAgentFacingState::S;
 
 	ShadowFlipbook = Initializer.CreateDefaultSubobject<UPaperFlipbookComponent>(this, "ShadowSprite");
-	ShadowFlipbook->AttachTo(RootComponent);
+	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative,false);
+	ShadowFlipbook->SetupAttachment(RootComponent);
+	//ShadowFlipbook->AttachToComponent(RootComponent, Rules);
 
 	ShadowFlipbook->SetHiddenInGame(true);
 	ShadowFlipbook->SetVisibility(false);

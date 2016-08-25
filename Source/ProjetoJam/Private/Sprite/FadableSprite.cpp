@@ -15,7 +15,8 @@ AFadableSprite::AFadableSprite(const FObjectInitializer& ObjectInitializer)
 
 	Sprite = ObjectInitializer.CreateDefaultSubobject<UPaperSpriteComponent>(this, "Sprite");
 	Sprite->SetCollisionResponseToChannel(COLLISION_FADEOBJECT, ECollisionResponse::ECR_Overlap);
-	Sprite->AttachTo(Root);
+	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, false);
+	Sprite->AttachToComponent(Root,Rules);
 
 	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, "CameraTimeline");
 	CameraTraceTimeline->SetTickableWhenPaused(false);

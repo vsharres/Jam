@@ -62,7 +62,7 @@ void ALocation::Tick( float DeltaTime )
 
 }
 
-void ALocation::OnTriggerBeginOverlap(AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+void ALocation::OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
 {
 	AAgent* agent = Cast<AAgent>(OtherActor);
 
@@ -72,7 +72,7 @@ void ALocation::OnTriggerBeginOverlap(AActor* OtherActor, class UPrimitiveCompon
 	}
 }
 
-void ALocation::OnTriggerEndOverlap(AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+void ALocation::OnTriggerEndOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 
 }

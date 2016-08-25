@@ -7,37 +7,51 @@
 
 DEFINE_LOG_CATEGORY(DatabaseLog);
 
-
 // Sets default values
-AStatementDatabase::AStatementDatabase()
+UStatementDatabase::UStatementDatabase()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = false;
+
 
 }
 
-AStatementDatabase::~AStatementDatabase()
+UStatementDatabase::~UStatementDatabase()
 {
 	Statements.Empty();
 }
 
+//void UStatementDatabase::OnConstruction(const FTransform& Transform)
+//{
+//	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+//	check(level);
+//	level->OnDatabaseInit.AddDynamic(this, &UStatementDatabase::InitializeDataBase);
+//
+//	Super::OnConstruction(Transform);
+//}
 
-void AStatementDatabase::OnConstruction(const FTransform& Transform)
+void UStatementDatabase::PostLoad()
 {
-	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-	check(level);
-	level->OnDatabaseInit.AddDynamic(this, &AStatementDatabase::InitializeDataBase);
+	UWorld* world = GetWorld();
 
-	Super::OnConstruction(Transform);
+	if (world)
+	{
+		AJAMLevelScript* level = Cast<AJAMLevelScript>(world->GetLevelScriptActor());
+
+		check(level);
+
+		level->OnDatabaseInit.AddDynamic(this, &UStatementDatabase::InitializeDataBase);
+	}
+
+	Super::PostLoad();
+
 }
 
-void AStatementDatabase::InitializeDataBase()
+void UStatementDatabase::InitializeDataBase()
 {
 	ParseWorldFile();
 	ParseAgentsFile();
 }
 
-TArray<FString> AStatementDatabase::InspectDatabase()
+TArray<FString> UStatementDatabase::InspectDatabase()
 {
 	TArray<UStatement*> Temp;
 
@@ -53,7 +67,7 @@ TArray<FString> AStatementDatabase::InspectDatabase()
 	return ToReturn;
 }
 
-void AStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
+void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 {
 	if (Statements.Num() == 0)
 	{
@@ -125,7 +139,7 @@ void AStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 	}
 }
 
-void AStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatement)
+void UStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatement)
 {
 	if (NewStatement == "")
 	{
@@ -137,7 +151,7 @@ void AStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatemen
 	InsertIntoDatabase(StatementToInsert);
 }
 
-void AStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete)
+void UStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete)
 {	
 
 	if (Statements.FindRef(StamentToDelete->GetStatementKey())->GetStatement() == "")
@@ -165,7 +179,7 @@ void AStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete
 
 }
 
-bool AStatementDatabase::IsIncompatibleWithDatabase(UStatement* Statement, FString& IncompatibleKey)
+bool UStatementDatabase::IsIncompatibleWithDatabase(UStatement* Statement, FString& IncompatibleKey)
 {
 	FString TempDotKey = "";
 
@@ -192,7 +206,7 @@ bool AStatementDatabase::IsIncompatibleWithDatabase(UStatement* Statement, FStri
 	return false;
 }
 
-bool AStatementDatabase::IsMoreSpecificThanDatabase(UStatement* Statement, TArray<FString>& LessSpecificKeys)
+bool UStatementDatabase::IsMoreSpecificThanDatabase(UStatement* Statement, TArray<FString>& LessSpecificKeys)
 {
 	FString TempKey = "";
 
@@ -217,7 +231,7 @@ bool AStatementDatabase::IsMoreSpecificThanDatabase(UStatement* Statement, TArra
 	}
 }
 
-bool AStatementDatabase::IsLessSpecifiThanDatabase(UStatement* Statement)
+bool UStatementDatabase::IsLessSpecifiThanDatabase(UStatement* Statement)
 {
 	TArray<FString> DatabaseKeys;
 	Statements.GenerateKeyArray(DatabaseKeys);
@@ -233,7 +247,7 @@ bool AStatementDatabase::IsLessSpecifiThanDatabase(UStatement* Statement)
 	return false;
 }
 
-bool AStatementDatabase::IsKeyInDatabase(const FString& Key)
+bool UStatementDatabase::IsKeyInDatabase(const FString& Key)
 {
 
 	if (Statements.Find(Key))
@@ -247,7 +261,7 @@ bool AStatementDatabase::IsKeyInDatabase(const FString& Key)
 
 }
 
-TArray<FString> AStatementDatabase::FindKeysWith(const FString& vertex)
+TArray<FString> UStatementDatabase::FindKeysWith(const FString& vertex)
 {
 	TArray<FString> ArrayToReturn;
 
@@ -274,7 +288,7 @@ TArray<FString> AStatementDatabase::FindKeysWith(const FString& vertex)
 
 }
 
-UStatement* AStatementDatabase::FindStatement(const FString& Key)
+UStatement* UStatementDatabase::FindStatement(const FString& Key)
 {
 	if (Key == "")
 	{
@@ -292,7 +306,7 @@ UStatement* AStatementDatabase::FindStatement(const FString& Key)
 	}
 }
 
-bool AStatementDatabase::ParseWorldFile()
+bool UStatementDatabase::ParseWorldFile()
 {
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*WORLD_DATABASE_PATH))
 	{
@@ -322,7 +336,7 @@ bool AStatementDatabase::ParseWorldFile()
 	return true;
 }
 
-bool AStatementDatabase::ParseFactionsFile()
+bool UStatementDatabase::ParseFactionsFile()
 {
 	if (!Statements.Contains("instantiate.faction."))
 	{
@@ -369,7 +383,7 @@ bool AStatementDatabase::ParseFactionsFile()
 	return true;
 }
 
-bool AStatementDatabase::ParseAgentsFile()
+bool UStatementDatabase::ParseAgentsFile()
 {
 	if (!Statements.Contains("instantiate.agent."))
 	{
@@ -416,7 +430,7 @@ bool AStatementDatabase::ParseAgentsFile()
 	return true;
 }
 
-bool AStatementDatabase::HasStatement(UStatement* Statement)
+bool UStatementDatabase::HasStatement(UStatement* Statement)
 {
 
 	if (Statements.Contains(Statement->GetStatementKey()))
@@ -431,7 +445,7 @@ bool AStatementDatabase::HasStatement(UStatement* Statement)
 
 }
 
-bool AStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
+bool UStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
 {
 
 	if (Statements.Find(UStatement::GetKeyFromString(StatementText)))
@@ -445,7 +459,7 @@ bool AStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
 
 }
 
-void AStatementDatabase::WriteToFile()
+void UStatementDatabase::WriteToFile()
 {
 	TArray <FString> Lines;
 

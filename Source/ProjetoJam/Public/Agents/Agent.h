@@ -104,8 +104,6 @@ public:
 
 };
 
-class UFaction;
-
 /**
  *
  */
@@ -123,6 +121,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category = "Agent")
 		FAgentStats Stats;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Faction")
+	class UFaction* Faction;
 
 	UPROPERTY(VisibleAnywhere, Category = "Animation")
 		EAgentAnimState AgentAnimState;
@@ -187,7 +188,7 @@ protected:
 public:
 
 	UPROPERTY()
-		TWeakObjectPtr<class AStatementDatabase> Database_Ref;
+		TWeakObjectPtr<class UStatementDatabase> Database_Ref;
 
 	AAgent(const FObjectInitializer& Initializer);
 

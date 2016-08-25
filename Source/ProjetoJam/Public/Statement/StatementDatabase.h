@@ -102,7 +102,7 @@ class UStatement;
 //};
 
 UCLASS()
-class PROJETOJAM_API AStatementDatabase : public AActor
+class PROJETOJAM_API UStatementDatabase : public UObject
 {
 	GENERATED_BODY()
 
@@ -120,11 +120,13 @@ private:
 public:
 
 	// Sets default values for this actor's properties
-	AStatementDatabase();
+	UStatementDatabase();
 
-	~AStatementDatabase();
+	~UStatementDatabase();
 
-	void OnConstruction(const FTransform& Transform) override;
+	/*void OnConstruction(const FTransform& Transform) override;*/
+
+	void PostLoad() override;
 
 	/**
 	* Called to Initialize the database, reading all of the necessary files to initialize.

@@ -13,14 +13,15 @@ APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
 	CameraBoom->bEnableCameraLag = true;
 	CameraBoom->SetWorldRotation(FRotator(0, 330, 270));
-	CameraBoom->AttachTo(RootComponent);
+	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, false);
+	CameraBoom->AttachToComponent(RootComponent,Rules);
 
 
 	Camera = ObjectInitializer.CreateDefaultSubobject<UCameraComponent>(this, TEXT("Camera"));
 	Camera->ProjectionMode = ECameraProjectionMode::Orthographic;
 	Camera->OrthoWidth = 1024;
 
-	Camera->AttachTo(CameraBoom);
+	Camera->AttachToComponent(CameraBoom, Rules);
 
 	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("CameraTraceTimeline"));
 	CameraTraceTimeline->SetTickableWhenPaused(false);
