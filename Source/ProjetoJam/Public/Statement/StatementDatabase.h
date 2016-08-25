@@ -5,10 +5,104 @@
 #include "GameFramework/Actor.h"
 #include "StatementDatabase.generated.h"
 
+#define DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Database.txt")
+#define WORLD_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/World/WorldStatements.txt")
+#define FACTIONS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Factions")
+#define AGENTS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents")
+
 DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
 
+class UStatement;
+
+
+
+//USTRUCT(BlueprintType)
+//struct FPracticeState
+//{
+//	GENERATED_USTRUCT_BODY()
+//
+//public:
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
+//		UStatement* State;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
+//		TArray<class UAction*> Actions;
+//
+//
+//	FPracticeState()
+//	{
+//		State = NewObject<UStatement>();
+//		Actions.Empty();
+//	}
+//
+//	~FPracticeState()
+//	{
+//		State = NULL;
+//		Actions.Empty();
+//	}
+//
+//};
+
+//USTRUCT()
+//struct FPractice :public FStatementStruc
+//{
+//	GENERATED_USTRUCT_BODY()
+//
+//public:
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+//		TArray<FPracticeState> States;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+//		FPracticeState CurrentState;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
+//		TArray<UStatement*> ConstructionStatements;
+//
+//	FPractice()
+//	{
+//		CurrentState = FPracticeState();
+//		States.Empty();
+//		ConstructionStatements.Empty();
+//	}
+//
+//	FPractice(const FPractice& OtherPractice)
+//	{
+//		Statement = OtherPractice.Statement;
+//		StatementKey = OtherPractice.StatementKey;
+//		Vertices = OtherPractice.Vertices;
+//		Edges = OtherPractice.Edges;
+//		CurrentState = OtherPractice.CurrentState;
+//		States = OtherPractice.States;
+//		ConstructionStatements = OtherPractice.ConstructionStatements;
+//	}
+//
+//	FPractice(const FStatementStruc& OtherStatement)
+//	{
+//		Statement = OtherStatement.Statement;
+//		StatementKey = OtherStatement.StatementKey;
+//		Vertices = OtherStatement.Vertices;
+//		Edges = OtherStatement.Edges;
+//		CurrentState = FPracticeState();
+//		States.Empty();
+//		ConstructionStatements.Empty();
+//	}
+//
+//	~FPractice()
+//	{
+//		States.Empty();
+//		ConstructionStatements.Empty();
+//	}
+//
+//	//TO DO
+//	bool IsValidPractice() {
+//		return true;
+//	}
+//};
+
 UCLASS()
-class PROJETOJAM_API AStatementDatabase : public AActor
+class PROJETOJAM_API UStatementDatabase : public UObject
 {
 	GENERATED_BODY()
 
@@ -18,24 +112,21 @@ private:
 	*Statements that have the same signature, have the same key.
 	*In the case of Practices, the key of the practice is the name of the acting agent.
 	*/
-	TMultiMap<FName, class UStatement*> Statements;
+	TMultiMap<FString, UStatement*> Statements;
 
-	/**The full path to the World Statements file. */
-	UPROPERTY(EditDefaultsOnly, Category = Database)
-		FString WorldSatatementFilePath;
+	//UPROPERTY(EditDefaultsOnly, Category = Practices)
+	//	TArray<FPractice> PracticeList;
 
-	/**The full path to the Characters Statements file. */
-	UPROPERTY(EditDefaultsOnly,Category = Database)
-		FString AgentStatementFilePath;
-
-	/**The full path to the database file. */
-	UPROPERTY(EditDefaultsOnly, Category = Database)
-		FString DatabaseFilePath;
-
-public:	
+public:
 
 	// Sets default values for this actor's properties
-	AStatementDatabase();
+	UStatementDatabase();
+
+	~UStatementDatabase();
+
+	/*void OnConstruction(const FTransform& Transform) override;*/
+
+	void PostLoad() override;
 
 	/**
 	* Called to Initialize the database, reading all of the necessary files to initialize.
@@ -81,7 +172,7 @@ public:
 	* @return boolean value of true if the file was successful parsed.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "IsIncompatibleWith Database", Keywords = "IsIncompatible Database"), Category = Database)
-		bool IsIncompatibleWithDatabase(UStatement* Statement, FName& IncompatibleKey);
+		bool IsIncompatibleWithDatabase(UStatement* Statement, FString& IncompatibleKey);
 
 	/**
 	* Called to check if a given statement is more specific(contains more information) than any statement in the database.
@@ -90,7 +181,7 @@ public:
 	* @return boolean value of true if the statement is more specific than one of the statements in the database.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Is More Specific", Keywords = "More Specific"), Category = Database)
-		bool IsMoreSpecificThanDatabase(UStatement* Statement, TArray<FName>& LessSpecificKeys);
+		bool IsMoreSpecificThanDatabase(UStatement* Statement, TArray<FString>& LessSpecificKeys);
 
 	/**
 	* Called to check if a given statement is less specific(contains less information) than any statement in the database.
@@ -106,13 +197,13 @@ public:
 	* @return boolean value of true if the Key is found.
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Is Key in Database", Keywords = "Key in Database"), Category = Database)
-		bool IsKeyInDatabase(const FName& StatementKey);
+		bool IsKeyInDatabase(const FString& StatementKey);
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Keys", Keywords = "Find Keys"), Category = Database)
-		TArray<FName> FindKeysWith(const FString& vertex);
+		TArray<FString> FindKeysWith(const FString& vertex);
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Statement", Keywords = "Find Statement"), Category = Database)
-		UStatement* FindStatement(const FName& Key);
+		UStatement* FindStatement(const FString& Key);
 
 	/**
 	* Called to parse the world file.
@@ -121,6 +212,9 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
 		bool ParseWorldFile();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
+		bool ParseFactionsFile();
 
 	/**
 	* Called to parse the agents file.
@@ -151,7 +245,7 @@ public:
 	*This interface is used to print the values inside the database.
 	*/
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Database was updated", Keywords = "Database Updated"), Category = Database)
-		virtual void DatabaseWasUpdated();
+		void DatabaseWasUpdated();
 
 	/**
 	* Called to write the content of the database to an external file.
@@ -163,9 +257,9 @@ public:
 	/**
 	* The predicate function to sort the database.
 	*/
-	FORCEINLINE static bool ConstPredicate(const FName& key1, const FName& key2)
+	FORCEINLINE static bool ConstPredicate(const FString& key1, const FString& key2)
 	{
 		return (key1 < key2);
 	}
-	
+
 };

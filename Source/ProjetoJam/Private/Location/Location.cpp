@@ -1,41 +1,33 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/ProjetoJam.h"
+#include "Agents/Agent.h"
 #include "Public/Location/Location.h"
-#include "Public/Statement/Statement.h"
 
 DEFINE_LOG_CATEGORY(LocationLog);
 
 // Sets default values
-ALocation::ALocation()
+ALocation::ALocation(const FObjectInitializer& Initializer)
+	:Super(Initializer)
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bCanEverTick = false;
 
 	LocationName = "";
-	ParentLocation = nullptr;
+	ChildLocations.Empty();
+
+	Trigger = Initializer.CreateDefaultSubobject<USphereComponent>(this, "Trigger");
+
+	Trigger->OnComponentBeginOverlap.AddDynamic(this, &ALocation::OnTriggerBeginOverlap);
+	Trigger->OnComponentEndOverlap.AddDynamic(this, &ALocation::OnTriggerEndOverlap);
+
+
 
 }
 
-void ALocation::SetLocationStament()
+TArray<ALocation*> ALocation::GetChildLocations()
 {
-	FString text = LocationName;
-
-	while (ParentLocation != nullptr)
-	{
-		text = ParentLocation->LocationName + "." + LocationName;
-	}
-
-	text = "World." + text;
-
-	UStatement* stament = NewObject<UStatement>();
-	stament->SetStatement(text);
-	
-}
-
-ALocation* ALocation::GetParentLocation()
-{
-	return ParentLocation;
+	return ChildLocations;
 }
 
 bool ALocation::IsLocationChild(ALocation* LocationToCompare)
@@ -48,16 +40,9 @@ bool ALocation::IsLocationChild(ALocation* LocationToCompare)
 
 	ALocation* tempLocal = LocationToCompare;
 
-	while (tempLocal)
+	if (ChildLocations.Contains(tempLocal))
 	{
-		if (tempLocal == LocationToCompare->ParentLocation)
-		{
-			return true;
-		}
-		else
-		{
-			tempLocal = tempLocal->ParentLocation;
-		}
+		return true;
 	}
 
 	return false;
@@ -74,6 +59,21 @@ void ALocation::BeginPlay()
 void ALocation::Tick( float DeltaTime )
 {
 	Super::Tick( DeltaTime );
+
+}
+
+void ALocation::OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult)
+{
+	AAgent* agent = Cast<AAgent>(OtherActor);
+
+	if (agent->IsValidLowLevelFast())
+	{
+
+	}
+}
+
+void ALocation::OnTriggerEndOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
 
 }
 

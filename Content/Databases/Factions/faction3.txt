@@ -1,0 +1,3 @@
+name!FiveFamilies
+relationship.faction1!10
+relationship.faction2!0

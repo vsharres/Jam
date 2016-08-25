@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameFramework/Actor.h"
+#include "Public/Statement/StatementDatabase.h"
 #include "Location.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LocationLog, Log, All);
@@ -14,11 +15,11 @@ class PROJETOJAM_API ALocation : public AActor
 
 protected:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)
-		ALocation* ParentLocation;
-
 	UPROPERTY(VisibleAnywhere, Category = Location)
-	class UStatement* LocationStatement;
+		TArray<ALocation*> ChildLocations;
+
+	UPROPERTY(VisibleAnywhere, Category = Trigger)
+		USphereComponent* Trigger;
 	
 public:	
 
@@ -27,17 +28,15 @@ public:
 		FString LocationName;
 
 	// Sets default values for this actor's properties
-	ALocation();
+	ALocation(const FObjectInitializer& Initializer);
 
-	UFUNCTION()
-		void SetLocationStament();
 
 	/**
 	* Called to get the parent location.
 	* @return The parent location pointer.
 	*/
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Parent Location", Keywords = "Location Spawn"), Category = Location)
-		ALocation* GetParentLocation();
+		TArray<ALocation*> GetChildLocations();
 
 	/**
 	* Called to check if a location is child to another.
@@ -46,14 +45,17 @@ public:
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Is Location Child", Keywords = "Is Location Child"), Category = Location)
 		bool IsLocationChild(ALocation* LocationToCompare);
 
-	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Update Location", Keywords = "Update Location"), Category = Location)
-		virtual void UpdateLocation();
-
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;
+
+	UFUNCTION()
+		void OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
+
+	UFUNCTION()
+		void OnTriggerEndOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	
 	
