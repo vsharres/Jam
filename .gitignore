@@ -197,6 +197,6 @@ FakesAssemblies/
 
 *.png
 
-*/Saved
-*/Intermediate
-*/Binaries
+/Saved
+/Intermediate
+/Binaries
