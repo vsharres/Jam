@@ -1,9 +1,13 @@
-instantiate.player
-instantiate.brown
-instantiate.lydia
-instantiate.bobby
-instantiate.walter
-instantiate.pannonica
+instantiate.agent.player
+instantiate.agent.brown
+instantiate.agent.lydia
+instantiate.agent.bobby
+instantiate.agent.walter
+instantiate.agent.pannonica
+
+instantiate.faction.faction1
+instantiate.faction.faction2
+instantiate.faction.faction3
 
 world!initiated
 

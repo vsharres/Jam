@@ -1,120 +1,73 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/ProjetoJam.h"
-#include "Public/Statement/Statement.h"
+#include "ProjetoJam.h"
+#include "Statement.h"
 
 DEFINE_LOG_CATEGORY(StatementLog);
 
-
-UStatement::UStatement()
+UStatement::UStatement(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
 {
-	this->Text = "";
-	this->KeyName = "";
+	Statement = NULL;
+	StatementKey = NULL;
+	Vertices.Empty();
+	Edges.Empty();
 }
 
-FString UStatement::GetText()
+UStatement* UStatement::NewStatement(const FString& newStatementString)
 {
-	return Text;
-}
-
-FName UStatement::GetKeyName()
-{
-	return KeyName;
-}
-
-FString UStatement::LastVertex()
-{
-	return Vertices.Last();
-}
-
-FString UStatement::BranchFrom(const int32& index)
-{
-	if (index >= Vertices.Num())
-	{
-		UE_LOG(StatementLog, Error, TEXT("Index was out of bounds of the statement %s"), *this->Text);
-		return "";
-	}
-	else if (index == Vertices.Num() - 1)
-	{
-		return LastVertex();
-	}
-
-	FString ToReturn;
-
-	for (int32 i = index; i < Vertices.Num() - 1; i++)
-	{
-		ToReturn += Vertices[i];
-		ToReturn += Edges[i];
-	}
-
-	ToReturn += LastVertex();
-
-	return ToReturn;
-
-}
-
-TArray<FString> UStatement::GetVertices()
-{
-	return Vertices;
-}
-
-TArray<FString > UStatement::GetEdges()
-{
-	return Edges;
-}
-
-void UStatement::SetStatement(const FString& Text)
-{
-	if (Text == "") //warning message that a statement cannot be initialized with an empty string.
+	if (newStatementString == "") //warning message that a statement cannot be initialized with an empty string.
 	{
 		UE_LOG(StatementLog, Warning, TEXT("Can not initialize a statement with a empty string."));
-		return;
+		return NULL;
 	}
-	else if (!Text.Contains(".") && !Text.Contains("!")) //warning that a statement cannot have only the root vertex.
+	else if (!newStatementString.Contains(".") && !newStatementString.Contains("!")) //warning that a statement cannot have only the root vertex.
 	{
 		UE_LOG(StatementLog, Warning, TEXT("A statement can not have only the root vertex, it must have at least two vertices."));
-		return;
+		return NULL;
 	}
 
-	this->Text = Text; //set the text property to the string input.
+	UStatement* NewStatement = NewObject<UStatement>();
 
-	/*Temporary string for creating the vertices. */
+	NewStatement->Statement = newStatementString; //set the text property to the string input.
+
+									/*Temporary string for creating the vertices. */
 	FString temp = "";
 
 	/*for each character in the input string, add that character to the temporary string variable,
 	then when finds one of the edge characters, add the resulting string to the vertices array,
 	and that edge to the edges array.*/
-	for (int32 index = 0; index < Text.Len(); index++)
+	for (int32 index = 0; index < newStatementString.Len(); index++)
 	{
-		if (Text[index] == '.') //for edges with the "." inclusion identifier.
+		if (newStatementString[index] == '.') //for edges with the "." inclusion identifier.
 		{
-			Edges.Add(".");
-			Vertices.Add(temp);
+			NewStatement->Edges.Add(".");
+			NewStatement->Vertices.Add(temp);
 			temp = "";
 
 		}
-		else if (Text[index] == '!') //for edges with the "!" exclusion identifier
+		else if (newStatementString[index] == '!') //for edges with the "!" exclusion identifier
 		{
-			Edges.Add("!");
-			Vertices.Add(temp);
+			NewStatement->Edges.Add("!");
+			NewStatement->Vertices.Add(temp);
 			temp = "";
 		}
 		else
 		{
-			temp += Text[index];
+			temp += newStatementString[index];
 		}
 	}
 
 	if (temp != "") //this last if is to add the last vertex in the statement, since there is no more edges to be found.
 	{
-		Vertices.Add(temp);
+		NewStatement->Vertices.Add(temp);
 	}
 
 	//Generate the key to the statement.
-	this->GenerateKey();
-	this->Rename(*Text);
-}
+	NewStatement->GenerateKey();
 
+	return NewStatement;
+}
 
 void UStatement::GenerateKey()
 {
@@ -124,25 +77,102 @@ void UStatement::GenerateKey()
 		FString temp = "";
 		/*To generate the key, adds each vertices and the edges to the key,
 		the only vertices that is ignored, is the last one, so that when comparing statements, statements that would conflict, can be found more easily.*/
-		for (int i = 0; i < Edges.Num();i++)
+		for (int i = 0; i < Edges.Num(); i++)
 		{
 			temp += Vertices[i];
 			temp += Edges[i];
 		}
 
-		KeyName = FName(*temp);
+		StatementKey = temp;
 	}
 	else //warning message
 	{
 		UE_LOG(StatementLog, Warning, TEXT("Can not generate a key with a statement with no vertices."));
 	}
+}
 
+FString UStatement::GetStatement()
+{
+	return Statement;
+}
+
+FString UStatement::GetStatementKey()
+{
+	return StatementKey;
+}
+
+FString UStatement::GetKeyFromString(const FString& StatementString)
+{
+	if (StatementString == "")
+	{
+		return "";
+	}
+
+	UStatement* temp = NewObject<UStatement>();
+	temp->NewStatement(StatementString);
+
+	FString key = temp->GetStatementKey();
+
+	temp->BeginDestroy();
+
+	return key;
+}
+
+TArray<FString> UStatement::GetVertices()
+{
+	return Vertices;
+}
+
+TArray<FString> UStatement::GetEdges()
+{
+	return Edges;
+}
+
+FString UStatement::LastVertex()
+{
+	return Vertices.Last();
+}
+
+FString UStatement::BranchFrom(const int32& index, bool direct /*= true*/)
+{
+	if (index >= Vertices.Num())
+	{
+		UE_LOG(StatementLog, Error, TEXT("Index was out of bounds of the statement %s"), *this->Statement);
+		return "";
+	}
+	else if (index == Vertices.Num() - 1)
+	{
+		return LastVertex();
+	}
+
+	FString ToReturn;
+
+	if (direct)
+	{
+		for (int32 i = index; i < Vertices.Num() - 1; i++)
+		{
+			ToReturn += Vertices[i];
+			ToReturn += Edges[i];
+		}
+	}
+	else
+	{
+		for (int32 i = 0; i <= index; i++)
+		{
+			ToReturn += Vertices[i];
+			ToReturn += Edges[i];
+		}
+	}
+
+	ToReturn += LastVertex();
+
+	return ToReturn;
 }
 
 bool UStatement::HasSameSignature(const FString& Vertex, UStatement* OtherStatement)
 {
 	//warning message if the vertex to check is an empty string, or the pointer to the statement to compare is an null pointer.
-	if (Vertex == "" || !OtherStatement)
+	if (Vertex == "")
 	{
 		UE_LOG(StatementLog, Warning, TEXT("Comparing can not be null strings."));
 		return false;
@@ -162,16 +192,8 @@ bool UStatement::HasSameSignature(const FString& Vertex, UStatement* OtherStatem
 	return true;
 }
 
-
 bool UStatement::IsEdgeEqual(int32 EdgeIndex, UStatement* OtherStatement)
 {
-	//Warning for a null pointer to the other statement.
-	if (!OtherStatement)
-	{
-		UE_LOG(StatementLog, Warning, TEXT("The comparing statement cannot be null."));
-		return false;
-	}
-
 	//for correcting the index to be found in the other statement, so that the signatures can be compared.
 	if (EdgeIndex < this->Edges.Num())
 	{
@@ -188,18 +210,10 @@ bool UStatement::IsEdgeEqual(int32 EdgeIndex, UStatement* OtherStatement)
 	{
 		return false;
 	}
-
 }
 
 bool UStatement::IsIncompatibleWith(UStatement* OtherStatement)
 {
-	//warning for a null pointer to the comparing statement.
-	if (!OtherStatement)
-	{
-		UE_LOG(StatementLog, Warning, TEXT("The comparing statement cannot be null."));
-		return true;
-	}
-
 	/*if the last vertex of the statement is different from the vertex of the last statement,
 	also has the same signature and if either of then has the last edge the exclusion identifier, then they are incompatible with each other.*/
 	if (this->Vertices.Last() != OtherStatement->Vertices.Last() &&
@@ -212,15 +226,23 @@ bool UStatement::IsIncompatibleWith(UStatement* OtherStatement)
 	return false;
 }
 
-UStatement* UStatement::NewStatementFromBlueprint(UObject* WorldContextObject, const FString& Statement)
+bool UStatement::IsStatementValid()
 {
-	//The world context where to spawn the statement from a blueprint
-	UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
+	if (!this->IsValidLowLevelFast(true) || this->Statement == "" || this->StatementKey == "" || this->Vertices.Num() <= 1 || this->Edges.Num() == 0)
+	{
+		return false;
+	}
 
-	UStatement* tempStatement = (UStatement*)NewObject<UStatement>(UStatement::StaticClass());
-	tempStatement->SetStatement(Statement);
-
-	return tempStatement;
+	return true;
 }
 
+void UStatement::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	FName PropertyName = (PropertyChangedEvent.Property != NULL) ? PropertyChangedEvent.Property->GetFName() : NAME_None;
+
+	if ((PropertyName == GET_MEMBER_NAME_CHECKED(UStatement, Statement)))
+	{
+
+	}
+}
 
