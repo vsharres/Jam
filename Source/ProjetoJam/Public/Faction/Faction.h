@@ -9,7 +9,7 @@
 #define MAX_STATUS 10
 
 UENUM(BlueprintType)
-enum class EFactionNames :uint8 {
+enum class EFactionType :uint8 {
 
 	PLAYER,
 	FACTION1,
@@ -102,7 +102,7 @@ private:
 public:
 
 	UPROPERTY()
-		EFactionNames FactionName;
+		EFactionType FactionType;
 
 	UPROPERTY()
 		TArray<class UStatement*> BeliefStatements;
@@ -113,12 +113,12 @@ public:
 		int32 GetStatusToPlayer();
 
 	UFUNCTION(BlueprintPure, Category = "Faction")
-		int32 GetStatusToFaction(EFactionNames name);
+		int32 GetStatusToFaction(EFactionType type);
 
 	UFUNCTION(BlueprintCallable, Category = "Faction")
-		void InitializeFaction(EFactionNames name);
+		void InitializeFaction(EFactionType type);
 	
 	UFUNCTION(BlueprintCallable, Category = "Faction")
-		void ChangeRelationTo(EFactionNames name, int32 value);
+		void ChangeRelationTo(EFactionType type, int32 value);
 	
 };

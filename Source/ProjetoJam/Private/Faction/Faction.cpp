@@ -7,7 +7,7 @@
 UFaction::UFaction(const FObjectInitializer& Initializer)
 	:Super(Initializer)
 {
-
+	Status = FFactionStatus();
 }
 
 int32 UFaction::GetStatusToPlayer()
@@ -15,23 +15,23 @@ int32 UFaction::GetStatusToPlayer()
 	return Status.StatusPlayer;
 }
 
-int32 UFaction::GetStatusToFaction(EFactionNames name)
+int32 UFaction::GetStatusToFaction(EFactionType type)
 {
 	int32 toReturn;
 
-	switch (name)
+	switch (type)
 	{
 
-	case EFactionNames::PLAYER:
+	case EFactionType::PLAYER:
 		toReturn = Status.StatusPlayer;
 		break;
-	case EFactionNames::FACTION1:
+	case EFactionType::FACTION1:
 		toReturn = Status.StatusFaction1;
 		break;
-	case EFactionNames::FACTION2:
+	case EFactionType::FACTION2:
 		toReturn = Status.StatusFaction2;
 		break;
-	case EFactionNames::FACTION3:
+	case EFactionType::FACTION3:
 		toReturn = Status.StatusFaction3;
 		break;
 	default:
@@ -42,29 +42,27 @@ int32 UFaction::GetStatusToFaction(EFactionNames name)
 	return toReturn;
 }
 
-void UFaction::InitializeFaction(EFactionNames name)
+void UFaction::InitializeFaction(EFactionType type)
 {
-	this->FactionName = name;
-
-	ChangeRelationTo(name, 10);
-
+	this->FactionType = type;
+	ChangeRelationTo(type, 10);
 }
 
-void UFaction::ChangeRelationTo(EFactionNames name, int32 value)
+void UFaction::ChangeRelationTo(EFactionType type, int32 value)
 {
-	switch (name)
+	switch (type)
 	{
 
-	case EFactionNames::PLAYER:
+	case EFactionType::PLAYER:
 		Status.StatusPlayer = value;
 		break;
-	case EFactionNames::FACTION1:
+	case EFactionType::FACTION1:
 		Status.StatusFaction1 =  value;
 		break;
-	case EFactionNames::FACTION2:
+	case EFactionType::FACTION2:
 		Status.StatusFaction2 = value;
 		break;
-	case EFactionNames::FACTION3:
+	case EFactionType::FACTION3:
 		Status.StatusFaction3 = value;
 		break;
 	default:

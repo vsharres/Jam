@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "GameFramework/Actor.h"
+#include "Object.h"
 #include "StatementDatabase.generated.h"
 
 #define DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Database.txt")
@@ -123,10 +123,6 @@ public:
 	UStatementDatabase();
 
 	~UStatementDatabase();
-
-	/*void OnConstruction(const FTransform& Transform) override;*/
-
-	void PostLoad() override;
 
 	/**
 	* Called to Initialize the database, reading all of the necessary files to initialize.

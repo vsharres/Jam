@@ -12,10 +12,27 @@ UStatementDatabase* UJamLibrary::GetStatementDatabase(UObject* WorldContextObjec
 		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
 		if (World != nullptr)
 		{
-			AJAMGameMode* Game = Cast<AJAMGameMode>(World->GetAuthGameMode());
-			if (Game)
+			for (TObjectIterator<UStatementDatabase> Itr; Itr; ++Itr)
 			{
-				return Game->StatementDatabase;
+				return *Itr;
+			}
+
+		}
+	}
+
+	return nullptr;
+}
+
+UFactionManager* UJamLibrary::GetFactionManager(UObject* WorldContextObject)
+{
+	if (WorldContextObject)
+	{
+		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
+		if (World != nullptr)
+		{
+			for (TObjectIterator<UFactionManager> Itr; Itr; ++Itr)
+			{
+				return *Itr;
 			}
 
 		}

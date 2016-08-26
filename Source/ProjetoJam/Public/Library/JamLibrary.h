@@ -17,6 +17,9 @@ public:
 		UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Database", Keywords = "Get Database", WorldContext = "WorldContextObject", UnsafeDuringActorConstruction = "true"), Category = "Database")
 		static UStatementDatabase* GetStatementDatabase(UObject* WorldContextObject);
 
+		UFUNCTION(BlueprintPure, meta = (DisplayName = "Get Faction Manager", Keywords = "Get Faction Manager", WorldContext = "WorldContextObject", UnsafeDuringActorConstruction = "true"), Category = "Faction")
+			static UFactionManager* GetFactionManager(UObject* WorldContextObject);
+
 		UFUNCTION(BlueprintCallable, meta = (HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", DisplayName = "Instantiate Object", Keywords = "Instantiate Object"), Category = "Object")
 			static UObject* InstantiateItem_Blueprint(UObject* WorldContextObject, TSubclassOf<UObject> Class);
 

@@ -2,6 +2,7 @@
 
 #include "ProjetoJam.h"
 #include "JAMGameMode.h"
+#include "FactionManager.h"
 
 AJAMGameMode::AJAMGameMode(const FObjectInitializer& Initializer)
 	:Super(Initializer)
@@ -9,7 +10,3 @@ AJAMGameMode::AJAMGameMode(const FObjectInitializer& Initializer)
 
 }
 
-void AJAMGameMode::InitializeManagers()
-{
-
-}

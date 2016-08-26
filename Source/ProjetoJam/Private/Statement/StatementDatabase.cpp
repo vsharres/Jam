@@ -19,32 +19,6 @@ UStatementDatabase::~UStatementDatabase()
 	Statements.Empty();
 }
 
-//void UStatementDatabase::OnConstruction(const FTransform& Transform)
-//{
-//	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-//	check(level);
-//	level->OnDatabaseInit.AddDynamic(this, &UStatementDatabase::InitializeDataBase);
-//
-//	Super::OnConstruction(Transform);
-//}
-
-void UStatementDatabase::PostLoad()
-{
-	UWorld* world = GetWorld();
-
-	if (world)
-	{
-		AJAMLevelScript* level = Cast<AJAMLevelScript>(world->GetLevelScriptActor());
-
-		check(level);
-
-		level->OnDatabaseInit.AddDynamic(this, &UStatementDatabase::InitializeDataBase);
-	}
-
-	Super::PostLoad();
-
-}
-
 void UStatementDatabase::InitializeDataBase()
 {
 	ParseWorldFile();
