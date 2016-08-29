@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/ProjetoJam.h"
+#include "ProjetoJam.h"
 #include "PaperFlipbookComponent.h"
-#include "Public/Agents/Agent.h"
+#include "Agent.h"
 
 
 AAgent::AAgent(const class FObjectInitializer& Initializer)
@@ -14,9 +14,9 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 	AgentFacingState = EAgentFacingState::S;
 
 	ShadowFlipbook = Initializer.CreateDefaultSubobject<UPaperFlipbookComponent>(this, "ShadowSprite");
-	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative,false);
-	ShadowFlipbook->SetupAttachment(RootComponent);
-	//ShadowFlipbook->AttachToComponent(RootComponent, Rules);
+
+	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
+	ShadowFlipbook->AttachToComponent(RootComponent, Rules);
 
 	ShadowFlipbook->SetHiddenInGame(true);
 	ShadowFlipbook->SetVisibility(false);
@@ -136,13 +136,6 @@ void AAgent::SetAnimState(EAgentAnimState newState)
 	AgentAnimState = newState;
 }
 
-void AAgent::BeginPlay()
-{
-	Super::BeginPlay();
-
-	Database_Ref = UJamLibrary::GetStatementDatabase(this);
-}
-
 void AAgent::Tick(float DeltaSeconds)
 {
 	UpdateFlipbook();
@@ -160,6 +153,38 @@ void AAgent::OnDamaged(float Damage)
 	}
 }
 
+void AAgent::SaveState()
+{
+
+}
+
+void AAgent::AssignProperties()
+{
+	static ConstructorHelpers::FObjectFinder<UDataTable> AgentsData(TEXT("DataTable'/Game/Databases/Agents/AgentsData.AgentsData'"));
+
+	 UDataTable* AgentsDataTable = AgentsData.Object;
+
+	if (AgentsDataTable)
+	{
+		static const FString ContextString(TEXT("GENERAL"));
+
+		FAgentData* AgentData = AgentsDataTable->FindRow<FAgentData>(Agent_Name, ContextString);
+
+			if (AgentData)
+			{
+				Stats.Max_Life = AgentData->Max_Life;
+				Stats.Cur_Life = Stats.Max_Life;
+				Stats.Speed = AgentData->Speed;
+			}
+
+			if (AgentData->bHasSpecificStatements)
+			{
+				//TODO Parse statements file
+			}
+	}
+
+}
+
 void AAgent::Kill()
 {
 
@@ -168,6 +193,8 @@ void AAgent::Kill()
 void AAgent::InitializeAgent()
 {
 	//Get statements from file and add them in the database, initialize behavior if AI and update faction.
+	AssignProperties();
+
 }
 
 void AAgent::UpdateFlipbook()

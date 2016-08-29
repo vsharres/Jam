@@ -14,9 +14,7 @@ AObjectSprite::AObjectSprite(const FObjectInitializer& ObjectInitializer)
 	Collider->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
 	Collider->SetCollisionResponseToChannel(COLLISION_FADEOBJECT, ECollisionResponse::ECR_Overlap);
 	Collider->SetBoxExtent(TILE_L1W1_EXTENT);
-	//Collider->SetRelativeRotation(ISOMETRIC_ROTATION);
-
-	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, false);
+	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
 	Collider->AttachToComponent(RootComponent,Rules);
 
 	GetSprite()->SetCollisionEnabled(ECollisionEnabled::NoCollision);

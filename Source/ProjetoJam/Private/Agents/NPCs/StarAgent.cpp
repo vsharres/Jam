@@ -11,11 +11,24 @@ AStarAgent::AStarAgent(const FObjectInitializer& Initializer)
 
 void AStarAgent::InitializeAgent()
 {
+
+	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+
+	if (Level)
+	{
+		Level->OnSaveGame.AddDynamic(this, &AStarAgent::SaveState);
+	}
+
 	Super::InitializeAgent();
 }
 
 void AStarAgent::Interact()
 {
-	Super::Interact();
+
+}
+
+void AStarAgent::SaveState()
+{
+
 }
 

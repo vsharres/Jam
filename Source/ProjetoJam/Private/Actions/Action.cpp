@@ -7,7 +7,6 @@ UAction::UAction()
 {
 	Caller = nullptr;
 	ActionBT = nullptr;
-	ActionStatementPreset = "";
 }
 
 void UAction::ExecutePostConditions_Implementation()

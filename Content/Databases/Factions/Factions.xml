@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<factions>
+  <playerfaction>
+    <name>Player</name>
+    <status>
+      <player>10</player>
+      <faction1>0</faction1>
+      <faction2>0</faction2>
+      <faction3>0</faction3>
+    </status>
+  </playerfaction>
+  <faction1>
+    <name>faction1</name>
+    <status>
+      <player>0</player>
+      <faction1>10</faction1>
+      <faction2>0</faction2>
+      <faction3>0</faction3>
+    </status>
+  </faction1>
+  <faction2>
+    <name>faction2</name>
+    <status>
+      <player>0</player>
+      <faction1>0</faction1>
+      <faction2>10</faction2>
+      <faction3>0</faction3>
+    </status>
+  </faction2>
+  <faction3>
+    <name>faction2</name>
+    <status>
+      <player>0</player>
+      <faction1>0</faction1>
+      <faction2>0</faction2>
+      <faction3>10</faction3>
+    </status>
+  </faction3>
+</factions>

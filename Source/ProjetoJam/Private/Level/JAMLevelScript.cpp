@@ -2,14 +2,12 @@
 
 #include "ProjetoJam.h"
 #include "FactionManager.h"
+#include "StatementDatabase.h"
 #include "JAMLevelScript.h"
 
 void AJAMLevelScript::InitializeGame()
 {
 	LoadLevel();
-
-	OnAgentSpawned.Broadcast();
-	OnAgentInit.Broadcast();
 }
 
 void AJAMLevelScript::SaveGameState()
@@ -20,14 +18,20 @@ void AJAMLevelScript::SaveGameState()
 void AJAMLevelScript::LoadLevel()
 {
 	InitializeManagers();
+	SpawnAgents();
 
 }
 
 void AJAMLevelScript::InitializeManagers()
 {
-	Database = NewObject<UStatementDatabase>(this, "Statement Database");
-	FactionManager = NewObject<UFactionManager>(this, "Faction Manager");
+	StatementDatabase = NewObject<UStatementDatabase>(this, "Statement Database");
+	StatementDatabase->InitializeDataBase();
 
-	Database->InitializeDataBase();
+	FactionManager = NewObject<UFactionManager>(this, "Faction Manager");
 	FactionManager->InitializeFactions();
+}
+
+void AJAMLevelScript::SpawnAgents()
+{
+	OnAgentSpawned.Broadcast();
 }

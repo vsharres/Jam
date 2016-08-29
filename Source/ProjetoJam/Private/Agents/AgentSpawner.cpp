@@ -24,8 +24,11 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 void AAgentSpawner::OnConstruction(const FTransform& Transform)
 {
 	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-	check(level);
-	level->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
+
+	if(level && UGameplayStatics::GetGameInstance(this)->IsValidLowLevel())
+	{
+		level->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
+	}
 
 	Super::OnConstruction(Transform);
 }

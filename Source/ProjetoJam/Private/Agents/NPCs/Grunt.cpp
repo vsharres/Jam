@@ -11,6 +11,14 @@ AGrunt::AGrunt(const FObjectInitializer& Initializer)
 
 void AGrunt::InitializeAgent()
 {
+	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+
+	if (Level)
+	{
+		Level->OnSaveGame.AddDynamic(this, &AGrunt::SaveState);
+	}
+
+
 	Super::InitializeAgent();
 }
 
@@ -18,4 +26,10 @@ void AGrunt::Interact()
 {
 
 }
+
+void AGrunt::SaveState()
+{
+
+}
+
 

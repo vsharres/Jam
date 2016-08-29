@@ -17,7 +17,7 @@ class PROJETOJAM_API UStatement : public UObject
 	
 private:
 
-	UPROPERTY(VisibleAnywhere, Category = Statement)
+	UPROPERTY(VisibleAnywhere, Category = "Statement")
 		FString Statement;
 
 	UPROPERTY()

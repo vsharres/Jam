@@ -1,9 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Public/ProjetoJam.h"
-#include "Public/Statement/StatementDatabase.h"
-#include "Public/Agents/Agent.h"
-#include "Public/Location/Location.h"
+#include "ProjetoJam.h"
+#include "StatementDatabase.h"
+#include "Statement.h"
+#include "Agent.h"
+#include "Location.h"
 
 DEFINE_LOG_CATEGORY(DatabaseLog);
 
@@ -22,7 +23,6 @@ UStatementDatabase::~UStatementDatabase()
 void UStatementDatabase::InitializeDataBase()
 {
 	ParseWorldFile();
-	ParseAgentsFile();
 }
 
 TArray<FString> UStatementDatabase::InspectDatabase()
@@ -306,53 +306,6 @@ bool UStatementDatabase::ParseWorldFile()
 			InsertIntoDatabase(NewStatement);
 		}
 	}
-
-	return true;
-}
-
-bool UStatementDatabase::ParseFactionsFile()
-{
-	if (!Statements.Contains("instantiate.faction."))
-	{
-		UE_LOG(DatabaseLog, Warning, TEXT("There is no agent in the database to be initialized. Check WorldStatements file."));
-		return false;
-	}
-
-	TArray<UStatement*> Factions;
-	Statements.MultiFind("instantiate.faction.", Factions, true);
-
-	for (int32 index = 0; index < Factions.Num(); index++)
-	{
-		FString path = (FACTIONS_DATABASE_PATH + "/" + (Factions[index])->LastVertex() + ".txt");
-		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
-		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *path);
-			return false;
-		}
-		else
-		{
-			TArray<FString> Lines;
-
-			if (!FFileHelper::LoadANSITextFileToStrings(*path, NULL, Lines))
-			{
-				UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
-				return false;
-			}
-
-			for (int32 LineIndex = 0; LineIndex < Lines.Num(); LineIndex++)
-			{
-				if (Lines[LineIndex] != "")
-				{
-					UStatement* NewStatement = UStatement::NewStatement(Factions[index]->BranchFrom(1, false) + "." + Lines[LineIndex]);
-					InsertIntoDatabase(NewStatement);
-				}	
-
-			}
-
-		}
-	}
-
-	Statements.Remove("instantiate.faction.");
 
 	return true;
 }

@@ -7,99 +7,11 @@
 
 #define DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Database.txt")
 #define WORLD_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/World/WorldStatements.txt")
-#define FACTIONS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Factions")
 #define AGENTS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents")
 
 DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
 
 class UStatement;
-
-
-
-//USTRUCT(BlueprintType)
-//struct FPracticeState
-//{
-//	GENERATED_USTRUCT_BODY()
-//
-//public:
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
-//		UStatement* State;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice State Struct")
-//		TArray<class UAction*> Actions;
-//
-//
-//	FPracticeState()
-//	{
-//		State = NewObject<UStatement>();
-//		Actions.Empty();
-//	}
-//
-//	~FPracticeState()
-//	{
-//		State = NULL;
-//		Actions.Empty();
-//	}
-//
-//};
-
-//USTRUCT()
-//struct FPractice :public FStatementStruc
-//{
-//	GENERATED_USTRUCT_BODY()
-//
-//public:
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
-//		TArray<FPracticeState> States;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
-//		FPracticeState CurrentState;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Struct")
-//		TArray<UStatement*> ConstructionStatements;
-//
-//	FPractice()
-//	{
-//		CurrentState = FPracticeState();
-//		States.Empty();
-//		ConstructionStatements.Empty();
-//	}
-//
-//	FPractice(const FPractice& OtherPractice)
-//	{
-//		Statement = OtherPractice.Statement;
-//		StatementKey = OtherPractice.StatementKey;
-//		Vertices = OtherPractice.Vertices;
-//		Edges = OtherPractice.Edges;
-//		CurrentState = OtherPractice.CurrentState;
-//		States = OtherPractice.States;
-//		ConstructionStatements = OtherPractice.ConstructionStatements;
-//	}
-//
-//	FPractice(const FStatementStruc& OtherStatement)
-//	{
-//		Statement = OtherStatement.Statement;
-//		StatementKey = OtherStatement.StatementKey;
-//		Vertices = OtherStatement.Vertices;
-//		Edges = OtherStatement.Edges;
-//		CurrentState = FPracticeState();
-//		States.Empty();
-//		ConstructionStatements.Empty();
-//	}
-//
-//	~FPractice()
-//	{
-//		States.Empty();
-//		ConstructionStatements.Empty();
-//	}
-//
-//	//TO DO
-//	bool IsValidPractice() {
-//		return true;
-//	}
-//};
 
 UCLASS()
 class PROJETOJAM_API UStatementDatabase : public UObject
@@ -208,9 +120,6 @@ public:
 	*/
 	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
 		bool ParseWorldFile();
-
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
-		bool ParseFactionsFile();
 
 	/**
 	* Called to parse the agents file.

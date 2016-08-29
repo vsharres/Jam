@@ -104,9 +104,6 @@ public:
 	UPROPERTY()
 		EFactionType FactionType;
 
-	UPROPERTY()
-		TArray<class UStatement*> BeliefStatements;
-
 	UFaction(const FObjectInitializer& Initializer);
 
 	UFUNCTION(BlueprintPure, Category = "Faction")

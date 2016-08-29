@@ -9,22 +9,25 @@ ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	bIsScripted = false;
 }
 
-void ANPCAgent::OnConstruction(const FTransform& Transform)
-{
-	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-	check(level);
-	level->OnAgentInit.AddDynamic(this, &ANPCAgent::InitializeAgent);
-
-	Super::OnConstruction(Transform);
-}
-
 void ANPCAgent::InitializeAgent()
 {
-	Super::InitializeAgent();
+	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
+	if (Level)
+	{
+		Level->OnSaveGame.AddDynamic(this, &ANPCAgent::SaveState);
+	}
+
+
+	Super::InitializeAgent();
 }
 
 void ANPCAgent::Interact()
+{
+
+}
+
+void ANPCAgent::SaveState()
 {
 
 }

@@ -3,7 +3,6 @@
 #pragma once
 
 #include "BehaviorTree/BehaviorTreeTypes.h"
-#include "Statement/StatementDatabase.h"
 #include "Object.h"
 #include "Action.generated.h"
 
@@ -20,9 +19,6 @@ class PROJETOJAM_API UAction : public UObject
 public:
 	UPROPERTY(BlueprintReadWrite, Category = "Action")
 	AAgent* Caller;
-
-	UPROPERTY(EditDefaultsOnly,Category = "Action")
-		FString ActionStatementPreset;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action")
 		UBehaviorTree* ActionBT;

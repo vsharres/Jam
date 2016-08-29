@@ -2,8 +2,9 @@
 
 #include "ProjetoJam.h"
 #include "JamLibrary.h"
+#include "FactionManager.h"
+#include "StatementDatabase.h"
 #include "JAMGameMode.h"
-
 
 UStatementDatabase* UJamLibrary::GetStatementDatabase(UObject* WorldContextObject)
 {
@@ -16,7 +17,6 @@ UStatementDatabase* UJamLibrary::GetStatementDatabase(UObject* WorldContextObjec
 			{
 				return *Itr;
 			}
-
 		}
 	}
 

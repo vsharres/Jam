@@ -5,9 +5,7 @@
 #include "Engine/LevelScriptActor.h"
 #include "JAMLevelScript.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAgentInitSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAgentSpawedSignature);
-
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSaveGameSignature);
 
 /**
@@ -20,14 +18,11 @@ class PROJETOJAM_API AJAMLevelScript : public ALevelScriptActor
 	
 public:
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Managers")
-		UStatementDatabase* Database;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Manager")
+		UStatementDatabase* StatementDatabase;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Managers")
 		UFactionManager* FactionManager;
-
-	UPROPERTY(BlueprintAssignable)
-		FOnAgentInitSignature OnAgentInit;
 
 	UPROPERTY(BlueprintAssignable)
 		FOnAgentSpawedSignature OnAgentSpawned;
@@ -46,6 +41,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void InitializeManagers();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void SpawnAgents();
 
 
 	

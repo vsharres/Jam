@@ -21,11 +21,11 @@ public:
 
 	ANPCAgent(const FObjectInitializer& Initializer);
 
-	void OnConstruction(const FTransform& Transform) override;
-
 	void InitializeAgent() override;
 
 	void Interact() override;
+
+	void SaveState() override;
 	
 	
 };

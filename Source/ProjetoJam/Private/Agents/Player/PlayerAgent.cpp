@@ -107,7 +107,15 @@ void APlayerAgent::InitializeAgent()
 {
 	Inventory = NewObject<UInventory>(this);
 
-	
+	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel());
+
+	if (Level)
+	{
+		Level->OnSaveGame.AddDynamic(this, &APlayerAgent::SaveState);
+	}
+
+	Super::InitializeAgent();
+
 }
 
 void APlayerAgent::UpdateFlipbook()

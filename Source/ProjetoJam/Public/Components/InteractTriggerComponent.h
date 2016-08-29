@@ -15,12 +15,12 @@ class PROJETOJAM_API UInteractTriggerComponent : public USphereComponent
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = InteractComponent)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "InteractComponent")
 		bool bCanInteract;
 
 	UInteractTriggerComponent();
 
-	UFUNCTION(BlueprintCallable, Category =  InteractComponent)
+	UFUNCTION(BlueprintCallable, Category =  "InteractComponent")
 	void OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 	
 	

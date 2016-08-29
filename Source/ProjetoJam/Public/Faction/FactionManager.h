@@ -3,7 +3,10 @@
 #pragma once
 
 #include "Object.h"
+#include "Faction.h"
 #include "FactionManager.generated.h"
+
+#define FACTIONS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Factions/Faction.xml")
 
 /**
  * 
@@ -16,7 +19,7 @@ class PROJETOJAM_API UFactionManager : public UObject
 private:
 
 		UPROPERTY()
-		TArray<class UFaction*> Factions;
+		TArray<UFaction*> Factions;
 
 public:
 
@@ -30,6 +33,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Faction")
 		void InitializeFactions();
+
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse Factions Files", Keywords = "Parse Factions Files"), Category = "Faction Manager")
+		void ParseFactionsFile();
 		
 	
 };

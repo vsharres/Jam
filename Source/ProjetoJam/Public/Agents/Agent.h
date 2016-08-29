@@ -3,7 +3,8 @@
 #pragma once
 
 #include "PaperCharacter.h"
-#include "Interfaces/Damage.h"
+#include "Damage.h"
+#include "SaveState.h"
 #include "Agent.generated.h"
 
 #define MIN_DELTA_VEL 0.005f
@@ -28,6 +29,8 @@
 #define MAX_S_ANGLE 67.5f
 #define MIN_SE_ANGLE 22.5f
 #define MAX_SE_ANGLE 337.5F
+
+#define AGENTSDATA_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents/AgentsData.AgentsData") 
 
 
 UENUM(BlueprintType)
@@ -72,13 +75,13 @@ struct FAgentStats
 	GENERATED_USTRUCT_BODY()
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AgentStats")
 		float Cur_Life;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AgentStats")
 		float Max_Life;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AgentStats)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AgentStats")
 		float Speed;
 
 	FAgentStats() 
@@ -104,11 +107,39 @@ public:
 
 };
 
+USTRUCT(BlueprintType)
+struct FAgentData : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		float Max_Life;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		bool bHasSpecificStatements;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		FString StatementsFilePath;
+	
+	FAgentData()
+		: Max_Life(AGENT_DEFAULT_MAX_HEALTH)
+		, Speed(AGENT_DEFAULT_SPEED)
+		, bHasSpecificStatements(false)
+		, StatementsFilePath("")
+	{}
+
+};
+
 /**
  *
  */
 UCLASS()
-class PROJETOJAM_API AAgent : public APaperCharacter, public IDamage
+class PROJETOJAM_API AAgent : public APaperCharacter, public IDamage, public ISaveState
 {
 	GENERATED_BODY()
 
@@ -187,9 +218,6 @@ protected:
 
 public:
 
-	UPROPERTY()
-		TWeakObjectPtr<class UStatementDatabase> Database_Ref;
-
 	AAgent(const FObjectInitializer& Initializer);
 
 	UFUNCTION(BlueprintPure, Category = Location)
@@ -216,11 +244,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = Agent)
 		 virtual void MoveUp(float input);
 
-	void BeginPlay() override;
-
 	void Tick(float DeltaSeconds) override;
 
 	void OnDamaged(float Damage) override;
+
+	void SaveState() override;
+		
+	UFUNCTION(BlueprintCallable, Category = Agent)
+		void AssignProperties();
 
 	UFUNCTION(BlueprintCallable, Category = Agent)
 		virtual void Kill();

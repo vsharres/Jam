@@ -9,7 +9,7 @@
  * 
  */
 UCLASS()
-class PROJETOJAM_API AGrunt : public ANPCAgent
+class PROJETOJAM_API AGrunt : public AAgent, public IInteract
 {
 	GENERATED_BODY()
 public:
@@ -19,5 +19,7 @@ public:
 	void InitializeAgent() override;
 
 	void Interact() override;
+
+	void SaveState() override;
 	
 };
