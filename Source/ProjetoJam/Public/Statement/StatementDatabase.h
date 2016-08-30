@@ -9,8 +9,6 @@
 #define WORLD_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/World/WorldStatements.txt")
 #define AGENTS_DATABASE_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents")
 
-DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
-
 class UStatement;
 
 UCLASS()
@@ -22,7 +20,6 @@ private:
 
 	/**The Map containing all of the statements.
 	*Statements that have the same signature, have the same key.
-	*In the case of Practices, the key of the practice is the name of the acting agent.
 	*/
 	TMultiMap<FString, UStatement*> Statements;
 
@@ -111,23 +108,7 @@ public:
 		TArray<FString> FindKeysWith(const FString& vertex);
 
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Statement", Keywords = "Find Statement"), Category = Database)
-		UStatement* FindStatement(const FString& Key);
-
-	/**
-	* Called to parse the world file.
-	* This function already inserts the statements to the database
-	* @return boolean value of true if the file was successful parsed.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse World File", Keywords = "Parse World File"), Category = Database)
-		bool ParseWorldFile();
-
-	/**
-	* Called to parse the agents file.
-	* This function already inserts the statements to the database
-	* @return boolean value of true if the file was successful parsed.
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse Character File", Keywords = "Parse Character File"), Category = Database)
-		bool ParseAgentsFile();
+		bool FindStatements(const FString& Key, TArray<UStatement*>& OutStatements);
 
 	/**
 	* Called to check if a statement is already in the database.
@@ -152,12 +133,8 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Database was updated", Keywords = "Database Updated"), Category = Database)
 		void DatabaseWasUpdated();
 
-	/**
-	* Called to write the content of the database to an external file.
-	* File is located in the Content/Databases folder with the name Database.txt
-	*/
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Write To File", Keywords = "Write File"), Category = Database)
-		void WriteToFile();
+	UFUNCTION(BlueprintCallable, Category = "Database")
+		bool AddFileStatements(const FString& Path);
 
 	/**
 	* The predicate function to sort the database.

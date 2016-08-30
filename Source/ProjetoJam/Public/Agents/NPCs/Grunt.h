@@ -9,17 +9,17 @@
  * 
  */
 UCLASS()
-class PROJETOJAM_API AGrunt : public AAgent, public IInteract
+class PROJETOJAM_API AGrunt : public ANPCAgent
 {
 	GENERATED_BODY()
 public:
 
 	AGrunt(const FObjectInitializer& Initializer);
-	
-	void InitializeAgent() override;
 
 	void Interact() override;
 
 	void SaveState() override;
+
+	void PostInitializeComponents() override;
 	
 };

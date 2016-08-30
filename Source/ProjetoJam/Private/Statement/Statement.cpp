@@ -3,7 +3,7 @@
 #include "ProjetoJam.h"
 #include "Statement.h"
 
-DEFINE_LOG_CATEGORY(StatementLog);
+
 
 UStatement::UStatement(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)

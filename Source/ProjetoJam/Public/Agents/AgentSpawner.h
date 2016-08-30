@@ -30,7 +30,7 @@ public:
 	// Sets default values for this actor's properties
 	AAgentSpawner(const FObjectInitializer& ObjectInitializer);
 
-	void OnConstruction(const FTransform& Transform) override;
+	void PostInitializeComponents() override;
 	
 	// Called every frame
 	virtual void Tick( float DeltaSeconds ) override;

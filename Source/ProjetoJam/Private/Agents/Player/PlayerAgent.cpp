@@ -31,7 +31,7 @@ APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 	EventFunction.BindUFunction(this, FName{ TEXT("CameraTraceTimelineCallback") });
 
 	Agent_Type = EAgentType::PLAYER;
-	Agent_Name = "Lied";
+	AgentName = "Player";
 	bCanInteract = false;
 }
 
@@ -103,21 +103,6 @@ void APlayerAgent::MoveUp(float input)
 	Super::MoveUp(input);
 }
 
-void APlayerAgent::InitializeAgent()
-{
-	Inventory = NewObject<UInventory>(this);
-
-	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel());
-
-	if (Level)
-	{
-		Level->OnSaveGame.AddDynamic(this, &APlayerAgent::SaveState);
-	}
-
-	Super::InitializeAgent();
-
-}
-
 void APlayerAgent::UpdateFlipbook()
 {
 	Super::UpdateFlipbook();
@@ -126,6 +111,20 @@ void APlayerAgent::UpdateFlipbook()
 void APlayerAgent::Kill()
 {
 
+}
+
+void APlayerAgent::PostInitializeComponents()
+{
+	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+
+	if (level && !level->OnAgentSpawned.Contains(this, "SaveState"))
+	{
+		level->OnSaveGame.AddDynamic(this, &APlayerAgent::SaveState);
+	}
+
+	Inventory = NewObject<UInventory>(this);
+
+	Super::PostInitializeComponents();
 }
 
 void APlayerAgent::SetupPlayerInputComponent(UInputComponent * InputComponent)

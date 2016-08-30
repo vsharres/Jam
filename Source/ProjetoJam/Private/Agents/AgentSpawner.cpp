@@ -16,21 +16,19 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 
 	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
 	AgentTypeToSpawn = NULL;
-	
-
 
 }
 
-void AAgentSpawner::OnConstruction(const FTransform& Transform)
+void AAgentSpawner::PostInitializeComponents()
 {
 	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if(level && UGameplayStatics::GetGameInstance(this)->IsValidLowLevel())
+	if (level && !level->OnAgentSpawned.Contains(this, "SpawnAgent"))
 	{
 		level->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
 	}
 
-	Super::OnConstruction(Transform);
+	Super::PostInitializeComponents();
 }
 
 // Called every frame
@@ -52,7 +50,6 @@ void AAgentSpawner::SpawnAgent()
 	}
 
 	AgentSpawned->SpawnDefaultController();
-	AgentSpawned->InitializeAgent();
 
 }
 

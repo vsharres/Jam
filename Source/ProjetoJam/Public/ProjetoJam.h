@@ -5,6 +5,7 @@
 #include "Engine.h"
 #include "JamLibrary.h"
 #include "Statement.h"
+#include "StatementDatabase.h"
 #include "JAMLevelScript.h"
 
 #define COLLISION_FADEOBJECT ECollisionChannel::ECC_GameTraceChannel1
@@ -17,5 +18,9 @@
 
 #define ISOMETRIC_ROTATION FRotator(0.0f,-45.0f,-30.0f)
 #define SHADOW_ROTATION FRotator(0.0f,-30.0f,0.0f)
+
+DECLARE_LOG_CATEGORY_EXTERN(AgentLog, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(DatabaseLog, Log, All);
+DECLARE_LOG_CATEGORY_EXTERN(StatementLog, Log, All);
 
 

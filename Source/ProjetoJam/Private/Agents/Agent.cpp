@@ -2,8 +2,8 @@
 
 #include "ProjetoJam.h"
 #include "PaperFlipbookComponent.h"
+#include "StatementDatabase.h"
 #include "Agent.h"
-
 
 AAgent::AAgent(const class FObjectInitializer& Initializer)
 	: Super(Initializer)
@@ -28,6 +28,11 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 
 	GetSprite()->SetFlipbook(IdleSAnimation);
 	ShadowFlipbook->SetFlipbook(IdleSAnimation);
+}
+
+FName AAgent::GetAgentName()
+{
+	return AgentName;
 }
 
 ALocation* AAgent::GetLocation()
@@ -153,6 +158,12 @@ void AAgent::OnDamaged(float Damage)
 	}
 }
 
+void AAgent::PostInitializeComponents()
+{
+	AssignProperties();
+	Super::PostInitializeComponents();
+}
+
 void AAgent::SaveState()
 {
 
@@ -160,27 +171,34 @@ void AAgent::SaveState()
 
 void AAgent::AssignProperties()
 {
-	static ConstructorHelpers::FObjectFinder<UDataTable> AgentsData(TEXT("DataTable'/Game/Databases/Agents/AgentsData.AgentsData'"));
 
-	 UDataTable* AgentsDataTable = AgentsData.Object;
+	UDataTable* AgentsDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Agents/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
 
 	if (AgentsDataTable)
 	{
 		static const FString ContextString(TEXT("GENERAL"));
 
-		FAgentData* AgentData = AgentsDataTable->FindRow<FAgentData>(Agent_Name, ContextString);
+		FAgentData* AgentData = AgentsDataTable->FindRow<FAgentData>(AgentName, ContextString);
 
-			if (AgentData)
-			{
-				Stats.Max_Life = AgentData->Max_Life;
-				Stats.Cur_Life = Stats.Max_Life;
-				Stats.Speed = AgentData->Speed;
-			}
-
+		if (AgentData)
+		{
+			Stats.Max_Life = AgentData->Max_Life;
+			Stats.Cur_Life = Stats.Max_Life;
+			Stats.Speed = AgentData->Speed;
 			if (AgentData->bHasSpecificStatements)
 			{
 				//TODO Parse statements file
+				static const FString StatementsPath(FPaths::GameContentDir() + AgentData->StatementsFilePath);
+
+				UStatementDatabase* database = UJamLibrary::GetStatementDatabase(this);
+
+				if (database)
+				{
+					database->AddFileStatements(StatementsPath);
+				}
+
 			}
+		}
 	}
 
 }
@@ -190,20 +208,13 @@ void AAgent::Kill()
 
 }
 
-void AAgent::InitializeAgent()
-{
-	//Get statements from file and add them in the database, initialize behavior if AI and update faction.
-	AssignProperties();
-
-}
-
 void AAgent::UpdateFlipbook()
 {
 	if (this->GetVelocity().Size() > MIN_DELTA_VEL)
 	{
 		if (this->AgentAnimState != EAgentAnimState::MOVING_SE &&
 			(this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MIN_SE_ANGLE ||
-			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MAX_SE_ANGLE))
+				this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MAX_SE_ANGLE))
 		{
 			this->AgentFacingState = EAgentFacingState::SE;
 			SetAnimState(EAgentAnimState::MOVING_SE);
@@ -218,35 +229,35 @@ void AAgent::UpdateFlipbook()
 		else if (this->AgentAnimState != EAgentAnimState::MOVING_SW &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MIN_SW_ANGLE&&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_SW_ANGLE)
-		{		
+		{
 			this->AgentFacingState = EAgentFacingState::SW;
 			SetAnimState(EAgentAnimState::MOVING_SW);
 		}
 		else if (this->AgentAnimState != EAgentAnimState::MOVING_NW &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MIN_NW_ANGLE  &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_NW_ANGLE)
-		{		
+		{
 			this->AgentFacingState = EAgentFacingState::NW;
 			SetAnimState(EAgentAnimState::MOVING_NW);
 		}
 		else if (this->AgentAnimState != EAgentAnimState::MOVING_N &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MIN_N_ANGLE  &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_N_ANGLE)
-		{			
+		{
 			this->AgentFacingState = EAgentFacingState::N;
 			SetAnimState(EAgentAnimState::MOVING_N);
 		}
 		else if (this->AgentAnimState != EAgentAnimState::MOVING_W &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MIN_W_ANGLE  &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_W_ANGLE)
-		{			
+		{
 			this->AgentFacingState = EAgentFacingState::W;
 			SetAnimState(EAgentAnimState::MOVING_W);
 		}
 		else if (this->AgentAnimState != EAgentAnimState::MOVING_S &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw > MIN_S_ANGLE  &&
 			this->GetVelocity().ToOrientationRotator().Clamp().Yaw - this->GetActorRotation().Clamp().Yaw <= MAX_S_ANGLE)
-		{	
+		{
 			this->AgentFacingState = EAgentFacingState::S;
 			SetAnimState(EAgentAnimState::MOVING_S);
 		}

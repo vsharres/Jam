@@ -2,37 +2,43 @@
 
 #pragma once
 
-#include "BehaviorTree/BehaviorTreeTypes.h"
-#include "Object.h"
+#include "Statement.h"
+#include "BehaviorTree/BehaviorTree.h"
 #include "Action.generated.h"
 
-class AAgent;
 
 /**
  * 
  */
-UCLASS(BlueprintType, Blueprintable)
-class PROJETOJAM_API UAction : public UObject
+UCLASS(BlueprintType, Blueprintable, ABSTRACT)
+class PROJETOJAM_API UAction : public UStatement
 {
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(BlueprintReadWrite, Category = "Action")
-	AAgent* Caller;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	class AAgentController* Caller;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Action")
-		UBehaviorTree* ActionBT;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+		TAssetPtr<UBehaviorTree> ActionBT;
 	
-	UAction();
+	UAction(const FObjectInitializer& ObjectInitializer);
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DisplayName = "Execute PostConditions", Keywords = "Exe Post"), Category = "Action")
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		static UAction* InstantiateAction(AAgentController* agentCaller);
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		void StartAction();
+
+	UFUNCTION(BlueprintCallable, Category = "Action")
+		void StopAction();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DisplayName = "Exec PostConditions", Keywords = "Exec Post"), Category = "Action")
 		void ExecutePostConditions();
 	virtual void ExecutePostConditions_Implementation();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DisplayName = "Check PreConditions", Keywords = "Check Pre"), Category = "Action")
 		bool CheckPreConditions();
 	virtual bool CheckPreConditions_Implementation();
-
-	
 	
 };

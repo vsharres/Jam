@@ -9,17 +9,16 @@ AStarAgent::AStarAgent(const FObjectInitializer& Initializer)
 	Agent_Type = EAgentType::SPECIAL;
 }
 
-void AStarAgent::InitializeAgent()
+void AStarAgent::PostInitializeComponents()
 {
-
 	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if (Level)
+	if (Level && !Level->OnSaveGame.Contains(this,"SaveState"))
 	{
 		Level->OnSaveGame.AddDynamic(this, &AStarAgent::SaveState);
 	}
 
-	Super::InitializeAgent();
+	Super::PostInitializeComponents();
 }
 
 void AStarAgent::Interact()

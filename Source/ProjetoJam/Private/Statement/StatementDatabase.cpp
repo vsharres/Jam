@@ -2,11 +2,9 @@
 
 #include "ProjetoJam.h"
 #include "StatementDatabase.h"
-#include "Statement.h"
+#include "Practice.h"
 #include "Agent.h"
 #include "Location.h"
-
-DEFINE_LOG_CATEGORY(DatabaseLog);
 
 // Sets default values
 UStatementDatabase::UStatementDatabase()
@@ -22,7 +20,7 @@ UStatementDatabase::~UStatementDatabase()
 
 void UStatementDatabase::InitializeDataBase()
 {
-	ParseWorldFile();
+	AddFileStatements(WORLD_DATABASE_PATH);
 }
 
 TArray<FString> UStatementDatabase::InspectDatabase()
@@ -68,10 +66,7 @@ void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 		Statements.KeySort(ConstPredicate);
 
 		DatabaseWasUpdated();
-		if (GEngine)
-		{
-			WriteToFile();
-		}
+
 		return;
 
 	}
@@ -87,10 +82,7 @@ void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 		Statements.KeySort(ConstPredicate);
 
 		DatabaseWasUpdated();
-		if (GEngine)
-		{
-			WriteToFile();
-		}
+
 		return;
 	}
 	else if (IsLessSpecifiThanDatabase(NewStatement))
@@ -104,10 +96,6 @@ void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 		UE_LOG(DatabaseLog, Log, TEXT("Adding statement %s"), *NewStatement->GetStatement());
 		Statements.KeySort(ConstPredicate);
 		DatabaseWasUpdated();
-		if (GEngine)
-		{
-			WriteToFile();
-		}
 
 		return;
 	}
@@ -145,10 +133,7 @@ void UStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete
 
 		Statements.KeySort(ConstPredicate);
 		DatabaseWasUpdated();
-		if (GEngine)
-		{
-			WriteToFile();
-		}
+
 	}
 
 }
@@ -262,99 +247,21 @@ TArray<FString> UStatementDatabase::FindKeysWith(const FString& vertex)
 
 }
 
-UStatement* UStatementDatabase::FindStatement(const FString& Key)
+bool UStatementDatabase::FindStatements(const FString& Key, TArray<UStatement*>& OutStatements)
 {
 	if (Key == "")
 	{
 		UE_LOG(DatabaseLog, Error, TEXT("Cannot find statement with a null key."));
-		return NULL;
+		return false;
 	}
 
 	if (Statements.Contains(Key))
 	{
-		return Statements.FindChecked(Key);
+		Statements.MultiFind(Key, OutStatements);
+		return true;
 	}
-	else
-	{
-		return NULL;
-	}
-}
-
-bool UStatementDatabase::ParseWorldFile()
-{
-	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*WORLD_DATABASE_PATH))
-	{
-		UE_LOG(DatabaseLog, Error, TEXT("World Statements File does not exist."));
-		return false;
-	}
-
-	TArray<FString> Lines;
-
-	if (!FFileHelper::LoadANSITextFileToStrings(*WORLD_DATABASE_PATH, NULL, Lines))
-	{
-		UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
-		return false;
-	}
-
-	for (int32 index = 0; index < Lines.Num(); index++)
-	{
-		int32 indx;
-		if (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx))
-		{
-			UStatement* NewStatement = UStatement::NewStatement(Lines[index]);
-			
-			InsertIntoDatabase(NewStatement);
-		}
-	}
-
-	return true;
-}
-
-bool UStatementDatabase::ParseAgentsFile()
-{
-	if (!Statements.Contains("instantiate.agent."))
-	{
-		UE_LOG(DatabaseLog, Warning, TEXT("There is no agent in the database to be initialized. Check WorldStatements file."));
-		return false;
-	}
-
-	TArray<UStatement*> Agents;
-	Statements.MultiFind("instantiate.agent.", Agents, true);
-
-	for (int32 index = 0; index < Agents.Num(); index++)
-	{
-		FString path = (AGENTS_DATABASE_PATH + "/" + (Agents[index])->LastVertex() + ".txt");
-		if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*path))
-		{
-			UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *path);
-			return false;
-		}
-		else
-		{
-			TArray<FString> Lines;
-
-			if (!FFileHelper::LoadANSITextFileToStrings(*path, NULL, Lines))
-			{
-				UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
-				return false;
-			}
-
-			for (int32 LineIndex = 0; LineIndex < Lines.Num(); LineIndex++)
-			{
-				if (Lines[LineIndex] != "")
-				{
-					UStatement* NewStatement =UStatement::NewStatement(Agents[index]->BranchFrom(1, false) + "." + Lines[LineIndex]);
 	
-					InsertIntoDatabase(NewStatement);
-				}
-			}
-
-		}
-	}
-
-	Statements.Remove("instantiate.agent.");
-
-	return true;
+	return false;
 }
 
 bool UStatementDatabase::HasStatement(UStatement* Statement)
@@ -386,35 +293,41 @@ bool UStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
 
 }
 
-void UStatementDatabase::WriteToFile()
+bool UStatementDatabase::AddFileStatements(const FString& Path)
 {
-	TArray <FString> Lines;
-
-	for (auto StatesItr = Statements.CreateConstIterator(); StatesItr; ++StatesItr)
+	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*Path))
 	{
-		Lines.Add(*StatesItr->Value->GetStatement());
+		UE_LOG(DatabaseLog, Warning, TEXT("Can not find the %s file."), *Path);
+		return false;
 	}
 
-	if (Lines.Num() == 0)
-	{
-		return;
-	}
+	TArray<FString> Lines;
 
-	if (FPlatformFileManager::Get().GetPlatformFile().FileExists(*DATABASE_PATH))
+	if (!FFileHelper::LoadANSITextFileToStrings(*Path, NULL, Lines))
 	{
-		FPlatformFileManager::Get().GetPlatformFile().DeleteFile(*DATABASE_PATH);
+		UE_LOG(DatabaseLog, Warning, TEXT("Could not load strings from file."));
+		return false;
 	}
-
-	FString ToSave;
 
 	for (int32 index = 0; index < Lines.Num(); index++)
 	{
-		ToSave += Lines[index];
-		ToSave += "\r\n";
+		int32 indx;
+		int32 practiceIndex = -1;
+		if (Lines[index].Contains("practice") && (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx)))
+		{
+
+			//CHANGE TO FIND THE PRACTICE NAME TO INSTANTIATE THE CORRECT PRACTICE BLUEPRINT BY NAME
+			UPractice* newPractice = UPractice::NewPractice(Lines[index]);
+
+			InsertIntoDatabase(newPractice);
+		}
+		else if (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx))
+		{
+			UStatement* newStatement = UStatement::NewStatement(Lines[index]);
+
+			InsertIntoDatabase(newStatement);
+		}
 	}
 
-	ToSave += "END";
-
-	FFileHelper::SaveStringToFile(ToSave, *DATABASE_PATH);
-
+	return true;
 }

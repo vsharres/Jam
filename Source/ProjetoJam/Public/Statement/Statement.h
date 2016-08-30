@@ -5,8 +5,6 @@
 #include "Object.h"
 #include "Statement.generated.h"
 
-DECLARE_LOG_CATEGORY_EXTERN(StatementLog, Log, All);
-
 /**
  * 
  */
@@ -15,7 +13,7 @@ class PROJETOJAM_API UStatement : public UObject
 {
 	GENERATED_BODY()
 	
-private:
+protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Statement")
 		FString Statement;

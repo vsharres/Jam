@@ -64,13 +64,12 @@ public:
 
 	void MoveUp(float input) override;
 
-	void InitializeAgent() override;
-
 	void UpdateFlipbook() override;
 
 	virtual void Kill() override;
 
+	void PostInitializeComponents() override;
+
 	void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
-	
 	
 };

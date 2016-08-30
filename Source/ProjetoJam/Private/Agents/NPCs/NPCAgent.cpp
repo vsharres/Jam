@@ -9,19 +9,6 @@ ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	bIsScripted = false;
 }
 
-void ANPCAgent::InitializeAgent()
-{
-	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-
-	if (Level)
-	{
-		Level->OnSaveGame.AddDynamic(this, &ANPCAgent::SaveState);
-	}
-
-
-	Super::InitializeAgent();
-}
-
 void ANPCAgent::Interact()
 {
 

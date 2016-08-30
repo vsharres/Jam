@@ -9,18 +9,6 @@ AGrunt::AGrunt(const FObjectInitializer& Initializer)
 	Agent_Type = EAgentType::GRUNT;
 }
 
-void AGrunt::InitializeAgent()
-{
-	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
-
-	if (Level)
-	{
-		Level->OnSaveGame.AddDynamic(this, &AGrunt::SaveState);
-	}
-
-
-	Super::InitializeAgent();
-}
 
 void AGrunt::Interact()
 {
@@ -32,4 +20,15 @@ void AGrunt::SaveState()
 
 }
 
+void AGrunt::PostInitializeComponents()
+{
+	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
+
+	if (Level && !Level->OnAgentSpawned.Contains(this, "SaveState"))
+	{
+		Level->OnSaveGame.AddDynamic(this, &AGrunt::SaveState);
+	}
+
+	Super::PostInitializeComponents();
+}
 

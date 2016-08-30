@@ -92,7 +92,7 @@ bool UJamLibrary::TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVecto
 	{
 		return false;
 	}
-	
+
 	FCollisionQueryParams TraceParams(FName(TEXT("SphereTrace")), true, ActorToIgnore);
 	TraceParams.bTraceComplex = true;
 	//TraceParams.bTraceAsyncScene = true;

@@ -10,13 +10,13 @@
  * 
  */
 UCLASS()
-class PROJETOJAM_API AStarAgent : public AAgent, public IInteract
+class PROJETOJAM_API AStarAgent : public ANPCAgent
 {
 	GENERATED_BODY()
 
 	AStarAgent(const FObjectInitializer& Initializer);
 
-	void InitializeAgent() override;
+	void PostInitializeComponents() override;
 
 	void Interact() override;
 

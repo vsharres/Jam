@@ -145,7 +145,7 @@ class PROJETOJAM_API AAgent : public APaperCharacter, public IDamage, public ISa
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Agent")
-		FName Agent_Name;
+		FName AgentName;
 
 	UPROPERTY(EditDefaultsOnly,  Category = "Agent")
 		EAgentType Agent_Type;
@@ -217,36 +217,37 @@ protected:
 		TWeakObjectPtr<class ALocation> Cur_Location;
 
 public:
-
 	AAgent(const FObjectInitializer& Initializer);
 
-	UFUNCTION(BlueprintPure, Category = Location)
+	UFUNCTION(BlueprintPure, Category = "Agent")
+		FName GetAgentName();
+
+	UFUNCTION(BlueprintPure, Category = "Location")
 		ALocation* GetLocation();
 
-	UFUNCTION(BlueprintPure, Category = Agent)
+	UFUNCTION(BlueprintPure, Category = "Agent")
 		EAgentAnimState GetAnimState();
 
-	UFUNCTION(BlueprintPure, Category = Agent)
+	UFUNCTION(BlueprintPure, Category = "Agent")
 		EAgentFacingState GetFacingState();
 
-	UFUNCTION(BlueprintCallable, Category = Agent)
+	UFUNCTION(BlueprintCallable, Category = "Animation")
 		void SetAnimState(EAgentAnimState newState);
 
-	UFUNCTION(BlueprintCallable, Category=  Agent)
-		virtual void InitializeAgent();
-
-	UFUNCTION(BlueprintCallable, Category = Agent)
+	UFUNCTION(BlueprintCallable, Category = "Animation")
 		virtual void UpdateFlipbook();
 
-	UFUNCTION(BlueprintCallable, Category = Agent)
+	UFUNCTION(BlueprintCallable, Category = "Movement")
 		virtual void MoveRight(float input);
 
-	UFUNCTION(BlueprintCallable, Category = Agent)
+	UFUNCTION(BlueprintCallable, Category = "Movement")
 		 virtual void MoveUp(float input);
 
 	void Tick(float DeltaSeconds) override;
 
 	void OnDamaged(float Damage) override;
+
+	void PostInitializeComponents() override;
 
 	void SaveState() override;
 		

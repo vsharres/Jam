@@ -30,6 +30,8 @@ public:
 	UPROPERTY(BlueprintAssignable)
 		FOnSaveGameSignature OnSaveGame;
 
+	AJAMLevelScript();
+
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void InitializeGame();
 
@@ -37,14 +39,7 @@ public:
 		void SaveGameState();
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
-		void LoadLevel();
-
-	UFUNCTION(BlueprintCallable, Category = "Level")
-		void InitializeManagers();
-
-	UFUNCTION(BlueprintCallable, Category = "Level")
 		void SpawnAgents();
-
 
 	
 };
