@@ -10,7 +10,7 @@ UPractice::UPractice(const FObjectInitializer& ObjectInitializer)
 
 }
 
-UPractice* UPractice::NewPractice(const FString& newStatementString)
+UPractice* UPractice::NewPractice(UObject* WorldContextObject, const FString& newStatementString, TSubclassOf<UPractice> practiceAsset)
 {
 	if (newStatementString == "") //warning message that a statement cannot be initialized with an empty string.
 	{
@@ -23,7 +23,7 @@ UPractice* UPractice::NewPractice(const FString& newStatementString)
 		return NULL;
 	}
 
-	UPractice* newPractice = NewObject<UPractice>();
+	UPractice* newPractice = NewObject<UPractice>(WorldContextObject,practiceAsset);
 
 	newPractice->Statement = newStatementString; //set the text property to the string input.
 
@@ -66,7 +66,7 @@ UPractice* UPractice::NewPractice(const FString& newStatementString)
 
 }
 
-void UPractice::AddToActionsArray(TArray<UAction*>& InActions)
+void UPractice::AddToActionsArray(TArray<UAction*>& InActions, AAgentController* agentCaller)
 {
 	if (ActionsRef.Num() == 0)
 	{
@@ -77,12 +77,13 @@ void UPractice::AddToActionsArray(TArray<UAction*>& InActions)
 
 	for (int32 index = 0; index < ActionsRef.Num();index++)
 	{
-		newAction = NewObject<UAction>(this, StaticLoadClass(UAction::StaticClass(), NULL, *(ActionsRef[index].ToString())));
+		newAction = NewObject<UAction>(this, ActionsRef[index]);
 
-		if (newAction && !InActions.Contains(newAction))
+		if (newAction && !InActions.ContainsByPredicate([&](UAction* n) { return newAction->GetStatementKey() == n->GetStatementKey();}))
 		{
 			if (newAction->CheckPreConditions())
 			{
+				newAction->InstantiateAction(this, agentCaller);
 				InActions.Add(newAction);
 			}
 		}

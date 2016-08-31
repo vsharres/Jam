@@ -45,7 +45,7 @@ public:
 		FString GetStatementKey();
 
 	UFUNCTION(BlueprintPure, Category = Statement)
-		static FString GetKeyFromString(const FString& StatementString);
+		static FString GetKeyFromString( const FString& StatementString);
 
 	UFUNCTION(BlueprintPure, Category = Statement)
 		TArray<FString> GetVertices();

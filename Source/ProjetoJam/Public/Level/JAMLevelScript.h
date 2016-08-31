@@ -8,6 +8,7 @@
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnAgentSpawedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnSaveGameSignature);
 
+
 /**
  * 
  */
@@ -17,12 +18,6 @@ class PROJETOJAM_API AJAMLevelScript : public ALevelScriptActor
 	GENERATED_BODY()
 	
 public:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Manager")
-		UStatementDatabase* StatementDatabase;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Managers")
-		UFactionManager* FactionManager;
 
 	UPROPERTY(BlueprintAssignable)
 		FOnAgentSpawedSignature OnAgentSpawned;
@@ -37,9 +32,5 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void SaveGameState();
-
-	UFUNCTION(BlueprintCallable, Category = "Level")
-		void SpawnAgents();
-
 	
 };

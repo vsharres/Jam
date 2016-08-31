@@ -13,7 +13,7 @@ struct FPracticeTable : public FTableRowBase
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Practice Table")
-		TAssetPtr<UPractice> PracticeBlueprint;
+		TSubclassOf<UPractice> PracticeBlueprintAsset;
 	
 
 	FPracticeTable()
@@ -32,15 +32,15 @@ class PROJETOJAM_API UPractice : public UStatement
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
-		TArray<FStringAssetReference> ActionsRef;
+		TArray<TSubclassOf<UAction>> ActionsRef;
 	
 	UPractice(const FObjectInitializer& ObjectInitializer);
 
 	UFUNCTION(BlueprintCallable, Category = "Practice")
-		static UPractice* NewPractice(const FString& newStatementString);
+		static UPractice* NewPractice(UObject* WorldContextObject, const FString& newStatementString, TSubclassOf<UPractice> practiceAsset);
 
 	UFUNCTION(BlueprintPure, Category = "Actions")
-		void AddToActionsArray(TArray<UAction*>& InActions);
+		void AddToActionsArray(TArray<UAction*>& InActions, class AAgentController* agentCaller);
 	
 	
 };

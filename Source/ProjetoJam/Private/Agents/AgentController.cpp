@@ -9,7 +9,7 @@
 
 AAgentController::AAgentController()
 {
-	Database = UJamLibrary::GetStatementDatabase(this);
+
 	PossibleActions.Empty();
 }
 
@@ -22,47 +22,76 @@ FName AAgentController::GetAgentName()
 
 void AAgentController::QueryDatabase()
 {
+	PossibleActions.Empty(1);
+
 	if (!Database->IsValidLowLevelFast(false))
 	{
 		UE_LOG(DatabaseLog, Error, TEXT("Database in the %s controller"), *GetName());
 		return;
 	}
 
-	const FString queryKey = "practice." + GetAgentName().ToString();
+	const FString queryKey = "practice." + GetAgentName().ToString() + ".";
 
 	TArray<UStatement*> foundPractices;
-	
+
 	Database->FindStatements(queryKey, foundPractices);
 
 	if (foundPractices.Num() > 0)
 	{
-		TArray<UAction*> foundActions;
-
 		for (UStatement* practice : foundPractices)
 		{
 			UPractice* temp = Cast<UPractice>(practice);
 
 			if (temp)
 			{
-				temp->AddToActionsArray(foundActions);
+				temp->AddToActionsArray(PossibleActions, this);
 			}
 		}
 
+
 	}
+
+	ChooseAction();
 
 }
 
-void AAgentController::StopBehavior()
+void AAgentController::ChooseAction()
+{
+	//TODO: Compare all possible actions to figure out which is the better action to perform
+	if (!CurrentAction->IsValidLowLevel() && PossibleActions.Num() > 0)
+	{
+		CurrentAction = PossibleActions[0];
+		CurrentAction->StartAction();
+	}
+}
+
+void AAgentController::FinishBehavior()
 {
 	GetBrainComponent()->StopLogic("Finished Behavior");
+	QueryDatabase();
+
 }
 
 void AAgentController::BeginPlay()
 {
+	QueryDatabase();
+
 	if (CurrentAction)
 	{
 		CurrentAction->StartAction();
 	}
 
 	Super::BeginPlay();
+}
+
+void AAgentController::PostInitializeComponents()
+{
+	Database = UJamLibrary::GetStatementDatabase(this);
+
+	if (Database)
+	{
+		Database->OnDatabaseUpdated.AddDynamic(this, &AAgentController::QueryDatabase);
+	}
+
+	Super::PostInitializeComponents();
 }

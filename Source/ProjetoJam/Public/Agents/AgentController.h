@@ -14,7 +14,7 @@ class PROJETOJAM_API AAgentController : public AAIController
 	GENERATED_BODY()
 
 private:
-	TMap<FString, class UAction*> PossibleActions;
+	TArray<class UAction*> PossibleActions;
 
 	UPROPERTY()
 		UStatementDatabase* Database;
@@ -29,12 +29,18 @@ public:
 	UFUNCTION(BlueprintPure, Category = "Agent")
 		FName GetAgentName();
 
+	UFUNCTION(BlueprintCallable, Category = "Database")
 	void QueryDatabase();
 
+	UFUNCTION(BlueprintCallable, Category = "Action")
+	void ChooseAction();
+
 	UFUNCTION(BlueprintCallable , Category = "Action")
-		void StopBehavior();
+		void FinishBehavior();
 
 	void BeginPlay() override;
+
+	void PostInitializeComponents() override;
 
 	FORCEINLINE static bool ConstPredicate(const FString& key1, const FString& key2)
 	{

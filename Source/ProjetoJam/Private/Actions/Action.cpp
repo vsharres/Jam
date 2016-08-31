@@ -7,40 +7,41 @@
 UAction::UAction(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
-	Caller = nullptr;
+	ParentPractice = nullptr;
+	bIsActive = false;
 }
 
-UAction* UAction::InstantiateAction(AAgentController* agentCaller)
+void UAction::InstantiateAction(UPractice* practice, AAgentController* agentCaller)
 {
-	UAction* action = NewObject<UAction>();
-	action->Caller = agentCaller;
-	
-	return action;
+	ParentPractice = practice;
+	Caller = agentCaller;
 }
 
 void UAction::StartAction()
-{
+{	
 	if (ActionBT.IsValid())
 	{
+		bIsActive = true;
 		UBehaviorTree* Tree = ActionBT.Get();	
 		Caller->RunBehaviorTree(Tree);
 	}
+
 }
 
 void UAction::StopAction()
 {
-	Caller->StopBehavior();
+	bIsActive = false;
+	Caller->FinishBehavior();
+	BeginDestroy();
 }
 
 void UAction::ExecutePostConditions_Implementation()
 {
-
+	//TODO: WRITE THE POST CONDITIONS ON THE DATABASE
+	StopAction();
 }
 
 bool UAction::CheckPreConditions_Implementation()
 {
-
-
-
 	return true;
 }

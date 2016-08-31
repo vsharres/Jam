@@ -16,8 +16,14 @@ class PROJETOJAM_API UAction : public UStatement
 	GENERATED_BODY()
 
 public:
+	UPROPERTY()
+		bool bIsActive;
+
+	UPROPERTY()
+		AAgentController* Caller;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
-	class AAgentController* Caller;
+	class UPractice* ParentPractice;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
 		TAssetPtr<UBehaviorTree> ActionBT;
@@ -25,7 +31,7 @@ public:
 	UAction(const FObjectInitializer& ObjectInitializer);
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-		static UAction* InstantiateAction(AAgentController* agentCaller);
+		void InstantiateAction(UPractice* practice, class AAgentController* agentCaller);
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 		void StartAction();

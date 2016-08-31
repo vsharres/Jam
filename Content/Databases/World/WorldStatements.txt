@@ -1,13 +1,4 @@
-instantiate.agent.player
-instantiate.agent.brown
-instantiate.agent.lydia
-instantiate.agent.bobby
-instantiate.agent.walter
-instantiate.agent.pannonica
-
-instantiate.faction.faction1
-instantiate.faction.faction2
-instantiate.faction.faction3
+practice.Grunt.idle
 
 world!initiated
 

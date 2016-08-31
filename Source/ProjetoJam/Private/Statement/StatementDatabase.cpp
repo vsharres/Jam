@@ -114,7 +114,7 @@ void UStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatemen
 }
 
 void UStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete)
-{	
+{
 
 	if (Statements.FindRef(StamentToDelete->GetStatementKey())->GetStatement() == "")
 	{
@@ -260,7 +260,7 @@ bool UStatementDatabase::FindStatements(const FString& Key, TArray<UStatement*>&
 		Statements.MultiFind(Key, OutStatements);
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -293,6 +293,11 @@ bool UStatementDatabase::IsStatementTextInDatabase(const FString& StatementText)
 
 }
 
+void UStatementDatabase::DatabaseWasUpdated()
+{
+	OnDatabaseUpdated.Broadcast();
+}
+
 bool UStatementDatabase::AddFileStatements(const FString& Path)
 {
 	if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*Path))
@@ -312,14 +317,32 @@ bool UStatementDatabase::AddFileStatements(const FString& Path)
 	for (int32 index = 0; index < Lines.Num(); index++)
 	{
 		int32 indx;
-		int32 practiceIndex = -1;
-		if (Lines[index].Contains("practice") && (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx)))
+		if (Lines[index].Contains("practice"))
 		{
 
-			//CHANGE TO FIND THE PRACTICE NAME TO INSTANTIATE THE CORRECT PRACTICE BLUEPRINT BY NAME
-			UPractice* newPractice = UPractice::NewPractice(Lines[index]);
+			int32 praticeNameStartIndex;
 
-			InsertIntoDatabase(newPractice);
+			Lines[index].FindLastChar('.', praticeNameStartIndex);
+			FString practiceName = Lines[index].RightChop(praticeNameStartIndex + 1);
+			//temp.FindChar('.', praticeNameEndIndex);
+
+			//FString practiceName = temp.Left(praticeNameEndIndex);
+
+			UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
+			if (PracticeDataTable)
+			{
+				static const FString ContextString(TEXT("GENERAL"));
+
+				FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
+
+				if (practiceTable)
+				{
+					UPractice* newPractice = UPractice::NewPractice(GetTransientPackage(), Lines[index], practiceTable->PracticeBlueprintAsset);
+					InsertIntoDatabase(newPractice);
+				}
+			}
+
+
 		}
 		else if (Lines[index].FindChar('!', indx) || Lines[index].FindChar('.', indx))
 		{

@@ -11,6 +11,8 @@
 
 class UStatement;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnDatabaseUpdated);
+
 UCLASS()
 class PROJETOJAM_API UStatementDatabase : public UObject
 {
@@ -27,6 +29,9 @@ private:
 	//	TArray<FPractice> PracticeList;
 
 public:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Database")
+		FOnDatabaseUpdated OnDatabaseUpdated;
 
 	// Sets default values for this actor's properties
 	UStatementDatabase();
@@ -130,7 +135,7 @@ public:
 	* Interface called every time the database is updated.
 	*This interface is used to print the values inside the database.
 	*/
-	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "Database was updated", Keywords = "Database Updated"), Category = Database)
+	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Database was updated", Keywords = "Database Updated"), Category = Database)
 		void DatabaseWasUpdated();
 
 	UFUNCTION(BlueprintCallable, Category = "Database")
