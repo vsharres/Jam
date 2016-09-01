@@ -6,7 +6,7 @@
 #include "AgentController.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class PROJETOJAM_API AAgentController : public AAIController
@@ -30,12 +30,12 @@ public:
 		FName GetAgentName();
 
 	UFUNCTION(BlueprintCallable, Category = "Database")
-	void QueryDatabase();
+		void QueryDatabase();
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
-	void ChooseAction();
+		void ChooseAction();
 
-	UFUNCTION(BlueprintCallable , Category = "Action")
+	UFUNCTION(BlueprintCallable, Category = "Action")
 		void FinishBehavior();
 
 	void BeginPlay() override;

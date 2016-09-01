@@ -28,7 +28,7 @@ public:
 	AJAMLevelScript();
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
-		void InitializeGame();
+		void SpawnAgents();
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void SaveGameState();

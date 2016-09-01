@@ -19,10 +19,11 @@ void UAction::InstantiateAction(UPractice* practice, AAgentController* agentCall
 
 void UAction::StartAction()
 {	
-	if (ActionBT.IsValid())
+	if (ActionBT.IsValid() && !bIsActive)
 	{
 		bIsActive = true;
-		UBehaviorTree* Tree = ActionBT.Get();	
+		UBehaviorTree* Tree = ActionBT.Get();
+		InitializeBlackBoard();
 		Caller->RunBehaviorTree(Tree);
 	}
 
@@ -32,7 +33,12 @@ void UAction::StopAction()
 {
 	bIsActive = false;
 	Caller->FinishBehavior();
-	BeginDestroy();
+	ConditionalBeginDestroy();
+}
+
+void UAction::InitializeBlackBoard_Implementation()
+{
+	//Initialize the blackboard values
 }
 
 void UAction::ExecutePostConditions_Implementation()

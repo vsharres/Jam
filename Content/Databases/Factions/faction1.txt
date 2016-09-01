@@ -1,5 +1,0 @@
-name!FiveFamilies
-relationship.faction2!-10
-relationship.faction3!10
-
-relationship_player!0

@@ -6,7 +6,7 @@ public class ProjetoJam : ModuleRules
 {
 	public ProjetoJam(TargetInfo Target)
 	{
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "XmlParser", "AIModule" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "AIModule" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 

@@ -1,5 +1,0 @@
-name!WhiteHands
-relationship.faction1!-10
-relationship.faction3!0
-
-relationship_player!0

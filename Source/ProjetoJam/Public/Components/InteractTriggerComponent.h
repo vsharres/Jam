@@ -23,5 +23,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category =  "InteractComponent")
 	void OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 	
-	
+	UFUNCTION(BlueprintCallable, Category = "InteractComponent")
+		void OnTriggerEndOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 };

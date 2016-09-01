@@ -108,7 +108,7 @@ FString UStatement::GetKeyFromString(const FString& StatementString)
 		return "";
 	}
 
-	UStatement* temp = NewStatement( StatementString);
+	UStatement* temp = NewStatement(StatementString);
 
 	FString key = temp->GetStatementKey();
 

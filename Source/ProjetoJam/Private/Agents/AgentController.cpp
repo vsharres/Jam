@@ -58,10 +58,13 @@ void AAgentController::QueryDatabase()
 void AAgentController::ChooseAction()
 {
 	//TODO: Compare all possible actions to figure out which is the better action to perform
-	if (!CurrentAction->IsValidLowLevel() && PossibleActions.Num() > 0)
+	if (!CurrentAction->IsValidLowLevelFast())
 	{
-		CurrentAction = PossibleActions[0];
-		CurrentAction->StartAction();
+		if (PossibleActions.Num() > 0)
+		{
+			CurrentAction = PossibleActions[0];
+			CurrentAction->StartAction();
+		}
 	}
 }
 

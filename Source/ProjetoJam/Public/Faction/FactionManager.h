@@ -33,9 +33,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Faction")
 		void InitializeFactions();
-
-	UFUNCTION(BlueprintCallable, meta = (DisplayName = "Parse Factions Files", Keywords = "Parse Factions Files"), Category = "Faction Manager")
-		void ParseFactionsFile();
 		
 	
 };

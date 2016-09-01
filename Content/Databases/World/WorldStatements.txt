@@ -1,6 +1,6 @@
+agents.Walter
+agents.Player
+
 practice.Grunt.idle
-
-world!initiated
-
-
+practice.Walter.bartending
 

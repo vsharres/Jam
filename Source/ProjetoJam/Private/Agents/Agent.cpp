@@ -28,16 +28,14 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 
 	GetSprite()->SetFlipbook(IdleSAnimation);
 	ShadowFlipbook->SetFlipbook(IdleSAnimation);
+
+	this->GetCapsuleComponent()->SetCollisionProfileName(FName(TEXT("Agent")));
+
 }
 
 FName AAgent::GetAgentName()
 {
 	return AgentName;
-}
-
-ALocation* AAgent::GetLocation()
-{
-	return Cur_Location.Get();
 }
 
 EAgentAnimState AAgent::GetAnimState()
@@ -171,7 +169,6 @@ void AAgent::SaveState()
 
 void AAgent::AssignProperties()
 {
-
 	UDataTable* AgentsDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Agents/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
 
 	if (AgentsDataTable)
@@ -185,19 +182,6 @@ void AAgent::AssignProperties()
 			Stats.Max_Life = AgentData->Max_Life;
 			Stats.Cur_Life = Stats.Max_Life;
 			Stats.Speed = AgentData->Speed;
-			if (AgentData->bHasSpecificStatements)
-			{
-				//TODO Parse statements file
-				static const FString StatementsPath(FPaths::GameContentDir() + AgentData->StatementsFilePath);
-
-				UStatementDatabase* database = UJamLibrary::GetStatementDatabase(this);
-
-				if (database)
-				{
-					database->AddFileStatements(StatementsPath);
-				}
-
-			}
 		}
 	}
 

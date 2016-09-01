@@ -10,7 +10,7 @@
 #define MIN_DELTA_VEL 0.005f
 
 
-#define AGENT_DEFAULT_SPEED 1.0f
+#define AGENT_DEFAULT_SPEED 0.5f
 #define AGENT_DEFAULT_MAX_HEALTH 100.0f
 
 #define MIN_E_ANGLE 292.5f
@@ -107,33 +107,7 @@ public:
 
 };
 
-USTRUCT(BlueprintType)
-struct FAgentData : public FTableRowBase
-{
-	GENERATED_USTRUCT_BODY()
 
-public:
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-		float Max_Life;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-		float Speed;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-		bool bHasSpecificStatements;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
-		FString StatementsFilePath;
-	
-	FAgentData()
-		: Max_Life(AGENT_DEFAULT_MAX_HEALTH)
-		, Speed(AGENT_DEFAULT_SPEED)
-		, bHasSpecificStatements(false)
-		, StatementsFilePath("")
-	{}
-
-};
 
 /**
  *
@@ -213,17 +187,11 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Animation")
 		UPaperFlipbookComponent* ShadowFlipbook;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Location)
-		TWeakObjectPtr<class ALocation> Cur_Location;
-
 public:
 	AAgent(const FObjectInitializer& Initializer);
 
 	UFUNCTION(BlueprintPure, Category = "Agent")
 		FName GetAgentName();
-
-	UFUNCTION(BlueprintPure, Category = "Location")
-		ALocation* GetLocation();
 
 	UFUNCTION(BlueprintPure, Category = "Agent")
 		EAgentAnimState GetAnimState();
@@ -256,5 +224,32 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = Agent)
 		virtual void Kill();
+
+};
+
+USTRUCT(BlueprintType)
+struct FAgentData : public FTableRowBase
+{
+	GENERATED_USTRUCT_BODY()
+
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		float Max_Life;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		FString StatementsFilePath;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Agent")
+		TSubclassOf<AAgent> AgentBlueprint;
+
+	FAgentData()
+		: Max_Life(AGENT_DEFAULT_MAX_HEALTH)
+		, Speed(AGENT_DEFAULT_SPEED)
+		, StatementsFilePath("")
+	{}
 
 };

@@ -4,7 +4,6 @@
 #include "StatementDatabase.h"
 #include "Practice.h"
 #include "Agent.h"
-#include "Location.h"
 
 // Sets default values
 UStatementDatabase::UStatementDatabase()
@@ -21,6 +20,20 @@ UStatementDatabase::~UStatementDatabase()
 void UStatementDatabase::InitializeDataBase()
 {
 	AddFileStatements(WORLD_DATABASE_PATH);
+
+	TArray<UStatement*> Statements;
+	const FString key = "agents.";
+
+	if (FindStatements(key, Statements))
+	{
+		for (UStatement* Statement : Statements)
+		{
+			FString StatementsPath(FPaths::GameContentDir() + "Databases/Agents/" + Statement->LastVertex() + ".txt");
+
+			AddFileStatements(StatementsPath);
+		}
+	}
+
 }
 
 TArray<FString> UStatementDatabase::InspectDatabase()
@@ -262,6 +275,21 @@ bool UStatementDatabase::FindStatements(const FString& Key, TArray<UStatement*>&
 	}
 
 	return false;
+}
+
+UStatement* UStatementDatabase::FindExludingStatement(const FString& Key)
+{
+	if (!Key.Contains("!"))
+	{
+		UE_LOG(DatabaseLog, Warning, TEXT("Can only find excluding statements."));
+	}
+
+	if (Statements.Contains(Key))
+	{
+		return Statements.FindRef(Key);
+	}
+
+	return nullptr;
 }
 
 bool UStatementDatabase::HasStatement(UStatement* Statement)

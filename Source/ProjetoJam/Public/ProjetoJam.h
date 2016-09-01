@@ -9,6 +9,7 @@
 #include "JAMLevelScript.h"
 
 #define COLLISION_FADEOBJECT ECollisionChannel::ECC_GameTraceChannel1
+#define COLLISION_AGENT ECollisionChannel::ECC_GameTraceChannel2
 
 #define TRACE_SPHERERADIUS_DEFAULT 15.0f
 

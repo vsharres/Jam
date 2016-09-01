@@ -112,8 +112,11 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Keys", Keywords = "Find Keys"), Category = Database)
 		TArray<FString> FindKeysWith(const FString& vertex);
 
-	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Statement", Keywords = "Find Statement"), Category = Database)
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Statements", Keywords = "Find Statements"), Category = Database)
 		bool FindStatements(const FString& Key, TArray<UStatement*>& OutStatements);
+
+	UFUNCTION(BlueprintPure, meta = (DisplayName = "Find Statement", Keywords = "Find Statement"), Category = Database)
+		UStatement* FindExludingStatement(const FString& Key);
 
 	/**
 	* Called to check if a statement is already in the database.

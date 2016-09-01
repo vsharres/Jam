@@ -20,3 +20,9 @@ void UInteractTriggerComponent::OnTriggerBeginOverlap(class UPrimitiveComponent*
 		player->SetCurInteractingActor(this->GetAttachmentRootActor());
 	}
 }
+
+void UInteractTriggerComponent::OnTriggerEndOverlap(class UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	APlayerAgent* player = Cast<APlayerAgent>(OtherActor);
+
+}

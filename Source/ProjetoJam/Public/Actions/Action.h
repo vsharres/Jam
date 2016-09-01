@@ -16,16 +16,16 @@ class PROJETOJAM_API UAction : public UStatement
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Action")
 		bool bIsActive;
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Controller")
 		AAgentController* Caller;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Action")
 	class UPractice* ParentPractice;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Action")
 		TAssetPtr<UBehaviorTree> ActionBT;
 	
 	UAction(const FObjectInitializer& ObjectInitializer);
@@ -38,6 +38,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Action")
 		void StopAction();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DisplayName = "Init Blackboard", Keywords = "Init BlackBoard"), Category = "Action")
+		void InitializeBlackBoard();
+	virtual void InitializeBlackBoard_Implementation();
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DisplayName = "Exec PostConditions", Keywords = "Exec Post"), Category = "Action")
 		void ExecutePostConditions();

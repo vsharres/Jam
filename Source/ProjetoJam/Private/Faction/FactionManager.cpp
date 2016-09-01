@@ -3,7 +3,6 @@
 #include "ProjetoJam.h"
 #include "FactionManager.h"
 #include "Faction.h"
-#include "XmlParser.h"
 
 UFactionManager::UFactionManager(const FObjectInitializer& Initializer)
 	:Super(Initializer)
@@ -56,36 +55,6 @@ void UFactionManager::InitializeFactions()
 			break;
 		}
 	}
-	check(Factions.Num()==4)
-}
-
-void UFactionManager::ParseFactionsFile()
-{
-
-	const FXmlFile file(FACTIONS_DATABASE_PATH);
-	const FXmlNode* rootNode = file.GetRootNode();
-
-	const TArray<FXmlNode*> factionsNodes = rootNode->GetChildrenNodes();
-
-	for (const auto& node : factionsNodes)
-	{
-		UStructProperty* stringProperty = FindField<UStructProperty>(GetClass(),*(node->GetTag()));
-		
-		if (stringProperty)
-		{
-			FString value = *(stringProperty->ContainerPtrToValuePtr<FString>(stringProperty));
-			
-		}
-
-		UNumericProperty* numericalProperty = FindField<UNumericProperty>(GetClass(), *(node->GetTag()));
-
-		if (numericalProperty)
-		{
-			numericalProperty->SetNumericPropertyValueFromString(numericalProperty, *node->GetContent());
-		}
-
-
-
-	}
+	check(Factions.Num() == 4)
 }
 

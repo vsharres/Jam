@@ -3,6 +3,7 @@
 #include "ProjetoJam.h"
 #include "Agent.h"
 #include "AgentSpawner.h"
+#include "LocationComponent.h"
 
 DEFINE_LOG_CATEGORY(AgentSpawnerLog);
 
@@ -10,11 +11,20 @@ DEFINE_LOG_CATEGORY(AgentSpawnerLog);
 AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 	:Super(ObjectInitializer)
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
+	SceneComponent = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "Agent");
+	RootComponent = SceneComponent;
+
 	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
+	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
+	AgentBillboard->AttachToComponent(RootComponent, Rules);
+
+	LocationComponent = ObjectInitializer.CreateDefaultSubobject<ULocationComponent>(this, "LocationTrigger");
+	LocationComponent->AttachToComponent(RootComponent, Rules);
+
 	AgentTypeToSpawn = NULL;
 
 }
@@ -32,21 +42,36 @@ void AAgentSpawner::PostInitializeComponents()
 }
 
 // Called every frame
-void AAgentSpawner::Tick( float DeltaTime )
+void AAgentSpawner::Tick(float DeltaTime)
 {
-	Super::Tick( DeltaTime );
+	Super::Tick(DeltaTime);
 
+}
+
+FName AAgentSpawner::GetSpawnerName()
+{
+	return SpawnerName;
+}
+
+TSubclassOf<AAgent> AAgentSpawner::GetAgentToSpawnType()
+{
+	return AgentTypeToSpawn;
+}
+
+void AAgentSpawner::SetAgentToSpawnType(TSubclassOf<AAgent> type)
+{
+	AgentTypeToSpawn = type;
 }
 
 void AAgentSpawner::SpawnAgent()
 {
 	AAgent* AgentSpawned;
 
-	AgentSpawned = GetWorld()->SpawnActor<AAgent>(AgentTypeToSpawn, this->GetActorLocation(),FRotator::ZeroRotator);
+	AgentSpawned = GetWorld()->SpawnActor<AAgent>(AgentTypeToSpawn, this->GetActorLocation(), FRotator::ZeroRotator);
 
-	if (!AgentSpawned ? IsValidLowLevel() : NULL)
+	if (!AgentSpawned)
 	{
-		UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()) );
+		UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()));
 	}
 
 	AgentSpawned->SpawnDefaultController();

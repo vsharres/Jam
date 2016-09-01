@@ -3,6 +3,7 @@
 #include "ProjetoJam.h"
 #include "JamLibrary.h"
 #include "FactionManager.h"
+#include "AgentSpawner.h"
 #include "StatementDatabase.h"
 #include "JAMGameMode.h"
 
@@ -33,6 +34,27 @@ UFactionManager* UJamLibrary::GetFactionManager(UObject* WorldContextObject)
 			for (TObjectIterator<UFactionManager> Itr; Itr; ++Itr)
 			{
 				return *Itr;
+			}
+
+		}
+	}
+
+	return nullptr;
+}
+
+AAgentSpawner* UJamLibrary::FindSpawner(UObject* WorldContextObject, FName spawnName)
+{
+	if (WorldContextObject)
+	{
+		UWorld* World = GEngine->GetWorldFromContextObject(WorldContextObject);
+		if (World != nullptr)
+		{
+			for (TActorIterator<AAgentSpawner> Itr(WorldContextObject->GetWorld()); Itr; ++Itr)
+			{
+				if (Itr->GetSpawnerName() == spawnName)
+				{
+					return *Itr;
+				}
 			}
 
 		}

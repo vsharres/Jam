@@ -7,6 +7,7 @@ ANPCAgent::ANPCAgent(const FObjectInitializer& Initializer)
 	:Super(Initializer)
 {
 	bIsScripted = false;
+	AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 }
 
 void ANPCAgent::Interact()

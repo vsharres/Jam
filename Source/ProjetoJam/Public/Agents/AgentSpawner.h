@@ -15,14 +15,32 @@ class PROJETOJAM_API AAgentSpawner : public AActor
 
 private:
 
-	UPROPERTY(EditDefaultsOnly, Category = Agent)
+	UPROPERTY(VisibleAnywhere, Category = "Root")
+		USceneComponent* SceneComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Agent")
 	TSubclassOf<class AAgent> AgentTypeToSpawn;
 
-	UPROPERTY(VisibleAnywhere,Category = Billboard)
+	UPROPERTY(VisibleAnywhere,Category = "Billboard")
 	UBillboardComponent* AgentBillboard;
+
+	UPROPERTY(EditAnywhere, Category = "Location")
+		class ULocationComponent* LocationComponent;
+
+	UPROPERTY(EditAnywhere, Category = "Spawner")
+		FName SpawnerName;
 
 	
 public:	
+
+	UFUNCTION(BlueprintPure, Category = "Spawner")
+		FName GetSpawnerName();
+
+	UFUNCTION(BlueprintPure, Category = "Spawner")
+		TSubclassOf<AAgent> GetAgentToSpawnType();
+
+	UFUNCTION(BlueprintCallable, Category = "Spawner")
+		void SetAgentToSpawnType(TSubclassOf<AAgent> type);
 
 	UFUNCTION()
 	virtual void SpawnAgent();

@@ -1,0 +1,9 @@
+Walter.race!white
+Walter.age!47
+Walter.gender!male
+Walter.location!bar_counter
+Walter.spawn_location!bar_counter
+Walter.is_alive!true
+Walter.knows.player
+Walter.relationship_to.Player!client
+Walter.opinion_of.Player!0
