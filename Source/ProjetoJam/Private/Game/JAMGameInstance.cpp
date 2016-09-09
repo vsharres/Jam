@@ -11,8 +11,5 @@ UJAMGameInstance::UJAMGameInstance()
 void UJAMGameInstance::Init()
 {
 	StatementDatabase = NewObject<UStatementDatabase>(GetWorld());
-	StatementDatabase->InitializeDataBase();
-
-	/*FactionManager = NewObject<UFactionManager>(GetWorld());
-	FactionManager->InitializeFactions();*/
+	//StatementDatabase->InitializeDataBase();
 }

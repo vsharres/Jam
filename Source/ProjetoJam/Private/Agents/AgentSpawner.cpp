@@ -4,6 +4,7 @@
 #include "Agent.h"
 #include "AgentSpawner.h"
 #include "LocationComponent.h"
+#include "StatementsComponent.h"
 
 DEFINE_LOG_CATEGORY(AgentSpawnerLog);
 
@@ -15,17 +16,20 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
-	SceneComponent = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "Agent");
-	RootComponent = SceneComponent;
-
-	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
+	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "Location");
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
-	AgentBillboard->AttachToComponent(RootComponent, Rules);
+	RootComponent = Root;
 
-	LocationComponent = ObjectInitializer.CreateDefaultSubobject<ULocationComponent>(this, "LocationTrigger");
+	LocationComponent = ObjectInitializer.CreateDefaultSubobject<ULocationComponent>(this, "Loc");
 	LocationComponent->AttachToComponent(RootComponent, Rules);
 
+	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
+	AgentBillboard->AttachToComponent(RootComponent, Rules);
+
+	StatementsComponent = ObjectInitializer.CreateDefaultSubobject<UStatementsComponent>(this, "Statements");
+
 	AgentTypeToSpawn = NULL;
+
 
 }
 
@@ -39,13 +43,6 @@ void AAgentSpawner::PostInitializeComponents()
 	}
 
 	Super::PostInitializeComponents();
-}
-
-// Called every frame
-void AAgentSpawner::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-
 }
 
 FName AAgentSpawner::GetSpawnerName()
@@ -72,6 +69,7 @@ void AAgentSpawner::SpawnAgent()
 	if (!AgentSpawned)
 	{
 		UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()));
+		return;
 	}
 
 	AgentSpawned->SpawnDefaultController();

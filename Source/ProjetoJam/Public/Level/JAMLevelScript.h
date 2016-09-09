@@ -19,6 +19,9 @@ class PROJETOJAM_API AJAMLevelScript : public ALevelScriptActor
 	
 public:
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Statements")
+		TArray<FString> WorldStatements;
+
 	UPROPERTY(BlueprintAssignable)
 		FOnAgentSpawedSignature OnAgentSpawned;
 
@@ -26,6 +29,14 @@ public:
 		FOnSaveGameSignature OnSaveGame;
 
 	AJAMLevelScript();
+
+	void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void InitializeWorldStatements();
+
+	UFUNCTION(BlueprintCallable, Category = "Level")
+		void LoadLevel();
 
 	UFUNCTION(BlueprintCallable, Category = "Level")
 		void SpawnAgents();

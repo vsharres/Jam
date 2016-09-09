@@ -12,23 +12,25 @@ class PROJETOJAM_API AAgentSpawner : public AActor
 {
 	GENERATED_BODY()
 
-
 private:
 
-	UPROPERTY(VisibleAnywhere, Category = "Root")
-		USceneComponent* SceneComponent;
+	UPROPERTY(VisibleAnywhere, Category = "Location")
+		USceneComponent* Root;
 
 	UPROPERTY(EditAnywhere, Category = "Agent")
-	TSubclassOf<class AAgent> AgentTypeToSpawn;
+		TSubclassOf<class AAgent> AgentTypeToSpawn;
 
 	UPROPERTY(VisibleAnywhere,Category = "Billboard")
-	UBillboardComponent* AgentBillboard;
+		UBillboardComponent* AgentBillboard;
 
 	UPROPERTY(EditAnywhere, Category = "Location")
+		FName SpawnerName;
+
+	UPROPERTY(VisibleAnywhere, Category = "Location")
 		class ULocationComponent* LocationComponent;
 
-	UPROPERTY(EditAnywhere, Category = "Spawner")
-		FName SpawnerName;
+	UPROPERTY(VisibleAnywhere, Category = "Statements")
+		class UStatementsComponent* StatementsComponent;
 
 	
 public:	
@@ -49,8 +51,5 @@ public:
 	AAgentSpawner(const FObjectInitializer& ObjectInitializer);
 
 	void PostInitializeComponents() override;
-	
-	// Called every frame
-	virtual void Tick( float DeltaSeconds ) override;
 	
 };

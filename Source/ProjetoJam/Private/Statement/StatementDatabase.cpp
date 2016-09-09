@@ -8,8 +8,6 @@
 // Sets default values
 UStatementDatabase::UStatementDatabase()
 {
-
-
 }
 
 UStatementDatabase::~UStatementDatabase()
@@ -19,9 +17,9 @@ UStatementDatabase::~UStatementDatabase()
 
 void UStatementDatabase::InitializeDataBase()
 {
-	AddFileStatements(WORLD_DATABASE_PATH);
+	//AddFileStatements(WORLD_DATABASE_PATH);
 
-	TArray<UStatement*> Statements;
+	/*TArray<UStatement*> Statements;
 	const FString key = "agents.";
 
 	if (FindStatements(key, Statements))
@@ -32,7 +30,7 @@ void UStatementDatabase::InitializeDataBase()
 
 			AddFileStatements(StatementsPath);
 		}
-	}
+	}*/
 
 }
 

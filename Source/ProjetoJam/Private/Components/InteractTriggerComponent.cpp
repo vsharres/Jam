@@ -5,7 +5,8 @@
 #include "InteractTriggerComponent.h"
 
 
-UInteractTriggerComponent::UInteractTriggerComponent()
+UInteractTriggerComponent::UInteractTriggerComponent(const FObjectInitializer& ObjectInitializer)
+	:Super(ObjectInitializer)
 {
 	this->OnComponentBeginOverlap.AddDynamic(this, &UInteractTriggerComponent::OnTriggerBeginOverlap);
 	bCanInteract = true;

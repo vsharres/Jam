@@ -14,8 +14,6 @@ class PROJETOJAM_API ULocationComponent : public UBoxComponent
 	GENERATED_BODY()
 
 private:
-	UPROPERTY()
-		class AAgentSpawner* ParentSpawner;
 
 	UPROPERTY()
 		class UStatementDatabase* Database;
@@ -25,9 +23,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Location")
 	class AAgentSpawner* ParentLocation;
 
-	ULocationComponent();
+	ULocationComponent(const FObjectInitializer& ObjectInitializer);
 
 	void BeginPlay() override;
+
+	void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	UFUNCTION(BlueprintCallable, Category = "Location")
 		void OnTriggerBeginOverlap(class UPrimitiveComponent* OverlappedComponent, class AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);

@@ -187,6 +187,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, Category = "Animation")
 		UPaperFlipbookComponent* ShadowFlipbook;
 
+	UPROPERTY(VisibleAnywhere, Category = "Statements")
+	class UStatementsComponent* StatementsComponent;
+
 public:
 	AAgent(const FObjectInitializer& Initializer);
 

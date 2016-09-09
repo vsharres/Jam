@@ -9,7 +9,6 @@
 
 AAgentController::AAgentController()
 {
-
 	PossibleActions.Empty();
 }
 

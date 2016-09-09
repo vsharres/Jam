@@ -9,6 +9,36 @@
 
 AJAMLevelScript::AJAMLevelScript()
 {
+	WorldStatements.Empty();
+}
+
+void AJAMLevelScript::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (OnAgentSpawned.IsBound())
+	{
+		OnAgentSpawned.Clear();
+	}
+
+	if (OnSaveGame.IsBound())
+	{
+		OnAgentSpawned.Clear();
+	}
+}
+
+void AJAMLevelScript::InitializeWorldStatements()
+{
+	//TODO: CHECK IF IS LOADING LEVEL
+	UJAMGameInstance* gameInst = Cast<UJAMGameInstance>(GetGameInstance());
+	
+	for (const FString& Statement : WorldStatements)
+	{
+		gameInst->StatementDatabase->InsertIntoDatabaseWithString(Statement);
+	}
+}
+
+void AJAMLevelScript::LoadLevel()
+{
+
 }
 
 void AJAMLevelScript::SpawnAgents()

@@ -3,6 +3,7 @@
 #include "ProjetoJam.h"
 #include "PaperFlipbookComponent.h"
 #include "StatementDatabase.h"
+#include "StatementsComponent.h"
 #include "Agent.h"
 
 AAgent::AAgent(const class FObjectInitializer& Initializer)
@@ -12,6 +13,8 @@ AAgent::AAgent(const class FObjectInitializer& Initializer)
 	Agent_Type = EAgentType::GRUNT;
 	AgentAnimState = EAgentAnimState::IDLE;
 	AgentFacingState = EAgentFacingState::S;
+
+	StatementsComponent = Initializer.CreateDefaultSubobject<UStatementsComponent>(this, "Statements");
 
 	ShadowFlipbook = Initializer.CreateDefaultSubobject<UPaperFlipbookComponent>(this, "ShadowSprite");
 
