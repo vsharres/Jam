@@ -1,9 +1,0 @@
-Player.race!black
-Player.age!33
-Player.gender!male
-Player.location!outside
-Player.spawn_location!outside
-Player.is_alive!true
-Player.knows.Walter
-Player.relationship_to.Walter.client
-Player.opinion_of.walter!0

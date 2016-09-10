@@ -10,6 +10,9 @@
 AAgentController::AAgentController()
 {
 	PossibleActions.Empty();
+	QueryCooldown = 0.0f;
+	QueryTimer = 1.0f;
+
 }
 
 FName AAgentController::GetAgentName()
@@ -21,6 +24,13 @@ FName AAgentController::GetAgentName()
 
 void AAgentController::QueryDatabase()
 {
+	if (!FMath::IsNearlyZero(QueryCooldown) || GetWorld()->GetRealTimeSeconds() - QueryCooldown < QueryTimer)
+	{
+		QueryCooldown = GetWorld()->GetRealTimeSeconds();
+		return;
+	}
+
+	QueryCooldown = GetWorld()->GetRealTimeSeconds();
 	PossibleActions.Empty(1);
 
 	if (!Database->IsValidLowLevelFast(false))
@@ -46,7 +56,6 @@ void AAgentController::QueryDatabase()
 				temp->AddToActionsArray(PossibleActions, this);
 			}
 		}
-
 
 	}
 
@@ -76,14 +85,9 @@ void AAgentController::FinishBehavior()
 
 void AAgentController::BeginPlay()
 {
-	QueryDatabase();
-
-	if (CurrentAction)
-	{
-		CurrentAction->StartAction();
-	}
-
 	Super::BeginPlay();
+
+	QueryDatabase();
 }
 
 void AAgentController::PostInitializeComponents()

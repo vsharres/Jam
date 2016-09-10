@@ -62,17 +62,21 @@ void AAgentSpawner::SetAgentToSpawnType(TSubclassOf<AAgent> type)
 
 void AAgentSpawner::SpawnAgent()
 {
-	AAgent* AgentSpawned;
-
-	AgentSpawned = GetWorld()->SpawnActor<AAgent>(AgentTypeToSpawn, this->GetActorLocation(), FRotator::ZeroRotator);
-
-	if (!AgentSpawned)
+	if (AgentTypeToSpawn->IsValidLowLevelFast())
 	{
-		UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()));
-		return;
-	}
+		AAgent* AgentSpawned;
 
-	AgentSpawned->SpawnDefaultController();
+		AgentSpawned = GetWorld()->SpawnActor<AAgent>(AgentTypeToSpawn, this->GetActorLocation(), FRotator::ZeroRotator);
+
+		if (!AgentSpawned)
+		{
+			UE_LOG(AgentSpawnerLog, Warning, TEXT("Cannot spawned the actor from the spawner %s"), *(this->GetName()));
+			return;
+		}
+
+		AgentSpawned->SpawnDefaultController();
+	}
+	
 
 }
 

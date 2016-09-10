@@ -25,7 +25,7 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Action")
 	class UPractice* ParentPractice;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Action")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Action")
 		TAssetPtr<UBehaviorTree> ActionBT;
 	
 	UAction(const FObjectInitializer& ObjectInitializer);

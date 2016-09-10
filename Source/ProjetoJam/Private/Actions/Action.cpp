@@ -19,10 +19,11 @@ void UAction::InstantiateAction(UPractice* practice, AAgentController* agentCall
 
 void UAction::StartAction()
 {	
-	if (ActionBT.IsValid() && !bIsActive)
+	if (!bIsActive)
 	{
 		bIsActive = true;
-		UBehaviorTree* Tree = ActionBT.Get();
+		UBehaviorTree* Tree = ActionBT.LoadSynchronous();
+		check(Tree)
 		InitializeBlackBoard();
 		Caller->RunBehaviorTree(Tree);
 	}

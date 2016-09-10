@@ -14,10 +14,17 @@ class PROJETOJAM_API AAgentController : public AAIController
 	GENERATED_BODY()
 
 private:
+	UPROPERTY()
 	TArray<class UAction*> PossibleActions;
 
 	UPROPERTY()
 		UStatementDatabase* Database;
+
+	UPROPERTY()
+		float QueryCooldown;
+
+	UPROPERTY()
+		float QueryTimer;
 
 public:
 

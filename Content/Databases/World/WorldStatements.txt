@@ -1,6 +1,0 @@
-agents.Walter
-agents.Player
-
-practice.Grunt.idle
-practice.Walter.bartending
-

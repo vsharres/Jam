@@ -114,14 +114,34 @@ void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 
 void UStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatement)
 {
-	if (NewStatement == "")
+
+	if (NewStatement.Contains("practice."))
 	{
-		UE_LOG(DatabaseLog, Warning, TEXT("Can not add statement with null string to database."));
-		return;
+		int32 praticeNameStartIndex;
+
+		NewStatement.FindLastChar('.', praticeNameStartIndex);
+		FString practiceName = NewStatement.RightChop(praticeNameStartIndex + 1);
+
+		UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Blueprints/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
+		if (PracticeDataTable)
+		{
+			static const FString ContextString(TEXT("GENERAL"));
+
+			FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
+
+			if (practiceTable)
+			{
+				UPractice* newPractice = UPractice::NewPractice(this, NewStatement, practiceTable->PracticeBlueprintAsset);
+				InsertIntoDatabase(newPractice);
+			}
+		}
+	}
+	else
+	{
+		UStatement* StatementToInsert = UStatement::NewStatement(NewStatement);
+		InsertIntoDatabase(StatementToInsert);
 	}
 
-	UStatement* StatementToInsert = UStatement::NewStatement(NewStatement);
-	InsertIntoDatabase(StatementToInsert);
 }
 
 void UStatementDatabase::DeleteStatementFromDatabase(UStatement* StamentToDelete)
@@ -350,11 +370,8 @@ bool UStatementDatabase::AddFileStatements(const FString& Path)
 
 			Lines[index].FindLastChar('.', praticeNameStartIndex);
 			FString practiceName = Lines[index].RightChop(praticeNameStartIndex + 1);
-			//temp.FindChar('.', praticeNameEndIndex);
 
-			//FString practiceName = temp.Left(praticeNameEndIndex);
-
-			UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
+			UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Blueprints/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
 			if (PracticeDataTable)
 			{
 				static const FString ContextString(TEXT("GENERAL"));

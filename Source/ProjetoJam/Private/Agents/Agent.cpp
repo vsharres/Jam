@@ -172,7 +172,7 @@ void AAgent::SaveState()
 
 void AAgent::AssignProperties()
 {
-	UDataTable* AgentsDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Agents/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
+	UDataTable* AgentsDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Characters/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
 
 	if (AgentsDataTable)
 	{
