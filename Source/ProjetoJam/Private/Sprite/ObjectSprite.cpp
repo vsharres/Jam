@@ -8,7 +8,7 @@ AObjectSprite::AObjectSprite(const FObjectInitializer& ObjectInitializer)
 {
 	TileSize = ETileSize::L1W1;
 
-	Collider = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, "BoxCollider");
+	Collider = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, TEXT("BoxCollider"));
 	Collider->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 	Collider->SetCollisionObjectType(ECC_WorldStatic);
 	Collider->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
@@ -19,7 +19,7 @@ AObjectSprite::AObjectSprite(const FObjectInitializer& ObjectInitializer)
 
 	GetSprite()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	GetSprite()->bGenerateOverlapEvents = false;
-	GetSprite()->SetRelativeRotation(ISOMETRIC_ROTATION);
+	GetSprite()->SetRelativeRotation(TOPDOWN_ROTATION);
 
 }
 

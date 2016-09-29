@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  This is the starting message of the dialogue
+  <dialogue text="option1">
+    This is the dialogue provided by choosing option1.
+    <dialogue text="option1.1">
+      This is the dialogue provided by choosing option1.1
+      <dialogue text="Back"></dialogue>
+    </dialogue>
+    <dialogue text="option1.2">
+      This is the dialogue provided by choosing option1.2
+      <dialogue text="Exit"></dialogue>
+    </dialogue>
+  </dialogue>
+  <dialogue text="option2">
+    This is the dialogue provided by choosing option2.
+    <dialogue text="option2.1">
+      This is the dialogue provided by choosing option2.1
+      <dialogue text="Back"></dialogue>
+    </dialogue>
+    <dialogue text="option2.2">
+      This is the dialogue provided by choosing option2.2
+      <dialogue text="Back"></dialogue>
+    </dialogue>
+    <dialogue text="Back"></dialogue>
+  </dialogue>
+  <dialogue text="option3">
+    This is the dialogue provided by choosing option3.
+    <dialogue text="option3.1">
+      This is the dialogue provided by choosing option3.1
+      <dialogue text="Back"></dialogue>
+    </dialogue>
+    <dialogue text="option3.2">
+      This is the dialogue provided by choosing option3.2
+      <dialogue text="Back"></dialogue>
+    </dialogue>
+  </dialogue>
+  <dialogue text="Exit"></dialogue>
+</Root>

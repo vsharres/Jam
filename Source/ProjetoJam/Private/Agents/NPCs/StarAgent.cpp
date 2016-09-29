@@ -13,7 +13,7 @@ void AStarAgent::PostInitializeComponents()
 {
 	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if (Level && !Level->OnSaveGame.Contains(this,"SaveState"))
+	if (Level && !Level->OnSaveGame.Contains(this, TEXT("SaveState")))
 	{
 		Level->OnSaveGame.AddDynamic(this, &AStarAgent::SaveState);
 	}

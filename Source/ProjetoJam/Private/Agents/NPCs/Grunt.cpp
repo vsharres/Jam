@@ -24,7 +24,7 @@ void AGrunt::PostInitializeComponents()
 {
 	AJAMLevelScript* Level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if (Level && !Level->OnAgentSpawned.Contains(this, "SaveState"))
+	if (Level && !Level->OnAgentSpawned.Contains(this, TEXT("SaveState")))
 	{
 		Level->OnSaveGame.AddDynamic(this, &AGrunt::SaveState);
 	}

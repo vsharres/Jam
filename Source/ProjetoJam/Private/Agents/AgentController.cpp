@@ -39,7 +39,7 @@ void AAgentController::QueryDatabase()
 		return;
 	}
 
-	const FString queryKey = "practice." + GetAgentName().ToString() + ".";
+	const FString queryKey = TEXT("practice.") + GetAgentName().ToString() + ".";
 
 	TArray<UStatement*> foundPractices;
 
@@ -78,7 +78,7 @@ void AAgentController::ChooseAction()
 
 void AAgentController::FinishBehavior()
 {
-	GetBrainComponent()->StopLogic("Finished Behavior");
+	GetBrainComponent()->StopLogic(TEXT("Finished Behavior"));
 	QueryDatabase();
 
 }

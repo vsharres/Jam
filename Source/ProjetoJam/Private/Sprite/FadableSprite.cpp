@@ -10,21 +10,21 @@ AFadableSprite::AFadableSprite(const FObjectInitializer& ObjectInitializer)
 {
 	PrimaryActorTick.bCanEverTick = false;
 
-	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "SpriteActor");
+	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, TEXT("SpriteActor"));
 	RootComponent = Root;
 
-	Sprite = ObjectInitializer.CreateDefaultSubobject<UPaperSpriteComponent>(this, "Sprite");
+	Sprite = ObjectInitializer.CreateDefaultSubobject<UPaperSpriteComponent>(this, TEXT("Sprite"));
 	Sprite->SetCollisionResponseToChannel(COLLISION_FADEOBJECT, ECollisionResponse::ECR_Overlap);
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
 	Sprite->AttachToComponent(Root,Rules);
 
-	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, "CameraTimeline");
+	CameraTraceTimeline = ObjectInitializer.CreateDefaultSubobject<UTimelineComponent>(this, TEXT("CameraTimeline"));
 	CameraTraceTimeline->SetTickableWhenPaused(false);
 	CameraTraceTimeline->SetTimelineLengthMode(TL_TimelineLength);
 	CameraTraceTimeline->SetTimelineLength(1.0f);
 	CameraTraceTimeline->SetLooping(true);
 
-	CameraTraceFunction.BindUFunction(this,"CameraTimelineCallback");
+	CameraTraceFunction.BindUFunction(this, TEXT("CameraTimelineCallback"));
 
 	bFaded = false;
 
@@ -80,7 +80,7 @@ void AFadableSprite::FadeIn(const FVector2D& UVPos)
 
 		if (MID && GetWorld())
 		{
-			MID->SetScalarParameterValue("Start_Time_FadeIn", GetWorld()->GetTimeSeconds());
+			MID->SetScalarParameterValue(TEXT("Start_Time_FadeIn"), GetWorld()->GetTimeSeconds());
 		}
 			
 	}
@@ -96,7 +96,7 @@ void AFadableSprite::FadeOut(const FVector2D& UVPos)
 
 		if (MID && GetWorld())
 		{
-			MID->SetScalarParameterValue("Start_Time_FadeOut", GetWorld()->GetTimeSeconds());
+			MID->SetScalarParameterValue(TEXT("Start_Time_FadeOut"), GetWorld()->GetTimeSeconds());
 		}
 
 		CameraTraceTimeline->PlayFromStart();

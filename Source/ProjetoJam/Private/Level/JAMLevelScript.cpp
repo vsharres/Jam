@@ -32,7 +32,14 @@ void AJAMLevelScript::InitializeWorldStatements()
 	
 	for (const FString& Statement : WorldStatements)
 	{
-		gameInst->StatementDatabase->InsertIntoDatabaseWithString(Statement);
+		if (Statement != "")
+		{
+			gameInst->StatementDatabase->InsertIntoDatabaseWithString(Statement);
+		}
+		else
+		{
+			UE_LOG(DatabaseLog, Warning, TEXT("%s is trying to add a null statement to the database"), *GetName());
+		}
 	}
 }
 
@@ -52,7 +59,7 @@ void AJAMLevelScript::SpawnAgents()
 	if (gameInst->StatementDatabase->FindStatements(key, Statements))
 	{
 		FDataTableRowHandle handle;
-		handle.DataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Databases/Agents/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
+		handle.DataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Characters/AgentsData.AgentsData"), NULL, LOAD_None, NULL);
 		check(handle.DataTable)
 
 		static const FString ContextString(TEXT("GENERAL"));
@@ -64,7 +71,7 @@ void AJAMLevelScript::SpawnAgents()
 			agentData = handle.GetRow<FAgentData>(ContextString);
 			check(agentData)
 
-			const FString spawnerLocationKey = handle.RowName.ToString() + ".spawn_location!";
+			const FString spawnerLocationKey = handle.RowName.ToString() + TEXT(".spawn_location!");
 			UStatement* locationStatement = gameInst->StatementDatabase->FindExludingStatement(spawnerLocationKey);
 			check(locationStatement)
 

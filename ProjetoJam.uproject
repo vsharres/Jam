@@ -12,7 +12,8 @@
 				"CoreUObject",
 				"AIModule",
 				"Engine",
-				"Paper2D"
+				"Paper2D",
+				"UMG"
 			]
 		}
 	]

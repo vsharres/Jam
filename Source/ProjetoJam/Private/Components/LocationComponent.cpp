@@ -42,7 +42,7 @@ void ULocationComponent::OnTriggerBeginOverlap(class UPrimitiveComponent* Overla
 
 	if (agent && ParentLocation)
 	{
-		FString newLocationStatement = agent->GetAgentName().ToString() + ".location!" + ParentLocation->GetSpawnerName().ToString();
+		FString newLocationStatement = agent->GetAgentName().ToString() + TEXT(".location!") + ParentLocation->GetSpawnerName().ToString();
 		Database->InsertIntoDatabaseWithString(newLocationStatement);
 		
 	}
@@ -56,7 +56,7 @@ void ULocationComponent::OnTriggerEndOverlap(class UPrimitiveComponent* Overlapp
 
 	if (agent && ParentLocation)
 	{
-		FString newLocationStatement = agent->GetAgentName().ToString() + ".location!" + ParentLocation->GetSpawnerName().ToString();
+		FString newLocationStatement = agent->GetAgentName().ToString() + TEXT(".location!") + ParentLocation->GetSpawnerName().ToString();
 		Database->InsertIntoDatabaseWithString(newLocationStatement);
 	}
 }

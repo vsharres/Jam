@@ -6,14 +6,14 @@ public class ProjetoJam : ModuleRules
 {
 	public ProjetoJam(TargetInfo Target)
 	{
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "AIModule" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "Paper2D", "AIModule", "UMG", "XmlParser" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
         PrivateIncludePaths.AddRange(new string[] { "ProjetoJam/Public", "ProjetoJam/Private" });
 
 		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 		
 	}
 }

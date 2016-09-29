@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Public/Agents/Agent.h"
+#include "InteractTriggerComponent.h"
 #include "PlayerAgent.generated.h"
 
 /**
@@ -28,15 +29,15 @@ private:
 		TWeakObjectPtr<AActor> ActorToInteract;
 
 	UPROPERTY()
-		bool bCanInteract;
-
-	UPROPERTY()
 		UTimelineComponent* CameraTraceTimeline;
 
 	FOnTimelineEvent EventFunction{};
 
 
 public:
+
+	UPROPERTY(BlueprintReadWrite, Category = "Interact")
+		bool bCanInteract;
 
 	APlayerAgent(const FObjectInitializer& ObjectInitializer);
 
@@ -57,6 +58,9 @@ public:
 	
 	UFUNCTION()
 		void CameraTraceTimelineCallback();
+
+	UFUNCTION(BlueprintCallable, Category = "Interact")
+		void ToggleInteractUI(EInteractionType type);
 
 	void BeginPlay() override;
 

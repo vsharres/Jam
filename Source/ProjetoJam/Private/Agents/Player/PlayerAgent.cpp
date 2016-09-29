@@ -9,10 +9,10 @@
 APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)
 {
-	Stats.Speed = 0.35f;
+	Stats.Speed = 0.25f;
 	CameraBoom = ObjectInitializer.CreateDefaultSubobject<USpringArmComponent>(this, TEXT("CameraBoom"));
 	CameraBoom->bEnableCameraLag = true;
-	CameraBoom->SetWorldRotation(FRotator(0, 330, 270));
+	//CameraBoom->SetWorldRotation(FRotator(0, 330, 270));
 	FAttachmentTransformRules Rules = FAttachmentTransformRules(EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, EAttachmentRule::KeepRelative, false);
 	CameraBoom->AttachToComponent(RootComponent,Rules);
 
@@ -32,7 +32,7 @@ APlayerAgent::APlayerAgent(const FObjectInitializer& ObjectInitializer)
 
 	Agent_Type = EAgentType::PLAYER;
 	AgentName = "Player";
-	bCanInteract = false;
+	bCanInteract = true;
 }
 
 AActor* APlayerAgent::GetCurInteractingActor()
@@ -57,7 +57,7 @@ UInventory* APlayerAgent::GetInventory()
 
 void APlayerAgent::InteractWith()
 {
-	if (bCanInteract && ActorToInteract.IsValid() && ActorToInteract->Implements<UInteract>())
+	if (ActorToInteract.IsValid() && ActorToInteract->Implements<UInteract>() && bCanInteract)
 	{
 		Cast<IInteract>(ActorToInteract.Get())->Interact();
 	}
@@ -84,6 +84,11 @@ void APlayerAgent::CameraTraceTimelineCallback()
 	
 }
 
+
+void APlayerAgent::ToggleInteractUI(EInteractionType type)
+{
+	//TODO: Send interaction message to UI to display the interaction button, if the button is already active, toggle its visibility
+}
 
 void APlayerAgent::BeginPlay()
 {
@@ -117,7 +122,7 @@ void APlayerAgent::PostInitializeComponents()
 {
 	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if (level && !level->OnAgentSpawned.Contains(this, "SaveState"))
+	if (level && !level->OnAgentSpawned.Contains(this, TEXT("SaveState")))
 	{
 		level->OnSaveGame.AddDynamic(this, &APlayerAgent::SaveState);
 	}
@@ -131,10 +136,10 @@ void APlayerAgent::SetupPlayerInputComponent(UInputComponent * InputComponent)
 {
 	Super::SetupPlayerInputComponent(InputComponent);
 
-	InputComponent->BindAxis("MoveUp", this, &APlayerAgent::MoveUp);
-	InputComponent->BindAxis("MoveRight", this, &APlayerAgent::MoveRight);
+	InputComponent->BindAxis(TEXT("MoveUp"), this, &APlayerAgent::MoveUp);
+	InputComponent->BindAxis(TEXT("MoveRight"), this, &APlayerAgent::MoveRight);
 
-	InputComponent->BindAction("Interact", IE_Pressed, this, &APlayerAgent::InteractWith);
+	InputComponent->BindAction(TEXT("Interact"), IE_Pressed, this, &APlayerAgent::InteractWith);
 
 }
 

@@ -134,3 +134,8 @@ bool UJamLibrary::TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVecto
 	return (HitsOut.Num() > 0);
 
 }
+
+UDialogueTree* UJamLibrary::GenerateDialogueTree(UObject* WorldContextObject, FStringAssetReference& DialogTreeAsset)
+{
+	return nullptr;
+}

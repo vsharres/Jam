@@ -5,6 +5,18 @@
 #include "Components/SphereComponent.h"
 #include "InteractTriggerComponent.generated.h"
 
+UENUM(BlueprintType)
+enum class EInteractionType :uint8 {
+
+	READ,
+	TALK,
+	PUSH,
+	PRESS,
+	OPEN,
+	CLOSE,
+	LOOT
+};
+
 /**
  * 
  */
@@ -15,8 +27,8 @@ class PROJETOJAM_API UInteractTriggerComponent : public USphereComponent
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "InteractComponent")
-		bool bCanInteract;
+	UPROPERTY(EditDefaultsOnly, Category = "InteractComponent")
+		EInteractionType InteractionType;
 
 	UInteractTriggerComponent(const FObjectInitializer& ObjectInitializer);
 

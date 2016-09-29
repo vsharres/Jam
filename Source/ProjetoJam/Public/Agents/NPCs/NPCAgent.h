@@ -14,7 +14,15 @@ class PROJETOJAM_API ANPCAgent : public AAgent, public IInteract
 {
 	GENERATED_BODY()
 
+private:
+
+	UPROPERTY(VisibleAnywhere, Category = "Trigger")
+		class UInteractTriggerComponent* InteractionTrigger;
+
 public:
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NPC")
+		FStringAssetReference DialogTable;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NPC")
 		bool bIsScripted;
@@ -24,6 +32,8 @@ public:
 	void Interact() override;
 
 	void SaveState() override;
+
+
 	
 	
 };

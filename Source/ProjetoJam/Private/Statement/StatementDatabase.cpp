@@ -115,26 +115,26 @@ void UStatementDatabase::InsertIntoDatabase(UStatement* NewStatement)
 void UStatementDatabase::InsertIntoDatabaseWithString(const FString& NewStatement)
 {
 
-	if (NewStatement.Contains("practice."))
+	if (NewStatement.Contains(TEXT("practice.")))
 	{
 		int32 praticeNameStartIndex;
 
 		NewStatement.FindLastChar('.', praticeNameStartIndex);
 		FString practiceName = NewStatement.RightChop(praticeNameStartIndex + 1);
 
-		UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Blueprints/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
-		if (PracticeDataTable)
+		UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/AI/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
+		check(PracticeDataTable);
+
+		static const FString ContextString(TEXT("GENERAL"));
+
+		FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
+
+		if (practiceTable)
 		{
-			static const FString ContextString(TEXT("GENERAL"));
-
-			FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
-
-			if (practiceTable)
-			{
-				UPractice* newPractice = UPractice::NewPractice(this, NewStatement, practiceTable->PracticeBlueprintAsset);
-				InsertIntoDatabase(newPractice);
-			}
+			UPractice* newPractice = UPractice::NewPractice(this, NewStatement, practiceTable->PracticeBlueprintAsset);
+			InsertIntoDatabase(newPractice);
 		}
+
 	}
 	else
 	{
@@ -363,7 +363,7 @@ bool UStatementDatabase::AddFileStatements(const FString& Path)
 	for (int32 index = 0; index < Lines.Num(); index++)
 	{
 		int32 indx;
-		if (Lines[index].Contains("practice"))
+		if (Lines[index].Contains(TEXT("practice")))
 		{
 
 			int32 praticeNameStartIndex;
@@ -371,19 +371,19 @@ bool UStatementDatabase::AddFileStatements(const FString& Path)
 			Lines[index].FindLastChar('.', praticeNameStartIndex);
 			FString practiceName = Lines[index].RightChop(praticeNameStartIndex + 1);
 
-			UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/Blueprints/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
-			if (PracticeDataTable)
+			UDataTable* PracticeDataTable = LoadObject<UDataTable>(NULL, TEXT("/Game/AI/Practices/PracticesTable.PracticesTable"), NULL, LOAD_None, NULL);
+			check(PracticeDataTable);
+
+			static const FString ContextString(TEXT("GENERAL"));
+
+			FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
+
+			if (practiceTable)
 			{
-				static const FString ContextString(TEXT("GENERAL"));
-
-				FPracticeTable* practiceTable = PracticeDataTable->FindRow<FPracticeTable>(FName(*practiceName), ContextString);
-
-				if (practiceTable)
-				{
-					UPractice* newPractice = UPractice::NewPractice(GetTransientPackage(), Lines[index], practiceTable->PracticeBlueprintAsset);
-					InsertIntoDatabase(newPractice);
-				}
+				UPractice* newPractice = UPractice::NewPractice(GetTransientPackage(), Lines[index], practiceTable->PracticeBlueprintAsset);
+				InsertIntoDatabase(newPractice);
 			}
+
 
 
 		}

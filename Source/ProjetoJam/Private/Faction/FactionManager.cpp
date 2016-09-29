@@ -31,23 +31,23 @@ void UFactionManager::InitializeFactions()
 		{
 		case 0:
 
-			newFaction = NewObject<UFaction>(this, "PlayerFaction");
+			newFaction = NewObject<UFaction>(this, TEXT("PlayerFaction"));
 			newFaction->InitializeFaction(EFactionType::PLAYER);
 			Factions.Add(newFaction);
 			break;
 		case 1:
 
-			newFaction = NewObject<UFaction>(this, "Faction1");
+			newFaction = NewObject<UFaction>(this, TEXT("Faction1"));
 			newFaction->InitializeFaction(EFactionType::FACTION1);
 			Factions.Add(newFaction);
 			break;
 		case 2:
-			newFaction = NewObject<UFaction>(this, "Faction2");
+			newFaction = NewObject<UFaction>(this, TEXT("Faction2"));
 			newFaction->InitializeFaction(EFactionType::FACTION2);
 			Factions.Add(newFaction);
 			break;
 		case 3:
-			newFaction = NewObject<UFaction>(this, "Faction3");
+			newFaction = NewObject<UFaction>(this, TEXT("Faction3"));
 			newFaction->InitializeFaction(EFactionType::FACTION3);
 			Factions.Add(newFaction);
 			break;

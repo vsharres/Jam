@@ -32,5 +32,7 @@ public:
 	UFUNCTION(BlueprintPure, meta = (DisplayName = "TraceSphere", Keywords = "TraceSphere", UnsafeDuringActorConstruction = "true"), Category = "Trace")
 		static bool TraceSphere(UWorld* World, AActor* ActorToIgnore, const FVector& Start, const FVector& End, const FRotator& Rot, float Radius, TArray<FHitResult>& HitsOut, ECollisionChannel CollisionChannel = ECC_Pawn, bool ReturnPhysMat = false);
 
+	UFUNCTION(BlueprintCallable, meta = (HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", DisplayName = "Generate DialogueTree", Keywords = "Instantiate Object"), Category = "Object")
+		static UDialogueTree* GenerateDialogueTree(UObject* WorldContextObject, FStringAssetReference& DialogTreeAsset);
 
 };

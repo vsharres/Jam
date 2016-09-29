@@ -9,28 +9,17 @@
 
 #define MIN_DELTA_VEL 0.005f
 
-
 #define AGENT_DEFAULT_SPEED 0.5f
 #define AGENT_DEFAULT_MAX_HEALTH 100.0f
 
-#define MIN_E_ANGLE 292.5f
-#define MAX_E_ANGLE 327.5f
-#define MIN_NE_ANGLE 247.5f
-#define MAX_NE_ANGLE 292.5f
-#define MIN_N_ANGLE 202.5f
-#define MAX_N_ANGLE 247.5f
-#define MIN_NW_ANGLE 157.5f
-#define MAX_NW_ANGLE 202.5f
-#define MIN_W_ANGLE 112.5f
-#define MAX_W_ANGLE 157.5f
-#define MIN_SW_ANGLE 67.5f
-#define MAX_SW_ANGLE 112.5f
-#define MIN_S_ANGLE 22.5f
-#define MAX_S_ANGLE 67.5f
-#define MIN_SE_ANGLE 22.5f
-#define MAX_SE_ANGLE 337.5F
-
-#define AGENTSDATA_PATH (FString)(FPaths::GameContentDir() + "Databases/Agents/AgentsData.AgentsData") 
+#define MIN_RIGHT_ANGLE 295.0f
+#define MAX_RIGHT_ANGLE  75.0f
+#define MIN_UP_ANGLE 255.0f
+#define MAX_UP_ANGLE 295.0f
+#define MIN_LEFT_ANGLE 105.0f
+#define MAX_LEFT_ANGLE 255.0f
+#define MIN_DOWN_ANGLE 75.0f
+#define MAX_DOWN_ANGLE 105.0f
 
 
 UENUM(BlueprintType)
@@ -45,28 +34,20 @@ UENUM(BlueprintType)
 enum class EAgentAnimState :uint8 {
 
 	IDLE,
-	MOVING_N,
-	MOVING_NW,
-	MOVING_W,
-	MOVING_SW,
-	MOVING_S,
-	MOVING_SE,
-	MOVING_E,
-	MOVING_NE
+	MOVING_UP,
+	MOVING_LEFT,
+	MOVING_DOWN,
+	MOVING_RIGHT
 
 };
 
 UENUM(BlueprintType)
 enum class EAgentFacingState :uint8 {
 
-	N,
-	NW,
-	W,
-	SW,
-	S,
-	SE,
-	E,
-	NE
+	UP,
+	LEFT,
+	DOWN,
+	RIGHT
 };
 
 USTRUCT(BlueprintType)
@@ -127,9 +108,6 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Agent")
 		FAgentStats Stats;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Faction")
-	class UFaction* Faction;
-
 	UPROPERTY(VisibleAnywhere, Category = "Animation")
 		EAgentAnimState AgentAnimState;
 
@@ -137,52 +115,28 @@ protected:
 		EAgentFacingState AgentFacingState;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-	class UPaperFlipbook* IdleNAnimation;
+	class UPaperFlipbook* IdleUpAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleNWAnimation;
+		UPaperFlipbook* IdleLeftAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleWAnimation;
+		UPaperFlipbook* IdleDownAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleSWAnimation;
+		UPaperFlipbook* IdleRightAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleSAnimation;
+		UPaperFlipbook* MoveUpAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleSEAnimation;
+		UPaperFlipbook* MoveLeftAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleEAnimation;
+		UPaperFlipbook* MoveDownAnimation;
 
 	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* IdleNEAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveNAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveNWAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveWAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveSWAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveSAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveSEAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveEAnimation;
-
-	UPROPERTY(EditDefaultsOnly, meta = (DisplayThumbnail = "true"), Category = "Animation")
-		UPaperFlipbook* MoveNEAnimation;
+		UPaperFlipbook* MoveRightAnimation;
 
 	UPROPERTY(VisibleAnywhere, Category = "Animation")
 		UPaperFlipbookComponent* ShadowFlipbook;
@@ -201,6 +155,9 @@ public:
 
 	UFUNCTION(BlueprintPure, Category = "Agent")
 		EAgentFacingState GetFacingState();
+
+	UFUNCTION(BlueprintCallable, Category = "Agent")
+		void SetFacingState(EAgentFacingState newState);
 
 	UFUNCTION(BlueprintCallable, Category = "Animation")
 		void SetAnimState(EAgentAnimState newState);

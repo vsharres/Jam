@@ -16,17 +16,17 @@ AAgentSpawner::AAgentSpawner(const FObjectInitializer& ObjectInitializer)
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 
-	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, "Location");
+	Root = ObjectInitializer.CreateDefaultSubobject<USceneComponent>(this, TEXT("Location"));
 	FAttachmentTransformRules Rules(EAttachmentRule::KeepRelative, false);
 	RootComponent = Root;
 
-	LocationComponent = ObjectInitializer.CreateDefaultSubobject<ULocationComponent>(this, "Loc");
+	LocationComponent = ObjectInitializer.CreateDefaultSubobject<ULocationComponent>(this, TEXT("Loc"));
 	LocationComponent->AttachToComponent(RootComponent, Rules);
 
-	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, "Billboard");
+	AgentBillboard = ObjectInitializer.CreateDefaultSubobject<UBillboardComponent>(this, TEXT("Billboard"));
 	AgentBillboard->AttachToComponent(RootComponent, Rules);
 
-	StatementsComponent = ObjectInitializer.CreateDefaultSubobject<UStatementsComponent>(this, "Statements");
+	StatementsComponent = ObjectInitializer.CreateDefaultSubobject<UStatementsComponent>(this, TEXT("Statements"));
 
 	AgentTypeToSpawn = NULL;
 
@@ -37,7 +37,7 @@ void AAgentSpawner::PostInitializeComponents()
 {
 	AJAMLevelScript* level = Cast<AJAMLevelScript>(GetLevel()->GetLevelScriptActor());
 
-	if (level && !level->OnAgentSpawned.Contains(this, "SpawnAgent"))
+	if (level && !level->OnAgentSpawned.Contains(this, TEXT("SpawnAgent")))
 	{
 		level->OnAgentSpawned.AddDynamic(this, &AAgentSpawner::SpawnAgent);
 	}
